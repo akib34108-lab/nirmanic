@@ -29,6 +29,18 @@ function SidebarVertical() {
               </a>
             </li>
             <li className="nav-item">
+              <a className="nav-link" href="/projects">
+                <i className="mdi mdi-briefcase menu-icon"></i>
+                <span className="menu-title">Projects</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/designation">
+              <i className="mdi mdi-account-card-details menu-icon"></i>
+                <span className="menu-title">Designations</span>
+              </a>
+            </li>
+            <li className="nav-item">
               <a className="nav-link" href="/form">
                 <i className="mdi mdi-format-list-bulleted menu-icon"></i>
                 <span className="menu-title">Forms</span>
