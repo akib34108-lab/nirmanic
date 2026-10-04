@@ -41,6 +41,47 @@ function SidebarVertical() {
               </a>
             </li>
             <li className="nav-item">
+              <a className="nav-link" href="/materials">
+                <i className="mdi mdi-package menu-icon"></i>
+                <span className="menu-title">Materials</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/category"><i className="mdi mdi-view-grid menu-icon"></i>
+                <span className="menu-title">Categories</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/suppliers"><i className="mdi mdi-truck menu-icon"></i>
+                <span className="menu-title">Suppliers</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/current_stock"><i className="mdi mdi-warehouse menu-icon"></i>
+                <span className="menu-title">Current Stock</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/stock_in"><i className="mdi mdi-arrow-down-bold menu-icon"></i>
+                <span className="menu-title">Stock In</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/stock_out"><i className="mdi mdi-arrow-up-bold menu-icon"></i>
+                <span className="menu-title">Stock Out</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/stock_adjustment"><i className="mdi mdi-settings menu-icon"></i>
+                <span className="menu-title">Stock Adjustment</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/inventory_history"><i className="mdi mdi-history menu-icon"></i>
+                <span className="menu-title">Inventory History</span>
+              </a>
+            </li>
+            <li className="nav-item">
               <a className="nav-link" href="/form">
                 <i className="mdi mdi-format-list-bulleted menu-icon"></i>
                 <span className="menu-title">Forms</span>
