@@ -1,4 +1,12 @@
+import { Link } from "react-router";
+import { useState } from "react";
 function SidebarVertical() {
+    const [openModule, setOpenModule] = useState("");
+    const toggleModule = (moduleName) => {
+    setOpenModule(
+      openModule === moduleName ? "" : moduleName
+    );
+  };
     return (
         <nav className="sidebar sidebar-offcanvas" id="sidebar">
           <div className="sidebar-brand-wrapper d-flex align-items-center">
@@ -23,81 +31,107 @@ function SidebarVertical() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/dashboard">
+              <Link className="nav-link" to="/">
                 <i className="mdi mdi-home menu-icon"></i>
                 <span className="menu-title">Dashboard</span>
-              </a>
+              </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/projects">
-                <i className="mdi mdi-briefcase menu-icon"></i>
-                <span className="menu-title">Projects</span>
-              </a>
+            <li className="nav-item" onClick={() => toggleModule("projects")} style={{ cursor: "pointer" }}>
+                <a className="nav-link">
+                    <i className="mdi mdi-briefcase menu-icon"></i>
+                    <span className="menu-title">Projects & Clients</span>
+                    <i className={ openModule === "projects" ? "mdi mdi-menu-down" : "mdi mdi-menu-right"} style={{ marginLeft: "auto", fontSize: "15px" }}></i>
+                </a>
             </li>
+            {openModule === "projects" && (
+            <ul className="submenu" style={{ listStyle: "none", paddingLeft: "30px" }}>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/projects">
+                        <span className="menu-title">Projects List</span>
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/clients">
+                        <span className="menu-title">Our Clients</span>
+                    </Link>
+                </li>
+            </ul>
+            )}
             <li className="nav-item">
-              <a className="nav-link" href="/designation">
-              <i className="mdi mdi-account-card-details menu-icon"></i>
+              <Link className="nav-link" to="/designation">
+                <i className="mdi mdi-account-card-details menu-icon"></i>
                 <span className="menu-title">Designations</span>
-              </a>
+              </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/materials">
+            <li className="nav-item" onClick={() => toggleModule("projects")} style={{ cursor: pointer }}>
+              <a className="nav-link">
                 <i className="mdi mdi-package menu-icon"></i>
+                <span className="menu-title">Material & Stock</span>
+                <i className={ openModule === "materials" ? "mdi mdi-menu-down" : "mdi mdi-menu-right"} style={{ marginLeft: "auto", fontSize: "15px" }}></i>
+              </a>
+            </li>
+            { openModule === "materials" && (
+                <ul>
+                    
+                </ul>
+            )}
+            <li className="nav-item">
+              <Link className="nav-link" to="/materials">
                 <span className="menu-title">Materials</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/category"><i className="mdi mdi-view-grid menu-icon"></i>
+              <Link className="nav-link" to="/category">
                 <span className="menu-title">Categories</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/suppliers"><i className="mdi mdi-truck menu-icon"></i>
+              <Link className="nav-link" to="/suppliers">
                 <span className="menu-title">Suppliers</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/current_stock"><i className="mdi mdi-warehouse menu-icon"></i>
+              <Link className="nav-link" to="/current_stock">
                 <span className="menu-title">Current Stock</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/stock_in"><i className="mdi mdi-arrow-down-bold menu-icon"></i>
+              <Link className="nav-link" to="/stock_in">
                 <span className="menu-title">Stock In</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/stock_out"><i className="mdi mdi-arrow-up-bold menu-icon"></i>
+              <Link className="nav-link" to="/stock_out">
                 <span className="menu-title">Stock Out</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/stock_adjustment"><i className="mdi mdi-settings menu-icon"></i>
+              <Link className="nav-link" to="/stock_adjustment">
                 <span className="menu-title">Stock Adjustment</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/inventory_history"><i className="mdi mdi-history menu-icon"></i>
+              <Link className="nav-link" to="/inventory_history">
                 <span className="menu-title">Inventory History</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/form">
+              <Link className="nav-link" to="/form">
                 <i className="mdi mdi-format-list-bulleted menu-icon"></i>
                 <span className="menu-title">Forms</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="pages/charts/chartjs.html">
+              <Link className="nav-link" to="/charts">
                 <i className="mdi mdi-chart-bar menu-icon"></i>
                 <span className="menu-title">Charts</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/table">
+              <Link className="nav-link" to="/table">
                 <i className="mdi mdi-table-large menu-icon"></i>
                 <span className="menu-title">Tables</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
