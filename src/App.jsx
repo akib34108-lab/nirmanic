@@ -5,7 +5,8 @@ import Dashboard from "/pages/Dashboard.jsx";
 import Footer from "/component/Footer.jsx";
 import Form from "/pages/Form.jsx";
 import Table from "/pages/Table.jsx";
-import Projects from "/pages/Projects.jsx";
+import Projects from "/pages/projects/Index.jsx";
+import CreateProjects from "/pages/projects/Create.jsx";
 import Designation from "/pages/Designation.jsx";
 import Materials from "/pages/Materials.jsx";
 import Category from "/pages/Category.jsx";
@@ -25,7 +26,12 @@ function App() {
           <div className="main-panel">
             <Routes>
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/projects" element={<Projects />} />
+
+                <Route path="/projects">
+                    <Route index element={<Projects />} />
+                    <Route path="create" element={<CreateProjects />} />
+                </Route>
+
                 <Route path="/designation" element={<Designation />} />
                 <Route path="/materials" element={<Materials />} />
                 <Route path="/category" element={<Category />} />

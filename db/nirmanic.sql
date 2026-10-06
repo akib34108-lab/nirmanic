@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2026 at 04:13 AM
+-- Generation Time: Oct 06, 2026 at 09:04 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,6 +31,7 @@ CREATE TABLE `projects` (
   `id` int(11) NOT NULL,
   `client_id` int(16) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `type` int(16) DEFAULT NULL COMMENT '1=residential, 2=commercial, 3=industrial, 4=infrastructure, 5=institutional, 6=hospitality, 7=government, 8=renovation, 9=other',
   `location` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `budget` varchar(255) DEFAULT NULL,
@@ -47,9 +48,9 @@ CREATE TABLE `projects` (
 -- Dumping data for table `projects`
 --
 
-INSERT INTO `projects` (`id`, `client_id`, `name`, `location`, `description`, `budget`, `progress`, `start_date`, `expected_completion_date`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'rasulbag building', 'chawkbazar', 'gkewjyoinsjefhw', '2500000000', 50, '2022-10-02', '2026-10-15', 4, NULL, NULL, NULL),
-(2, 2, 'kotowali', 'kotowali', NULL, 'oewiururh', 25, '2026-10-04', '2026-10-31', 2, NULL, NULL, NULL);
+INSERT INTO `projects` (`id`, `client_id`, `name`, `type`, `location`, `description`, `budget`, `progress`, `start_date`, `expected_completion_date`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'rasulbag building', NULL, 'chawkbazar', 'gkewjyoinsjefhw', '2500000000', 50, '2022-10-02', '2026-10-15', 4, NULL, NULL, NULL),
+(2, 2, 'kotowali', NULL, 'kotowali', NULL, 'oewiururh', 25, '2026-10-04', '2026-10-31', 2, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables

@@ -82,6 +82,10 @@ function Projects() {
                         <small className="text-muted">Start: {project.start_date}</small>
                         <small className="text-muted">Approximate End: {project.expected_completion_date}</small>
                     </div>
+                    <div className="mt-3">
+                            <small className="text-muted d-block mb-1">Description</small>
+                            <h6 className="mb-0">{project.description}</h6>
+                    </div>
                 </div>
                 ))}
             </div>
