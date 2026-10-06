@@ -45,510 +45,509 @@ function StockAdjustment() {
           </div>
         </form>
       </div>
+      <div className="row">
+        <div className="col-12 grid-margin">
+          <div className="card">
+            <div className="card-body">
 
-      {/* Stock Adjustment Table */}
-      <div className="col-12 grid-margin">
-        <div className="card">
-          <div className="card-body">
+              <h4 className="card-title mb-4">
+                Stock Adjustment History
+              </h4>
 
-            <h4 className="card-title mb-4">
-              Stock Adjustment History
-            </h4>
+              <div className="table-responsive">
+                <table className="table table-hover">
 
-            <div className="table-responsive">
-              <table className="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Material</th>
+                      <th>Adjustment Type</th>
+                      <th>Previous Stock</th>
+                      <th>Adjustment Qty</th>
+                      <th>New Stock</th>
+                      <th>Reason</th>
+                      <th>Adjusted By</th>
+                      <th>Date</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
 
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Material</th>
-                    <th>Adjustment Type</th>
-                    <th>Previous Stock</th>
-                    <th>Adjustment Qty</th>
-                    <th>New Stock</th>
-                    <th>Reason</th>
-                    <th>Adjusted By</th>
-                    <th>Date</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
+                  <tbody>
 
-                <tbody>
+                    {/* Adjustment 1 */}
+                    <tr>
+                      <td>1</td>
 
-                  {/* Adjustment 1 */}
-                  <tr>
-                    <td>1</td>
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <div className="mr-3">
+                            <i
+                              className="mdi mdi-package-variant"
+                              style={{
+                                fontSize: "28px",
+                                color: "#151515"
+                              }}
+                            ></i>
+                          </div>
 
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <div className="mr-3">
-                          <i
-                            className="mdi mdi-package-variant"
-                            style={{
-                              fontSize: "28px",
-                              color: "#151515"
-                            }}
-                          ></i>
+                          <div>
+                            <h6 className="mb-1">
+                              Portland Cement
+                            </h6>
+                            <small className="text-muted">
+                              CEM-001
+                            </small>
+                          </div>
                         </div>
+                      </td>
 
-                        <div>
-                          <h6 className="mb-1">
-                            Portland Cement
-                          </h6>
-                          <small className="text-muted">
-                            CEM-001
-                          </small>
+                      <td>
+                        <span className="badge badge-success">
+                          Increase
+                        </span>
+                      </td>
+
+                      <td>
+                        420 Bags
+                      </td>
+
+                      <td>
+                        <span className="text-success">
+                          +30 Bags
+                        </span>
+                      </td>
+
+                      <td>
+                        <strong>450 Bags</strong>
+                      </td>
+
+                      <td>
+                        Physical stock found
+                      </td>
+
+                      <td>
+                        Md. Rahim
+                      </td>
+
+                      <td>
+                        25 Sep 2026
+                      </td>
+
+                      <td>
+                        <button className="btn btn-sm btn-outline-info mr-2">
+                          <i className="mdi mdi-eye"></i>
+                        </button>
+
+                        <button className="btn btn-sm btn-outline-danger">
+                          <i className="mdi mdi-delete"></i>
+                        </button>
+                      </td>
+                    </tr>
+
+                    {/* Adjustment 2 */}
+                    <tr>
+                      <td>2</td>
+
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <div className="mr-3">
+                            <i
+                              className="mdi mdi-wrench"
+                              style={{
+                                fontSize: "28px",
+                                color: "#FFAB00"
+                              }}
+                            ></i>
+                          </div>
+
+                          <div>
+                            <h6 className="mb-1">
+                              Steel Rod 16mm
+                            </h6>
+                            <small className="text-muted">
+                              STL-016
+                            </small>
+                          </div>
                         </div>
-                      </div>
-                    </td>
+                      </td>
 
-                    <td>
-                      <span className="badge badge-success">
-                        Increase
-                      </span>
-                    </td>
+                      <td>
+                        <span className="badge badge-danger">
+                          Decrease
+                        </span>
+                      </td>
 
-                    <td>
-                      420 Bags
-                    </td>
+                      <td>
+                        90 Tons
+                      </td>
 
-                    <td>
-                      <span className="text-success">
-                        +30 Bags
-                      </span>
-                    </td>
+                      <td>
+                        <span className="text-danger">
+                          -5 Tons
+                        </span>
+                      </td>
 
-                    <td>
-                      <strong>450 Bags</strong>
-                    </td>
+                      <td>
+                        <strong>85 Tons</strong>
+                      </td>
 
-                    <td>
-                      Physical stock found
-                    </td>
+                      <td>
+                        Damaged material
+                      </td>
 
-                    <td>
-                      Md. Rahim
-                    </td>
+                      <td>
+                        Karim Hossain
+                      </td>
 
-                    <td>
-                      25 Sep 2026
-                    </td>
+                      <td>
+                        24 Sep 2026
+                      </td>
 
-                    <td>
-                      <button className="btn btn-sm btn-outline-info mr-2">
-                        <i className="mdi mdi-eye"></i>
-                      </button>
+                      <td>
+                        <button className="btn btn-sm btn-outline-info mr-2">
+                          <i className="mdi mdi-eye"></i>
+                        </button>
 
-                      <button className="btn btn-sm btn-outline-danger">
-                        <i className="mdi mdi-delete"></i>
-                      </button>
-                    </td>
-                  </tr>
+                        <button className="btn btn-sm btn-outline-danger">
+                          <i className="mdi mdi-delete"></i>
+                        </button>
+                      </td>
+                    </tr>
 
-                  {/* Adjustment 2 */}
-                  <tr>
-                    <td>2</td>
+                    {/* Adjustment 3 */}
+                    <tr>
+                      <td>3</td>
 
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <div className="mr-3">
-                          <i
-                            className="mdi mdi-wrench"
-                            style={{
-                              fontSize: "28px",
-                              color: "#FFAB00"
-                            }}
-                          ></i>
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <div className="mr-3">
+                            <i
+                              className="mdi mdi-wall"
+                              style={{
+                                fontSize: "28px",
+                                color: "#E65100"
+                              }}
+                            ></i>
+                          </div>
+
+                          <div>
+                            <h6 className="mb-1">
+                              Red Brick
+                            </h6>
+                            <small className="text-muted">
+                              BRK-001
+                            </small>
+                          </div>
                         </div>
+                      </td>
 
-                        <div>
-                          <h6 className="mb-1">
-                            Steel Rod 16mm
-                          </h6>
-                          <small className="text-muted">
-                            STL-016
-                          </small>
+                      <td>
+                        <span className="badge badge-danger">
+                          Decrease
+                        </span>
+                      </td>
+
+                      <td>
+                        13,000 Pcs
+                      </td>
+
+                      <td>
+                        <span className="text-danger">
+                          -500 Pcs
+                        </span>
+                      </td>
+
+                      <td>
+                        <strong>12,500 Pcs</strong>
+                      </td>
+
+                      <td>
+                        Broken bricks
+                      </td>
+
+                      <td>
+                        Hasan Mahmud
+                      </td>
+
+                      <td>
+                        23 Sep 2026
+                      </td>
+
+                      <td>
+                        <button className="btn btn-sm btn-outline-info mr-2">
+                          <i className="mdi mdi-eye"></i>
+                        </button>
+
+                        <button className="btn btn-sm btn-outline-danger">
+                          <i className="mdi mdi-delete"></i>
+                        </button>
+                      </td>
+                    </tr>
+
+                    {/* Adjustment 4 */}
+                    <tr>
+                      <td>4</td>
+
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <div className="mr-3">
+                            <i
+                              className="mdi mdi-cube-outline"
+                              style={{
+                                fontSize: "28px",
+                                color: "#795548"
+                              }}
+                            ></i>
+                          </div>
+
+                          <div>
+                            <h6 className="mb-1">
+                              Fine Sand
+                            </h6>
+                            <small className="text-muted">
+                              SND-001
+                            </small>
+                          </div>
                         </div>
-                      </div>
-                    </td>
+                      </td>
 
-                    <td>
-                      <span className="badge badge-danger">
-                        Decrease
-                      </span>
-                    </td>
+                      <td>
+                        <span className="badge badge-success">
+                          Increase
+                        </span>
+                      </td>
 
-                    <td>
-                      90 Tons
-                    </td>
+                      <td>
+                        15 Trucks
+                      </td>
 
-                    <td>
-                      <span className="text-danger">
-                        -5 Tons
-                      </span>
-                    </td>
+                      <td>
+                        <span className="text-success">
+                          +3 Trucks
+                        </span>
+                      </td>
 
-                    <td>
-                      <strong>85 Tons</strong>
-                    </td>
+                      <td>
+                        <strong>18 Trucks</strong>
+                      </td>
 
-                    <td>
-                      Damaged material
-                    </td>
+                      <td>
+                        Measurement correction
+                      </td>
 
-                    <td>
-                      Karim Hossain
-                    </td>
+                      <td>
+                        Sohel Rana
+                      </td>
 
-                    <td>
-                      24 Sep 2026
-                    </td>
+                      <td>
+                        22 Sep 2026
+                      </td>
 
-                    <td>
-                      <button className="btn btn-sm btn-outline-info mr-2">
-                        <i className="mdi mdi-eye"></i>
-                      </button>
+                      <td>
+                        <button className="btn btn-sm btn-outline-info mr-2">
+                          <i className="mdi mdi-eye"></i>
+                        </button>
 
-                      <button className="btn btn-sm btn-outline-danger">
-                        <i className="mdi mdi-delete"></i>
-                      </button>
-                    </td>
-                  </tr>
+                        <button className="btn btn-sm btn-outline-danger">
+                          <i className="mdi mdi-delete"></i>
+                        </button>
+                      </td>
+                    </tr>
 
-                  {/* Adjustment 3 */}
-                  <tr>
-                    <td>3</td>
+                    {/* Adjustment 5 */}
+                    <tr>
+                      <td>5</td>
 
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <div className="mr-3">
-                          <i
-                            className="mdi mdi-wall"
-                            style={{
-                              fontSize: "28px",
-                              color: "#E65100"
-                            }}
-                          ></i>
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <div className="mr-3">
+                            <i
+                              className="mdi mdi-cube"
+                              style={{
+                                fontSize: "28px",
+                                color: "#607D8B"
+                              }}
+                            ></i>
+                          </div>
+
+                          <div>
+                            <h6 className="mb-1">
+                              Stone Chips
+                            </h6>
+                            <small className="text-muted">
+                              STN-001
+                            </small>
+                          </div>
                         </div>
+                      </td>
 
-                        <div>
-                          <h6 className="mb-1">
-                            Red Brick
-                          </h6>
-                          <small className="text-muted">
-                            BRK-001
-                          </small>
+                      <td>
+                        <span className="badge badge-danger">
+                          Decrease
+                        </span>
+                      </td>
+
+                      <td>
+                        8 Trucks
+                      </td>
+
+                      <td>
+                        <span className="text-danger">
+                          -2 Trucks
+                        </span>
+                      </td>
+
+                      <td>
+                        <strong>6 Trucks</strong>
+                      </td>
+
+                      <td>
+                        Material wastage
+                      </td>
+
+                      <td>
+                        Arif Chowdhury
+                      </td>
+
+                      <td>
+                        21 Sep 2026
+                      </td>
+
+                      <td>
+                        <button className="btn btn-sm btn-outline-info mr-2">
+                          <i className="mdi mdi-eye"></i>
+                        </button>
+
+                        <button className="btn btn-sm btn-outline-danger">
+                          <i className="mdi mdi-delete"></i>
+                        </button>
+                      </td>
+                    </tr>
+
+                    {/* Adjustment 6 */}
+                    <tr>
+                      <td>6</td>
+
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <div className="mr-3">
+                            <i
+                              className="mdi mdi-flash"
+                              style={{
+                                fontSize: "28px",
+                                color: "#2196F3"
+                              }}
+                            ></i>
+                          </div>
+
+                          <div>
+                            <h6 className="mb-1">
+                              Electrical Cable
+                            </h6>
+                            <small className="text-muted">
+                              CAB-002
+                            </small>
+                          </div>
                         </div>
-                      </div>
-                    </td>
+                      </td>
 
-                    <td>
-                      <span className="badge badge-danger">
-                        Decrease
-                      </span>
-                    </td>
+                      <td>
+                        <span className="badge badge-success">
+                          Increase
+                        </span>
+                      </td>
 
-                    <td>
-                      13,000 Pcs
-                    </td>
+                      <td>
+                        1,200 Meters
+                      </td>
 
-                    <td>
-                      <span className="text-danger">
-                        -500 Pcs
-                      </span>
-                    </td>
+                      <td>
+                        <span className="text-success">
+                          +50 Meters
+                        </span>
+                      </td>
 
-                    <td>
-                      <strong>12,500 Pcs</strong>
-                    </td>
+                      <td>
+                        <strong>1,250 Meters</strong>
+                      </td>
 
-                    <td>
-                      Broken bricks
-                    </td>
+                      <td>
+                        Stock count correction
+                      </td>
 
-                    <td>
-                      Hasan Mahmud
-                    </td>
+                      <td>
+                        Jahid Hasan
+                      </td>
 
-                    <td>
-                      23 Sep 2026
-                    </td>
+                      <td>
+                        20 Sep 2026
+                      </td>
 
-                    <td>
-                      <button className="btn btn-sm btn-outline-info mr-2">
-                        <i className="mdi mdi-eye"></i>
-                      </button>
+                      <td>
+                        <button className="btn btn-sm btn-outline-info mr-2">
+                          <i className="mdi mdi-eye"></i>
+                        </button>
 
-                      <button className="btn btn-sm btn-outline-danger">
-                        <i className="mdi mdi-delete"></i>
-                      </button>
-                    </td>
-                  </tr>
+                        <button className="btn btn-sm btn-outline-danger">
+                          <i className="mdi mdi-delete"></i>
+                        </button>
+                      </td>
+                    </tr>
 
-                  {/* Adjustment 4 */}
-                  <tr>
-                    <td>4</td>
+                  </tbody>
 
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <div className="mr-3">
-                          <i
-                            className="mdi mdi-cube-outline"
-                            style={{
-                              fontSize: "28px",
-                              color: "#795548"
-                            }}
-                          ></i>
-                        </div>
+                </table>
+              </div>
 
-                        <div>
-                          <h6 className="mb-1">
-                            Fine Sand
-                          </h6>
-                          <small className="text-muted">
-                            SND-001
-                          </small>
-                        </div>
-                      </div>
-                    </td>
+              {/* Pagination */}
+              <div className="d-flex justify-content-between align-items-center mt-4">
 
-                    <td>
-                      <span className="badge badge-success">
-                        Increase
-                      </span>
-                    </td>
+                <p className="text-muted mb-0">
+                  Showing 1 to 6 of 18 adjustment records
+                </p>
 
-                    <td>
-                      15 Trucks
-                    </td>
+                <nav>
+                  <ul className="pagination mb-0">
 
-                    <td>
-                      <span className="text-success">
-                        +3 Trucks
-                      </span>
-                    </td>
+                    <li className="page-item disabled">
+                      <a className="page-link" href="#">
+                        Previous
+                      </a>
+                    </li>
 
-                    <td>
-                      <strong>18 Trucks</strong>
-                    </td>
+                    <li className="page-item active">
+                      <a className="page-link" href="#">
+                        1
+                      </a>
+                    </li>
 
-                    <td>
-                      Measurement correction
-                    </td>
+                    <li className="page-item">
+                      <a className="page-link" href="#">
+                        2
+                      </a>
+                    </li>
 
-                    <td>
-                      Sohel Rana
-                    </td>
+                    <li className="page-item">
+                      <a className="page-link" href="#">
+                        3
+                      </a>
+                    </li>
 
-                    <td>
-                      22 Sep 2026
-                    </td>
+                    <li className="page-item">
+                      <a className="page-link" href="#">
+                        Next
+                      </a>
+                    </li>
 
-                    <td>
-                      <button className="btn btn-sm btn-outline-info mr-2">
-                        <i className="mdi mdi-eye"></i>
-                      </button>
+                  </ul>
+                </nav>
 
-                      <button className="btn btn-sm btn-outline-danger">
-                        <i className="mdi mdi-delete"></i>
-                      </button>
-                    </td>
-                  </tr>
+              </div>
 
-                  {/* Adjustment 5 */}
-                  <tr>
-                    <td>5</td>
-
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <div className="mr-3">
-                          <i
-                            className="mdi mdi-cube"
-                            style={{
-                              fontSize: "28px",
-                              color: "#607D8B"
-                            }}
-                          ></i>
-                        </div>
-
-                        <div>
-                          <h6 className="mb-1">
-                            Stone Chips
-                          </h6>
-                          <small className="text-muted">
-                            STN-001
-                          </small>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td>
-                      <span className="badge badge-danger">
-                        Decrease
-                      </span>
-                    </td>
-
-                    <td>
-                      8 Trucks
-                    </td>
-
-                    <td>
-                      <span className="text-danger">
-                        -2 Trucks
-                      </span>
-                    </td>
-
-                    <td>
-                      <strong>6 Trucks</strong>
-                    </td>
-
-                    <td>
-                      Material wastage
-                    </td>
-
-                    <td>
-                      Arif Chowdhury
-                    </td>
-
-                    <td>
-                      21 Sep 2026
-                    </td>
-
-                    <td>
-                      <button className="btn btn-sm btn-outline-info mr-2">
-                        <i className="mdi mdi-eye"></i>
-                      </button>
-
-                      <button className="btn btn-sm btn-outline-danger">
-                        <i className="mdi mdi-delete"></i>
-                      </button>
-                    </td>
-                  </tr>
-
-                  {/* Adjustment 6 */}
-                  <tr>
-                    <td>6</td>
-
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <div className="mr-3">
-                          <i
-                            className="mdi mdi-flash"
-                            style={{
-                              fontSize: "28px",
-                              color: "#2196F3"
-                            }}
-                          ></i>
-                        </div>
-
-                        <div>
-                          <h6 className="mb-1">
-                            Electrical Cable
-                          </h6>
-                          <small className="text-muted">
-                            CAB-002
-                          </small>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td>
-                      <span className="badge badge-success">
-                        Increase
-                      </span>
-                    </td>
-
-                    <td>
-                      1,200 Meters
-                    </td>
-
-                    <td>
-                      <span className="text-success">
-                        +50 Meters
-                      </span>
-                    </td>
-
-                    <td>
-                      <strong>1,250 Meters</strong>
-                    </td>
-
-                    <td>
-                      Stock count correction
-                    </td>
-
-                    <td>
-                      Jahid Hasan
-                    </td>
-
-                    <td>
-                      20 Sep 2026
-                    </td>
-
-                    <td>
-                      <button className="btn btn-sm btn-outline-info mr-2">
-                        <i className="mdi mdi-eye"></i>
-                      </button>
-
-                      <button className="btn btn-sm btn-outline-danger">
-                        <i className="mdi mdi-delete"></i>
-                      </button>
-                    </td>
-                  </tr>
-
-                </tbody>
-
-              </table>
             </div>
-
-            {/* Pagination */}
-            <div className="d-flex justify-content-between align-items-center mt-4">
-
-              <p className="text-muted mb-0">
-                Showing 1 to 6 of 18 adjustment records
-              </p>
-
-              <nav>
-                <ul className="pagination mb-0">
-
-                  <li className="page-item disabled">
-                    <a className="page-link" href="#">
-                      Previous
-                    </a>
-                  </li>
-
-                  <li className="page-item active">
-                    <a className="page-link" href="#">
-                      1
-                    </a>
-                  </li>
-
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      2
-                    </a>
-                  </li>
-
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      3
-                    </a>
-                  </li>
-
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      Next
-                    </a>
-                  </li>
-
-                </ul>
-              </nav>
-
-            </div>
-
           </div>
         </div>
       </div>
-
     </div>
   );
 }

@@ -45,479 +45,478 @@ function StockIn() {
           </div>
         </form>
       </div>
+      <div className="row">
+        <div className="col-12 grid-margin">
+          <div className="card">
+            <div className="card-body">
 
-      {/* Stock In Table */}
-      <div className="col-12 grid-margin">
-        <div className="card">
-          <div className="card-body">
+              <h4 className="card-title mb-4">
+                Stock In History
+              </h4>
 
-            <h4 className="card-title mb-4">
-              Stock In History
-            </h4>
+              <div className="table-responsive">
+                <table className="table table-hover">
 
-            <div className="table-responsive">
-              <table className="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Material</th>
+                      <th>Supplier</th>
+                      <th>Quantity</th>
+                      <th>Unit Price</th>
+                      <th>Total Amount</th>
+                      <th>Received Date</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
 
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Material</th>
-                    <th>Supplier</th>
-                    <th>Quantity</th>
-                    <th>Unit Price</th>
-                    <th>Total Amount</th>
-                    <th>Received Date</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
+                  <tbody>
 
-                <tbody>
+                    {/* Stock In 1 */}
+                    <tr>
+                      <td>1</td>
 
-                  {/* Stock In 1 */}
-                  <tr>
-                    <td>1</td>
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <div className="mr-3">
+                            <i
+                              className="mdi mdi-package-variant"
+                              style={{
+                                fontSize: "28px",
+                                color: "#151515"
+                              }}
+                            ></i>
+                          </div>
 
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <div className="mr-3">
-                          <i
-                            className="mdi mdi-package-variant"
-                            style={{
-                              fontSize: "28px",
-                              color: "#151515"
-                            }}
-                          ></i>
+                          <div>
+                            <h6 className="mb-1">
+                              Portland Cement
+                            </h6>
+                            <small className="text-muted">
+                              CEM-001
+                            </small>
+                          </div>
                         </div>
+                      </td>
 
-                        <div>
-                          <h6 className="mb-1">
-                            Portland Cement
-                          </h6>
-                          <small className="text-muted">
-                            CEM-001
-                          </small>
+                      <td>
+                        ABC Construction Supply
+                      </td>
+
+                      <td>
+                        <strong>200</strong> Bags
+                      </td>
+
+                      <td>
+                        ৳ 550
+                      </td>
+
+                      <td>
+                        <strong>৳ 110,000</strong>
+                      </td>
+
+                      <td>
+                        25 Sep 2026
+                      </td>
+
+                      <td>
+                        <span className="text-success">
+                          <i className="mdi mdi-checkbox-blank-circle mr-1"></i>
+                          Received
+                        </span>
+                      </td>
+
+                      <td>
+                        <button className="btn btn-sm btn-outline-info mr-2">
+                          <i className="mdi mdi-eye"></i>
+                        </button>
+
+                        <button className="btn btn-sm btn-outline-danger">
+                          <i className="mdi mdi-delete"></i>
+                        </button>
+                      </td>
+                    </tr>
+
+                    {/* Stock In 2 */}
+                    <tr>
+                      <td>2</td>
+
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <div className="mr-3">
+                            <i
+                              className="mdi mdi-wrench"
+                              style={{
+                                fontSize: "28px",
+                                color: "#FFAB00"
+                              }}
+                            ></i>
+                          </div>
+
+                          <div>
+                            <h6 className="mb-1">
+                              Steel Rod 16mm
+                            </h6>
+                            <small className="text-muted">
+                              STL-016
+                            </small>
+                          </div>
                         </div>
-                      </div>
-                    </td>
+                      </td>
 
-                    <td>
-                      ABC Construction Supply
-                    </td>
+                      <td>
+                        Steel & Rod Limited
+                      </td>
 
-                    <td>
-                      <strong>200</strong> Bags
-                    </td>
+                      <td>
+                        <strong>25</strong> Tons
+                      </td>
 
-                    <td>
-                      ৳ 550
-                    </td>
+                      <td>
+                        ৳ 85,000
+                      </td>
 
-                    <td>
-                      <strong>৳ 110,000</strong>
-                    </td>
+                      <td>
+                        <strong>৳ 2,125,000</strong>
+                      </td>
 
-                    <td>
-                      25 Sep 2026
-                    </td>
+                      <td>
+                        24 Sep 2026
+                      </td>
 
-                    <td>
-                      <span className="text-success">
-                        <i className="mdi mdi-checkbox-blank-circle mr-1"></i>
-                        Received
-                      </span>
-                    </td>
+                      <td>
+                        <span className="text-success">
+                          <i className="mdi mdi-checkbox-blank-circle mr-1"></i>
+                          Received
+                        </span>
+                      </td>
 
-                    <td>
-                      <button className="btn btn-sm btn-outline-info mr-2">
-                        <i className="mdi mdi-eye"></i>
-                      </button>
+                      <td>
+                        <button className="btn btn-sm btn-outline-info mr-2">
+                          <i className="mdi mdi-eye"></i>
+                        </button>
 
-                      <button className="btn btn-sm btn-outline-danger">
-                        <i className="mdi mdi-delete"></i>
-                      </button>
-                    </td>
-                  </tr>
+                        <button className="btn btn-sm btn-outline-danger">
+                          <i className="mdi mdi-delete"></i>
+                        </button>
+                      </td>
+                    </tr>
 
-                  {/* Stock In 2 */}
-                  <tr>
-                    <td>2</td>
+                    {/* Stock In 3 */}
+                    <tr>
+                      <td>3</td>
 
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <div className="mr-3">
-                          <i
-                            className="mdi mdi-wrench"
-                            style={{
-                              fontSize: "28px",
-                              color: "#FFAB00"
-                            }}
-                          ></i>
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <div className="mr-3">
+                            <i
+                              className="mdi mdi-wall"
+                              style={{
+                                fontSize: "28px",
+                                color: "#E65100"
+                              }}
+                            ></i>
+                          </div>
+
+                          <div>
+                            <h6 className="mb-1">
+                              Red Brick
+                            </h6>
+                            <small className="text-muted">
+                              BRK-001
+                            </small>
+                          </div>
                         </div>
+                      </td>
 
-                        <div>
-                          <h6 className="mb-1">
-                            Steel Rod 16mm
-                          </h6>
-                          <small className="text-muted">
-                            STL-016
-                          </small>
+                      <td>
+                        Premium Cement Traders
+                      </td>
+
+                      <td>
+                        <strong>5,000</strong> Pcs
+                      </td>
+
+                      <td>
+                        ৳ 12
+                      </td>
+
+                      <td>
+                        <strong>৳ 60,000</strong>
+                      </td>
+
+                      <td>
+                        23 Sep 2026
+                      </td>
+
+                      <td>
+                        <span className="text-success">
+                          <i className="mdi mdi-checkbox-blank-circle mr-1"></i>
+                          Received
+                        </span>
+                      </td>
+
+                      <td>
+                        <button className="btn btn-sm btn-outline-info mr-2">
+                          <i className="mdi mdi-eye"></i>
+                        </button>
+
+                        <button className="btn btn-sm btn-outline-danger">
+                          <i className="mdi mdi-delete"></i>
+                        </button>
+                      </td>
+                    </tr>
+
+                    {/* Stock In 4 */}
+                    <tr>
+                      <td>4</td>
+
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <div className="mr-3">
+                            <i
+                              className="mdi mdi-cube-outline"
+                              style={{
+                                fontSize: "28px",
+                                color: "#795548"
+                              }}
+                            ></i>
+                          </div>
+
+                          <div>
+                            <h6 className="mb-1">
+                              Fine Sand
+                            </h6>
+                            <small className="text-muted">
+                              SND-001
+                            </small>
+                          </div>
                         </div>
-                      </div>
-                    </td>
+                      </td>
 
-                    <td>
-                      Steel & Rod Limited
-                    </td>
+                      <td>
+                        BuildPro Materials
+                      </td>
 
-                    <td>
-                      <strong>25</strong> Tons
-                    </td>
+                      <td>
+                        <strong>10</strong> Trucks
+                      </td>
 
-                    <td>
-                      ৳ 85,000
-                    </td>
+                      <td>
+                        ৳ 18,000
+                      </td>
 
-                    <td>
-                      <strong>৳ 2,125,000</strong>
-                    </td>
+                      <td>
+                        <strong>৳ 180,000</strong>
+                      </td>
 
-                    <td>
-                      24 Sep 2026
-                    </td>
+                      <td>
+                        22 Sep 2026
+                      </td>
 
-                    <td>
-                      <span className="text-success">
-                        <i className="mdi mdi-checkbox-blank-circle mr-1"></i>
-                        Received
-                      </span>
-                    </td>
+                      <td>
+                        <span className="text-success">
+                          <i className="mdi mdi-checkbox-blank-circle mr-1"></i>
+                          Received
+                        </span>
+                      </td>
 
-                    <td>
-                      <button className="btn btn-sm btn-outline-info mr-2">
-                        <i className="mdi mdi-eye"></i>
-                      </button>
+                      <td>
+                        <button className="btn btn-sm btn-outline-info mr-2">
+                          <i className="mdi mdi-eye"></i>
+                        </button>
 
-                      <button className="btn btn-sm btn-outline-danger">
-                        <i className="mdi mdi-delete"></i>
-                      </button>
-                    </td>
-                  </tr>
+                        <button className="btn btn-sm btn-outline-danger">
+                          <i className="mdi mdi-delete"></i>
+                        </button>
+                      </td>
+                    </tr>
 
-                  {/* Stock In 3 */}
-                  <tr>
-                    <td>3</td>
+                    {/* Stock In 5 */}
+                    <tr>
+                      <td>5</td>
 
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <div className="mr-3">
-                          <i
-                            className="mdi mdi-wall"
-                            style={{
-                              fontSize: "28px",
-                              color: "#E65100"
-                            }}
-                          ></i>
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <div className="mr-3">
+                            <i
+                              className="mdi mdi-cube"
+                              style={{
+                                fontSize: "28px",
+                                color: "#607D8B"
+                              }}
+                            ></i>
+                          </div>
+
+                          <div>
+                            <h6 className="mb-1">
+                              Stone Chips
+                            </h6>
+                            <small className="text-muted">
+                              STN-001
+                            </small>
+                          </div>
                         </div>
+                      </td>
 
-                        <div>
-                          <h6 className="mb-1">
-                            Red Brick
-                          </h6>
-                          <small className="text-muted">
-                            BRK-001
-                          </small>
+                      <td>
+                        SafeBuild Traders
+                      </td>
+
+                      <td>
+                        <strong>8</strong> Trucks
+                      </td>
+
+                      <td>
+                        ৳ 25,000
+                      </td>
+
+                      <td>
+                        <strong>৳ 200,000</strong>
+                      </td>
+
+                      <td>
+                        21 Sep 2026
+                      </td>
+
+                      <td>
+                        <span className="text-warning">
+                          <i className="mdi mdi-checkbox-blank-circle mr-1"></i>
+                          Pending
+                        </span>
+                      </td>
+
+                      <td>
+                        <button className="btn btn-sm btn-outline-info mr-2">
+                          <i className="mdi mdi-eye"></i>
+                        </button>
+
+                        <button className="btn btn-sm btn-outline-danger">
+                          <i className="mdi mdi-delete"></i>
+                        </button>
+                      </td>
+                    </tr>
+
+                    {/* Stock In 6 */}
+                    <tr>
+                      <td>6</td>
+
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <div className="mr-3">
+                            <i
+                              className="mdi mdi-flash"
+                              style={{
+                                fontSize: "28px",
+                                color: "#2196F3"
+                              }}
+                            ></i>
+                          </div>
+
+                          <div>
+                            <h6 className="mb-1">
+                              Electrical Cable
+                            </h6>
+                            <small className="text-muted">
+                              CAB-002
+                            </small>
+                          </div>
                         </div>
-                      </div>
-                    </td>
+                      </td>
 
-                    <td>
-                      Premium Cement Traders
-                    </td>
+                      <td>
+                        Electrical Solutions Ltd.
+                      </td>
 
-                    <td>
-                      <strong>5,000</strong> Pcs
-                    </td>
+                      <td>
+                        <strong>500</strong> Meters
+                      </td>
 
-                    <td>
-                      ৳ 12
-                    </td>
+                      <td>
+                        ৳ 180
+                      </td>
 
-                    <td>
-                      <strong>৳ 60,000</strong>
-                    </td>
+                      <td>
+                        <strong>৳ 90,000</strong>
+                      </td>
 
-                    <td>
-                      23 Sep 2026
-                    </td>
+                      <td>
+                        20 Sep 2026
+                      </td>
 
-                    <td>
-                      <span className="text-success">
-                        <i className="mdi mdi-checkbox-blank-circle mr-1"></i>
-                        Received
-                      </span>
-                    </td>
+                      <td>
+                        <span className="text-success">
+                          <i className="mdi mdi-checkbox-blank-circle mr-1"></i>
+                          Received
+                        </span>
+                      </td>
 
-                    <td>
-                      <button className="btn btn-sm btn-outline-info mr-2">
-                        <i className="mdi mdi-eye"></i>
-                      </button>
+                      <td>
+                        <button className="btn btn-sm btn-outline-info mr-2">
+                          <i className="mdi mdi-eye"></i>
+                        </button>
 
-                      <button className="btn btn-sm btn-outline-danger">
-                        <i className="mdi mdi-delete"></i>
-                      </button>
-                    </td>
-                  </tr>
+                        <button className="btn btn-sm btn-outline-danger">
+                          <i className="mdi mdi-delete"></i>
+                        </button>
+                      </td>
+                    </tr>
 
-                  {/* Stock In 4 */}
-                  <tr>
-                    <td>4</td>
+                  </tbody>
 
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <div className="mr-3">
-                          <i
-                            className="mdi mdi-cube-outline"
-                            style={{
-                              fontSize: "28px",
-                              color: "#795548"
-                            }}
-                          ></i>
-                        </div>
+                </table>
+              </div>
 
-                        <div>
-                          <h6 className="mb-1">
-                            Fine Sand
-                          </h6>
-                          <small className="text-muted">
-                            SND-001
-                          </small>
-                        </div>
-                      </div>
-                    </td>
+              {/* Pagination */}
+              <div className="d-flex justify-content-between align-items-center mt-4">
 
-                    <td>
-                      BuildPro Materials
-                    </td>
+                <p className="text-muted mb-0">
+                  Showing 1 to 6 of 32 stock in records
+                </p>
 
-                    <td>
-                      <strong>10</strong> Trucks
-                    </td>
+                <nav>
+                  <ul className="pagination mb-0">
 
-                    <td>
-                      ৳ 18,000
-                    </td>
+                    <li className="page-item disabled">
+                      <a className="page-link" href="#">
+                        Previous
+                      </a>
+                    </li>
 
-                    <td>
-                      <strong>৳ 180,000</strong>
-                    </td>
+                    <li className="page-item active">
+                      <a className="page-link" href="#">
+                        1
+                      </a>
+                    </li>
 
-                    <td>
-                      22 Sep 2026
-                    </td>
+                    <li className="page-item">
+                      <a className="page-link" href="#">
+                        2
+                      </a>
+                    </li>
 
-                    <td>
-                      <span className="text-success">
-                        <i className="mdi mdi-checkbox-blank-circle mr-1"></i>
-                        Received
-                      </span>
-                    </td>
+                    <li className="page-item">
+                      <a className="page-link" href="#">
+                        3
+                      </a>
+                    </li>
 
-                    <td>
-                      <button className="btn btn-sm btn-outline-info mr-2">
-                        <i className="mdi mdi-eye"></i>
-                      </button>
+                    <li className="page-item">
+                      <a className="page-link" href="#">
+                        Next
+                      </a>
+                    </li>
 
-                      <button className="btn btn-sm btn-outline-danger">
-                        <i className="mdi mdi-delete"></i>
-                      </button>
-                    </td>
-                  </tr>
+                  </ul>
+                </nav>
 
-                  {/* Stock In 5 */}
-                  <tr>
-                    <td>5</td>
+              </div>
 
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <div className="mr-3">
-                          <i
-                            className="mdi mdi-cube"
-                            style={{
-                              fontSize: "28px",
-                              color: "#607D8B"
-                            }}
-                          ></i>
-                        </div>
-
-                        <div>
-                          <h6 className="mb-1">
-                            Stone Chips
-                          </h6>
-                          <small className="text-muted">
-                            STN-001
-                          </small>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td>
-                      SafeBuild Traders
-                    </td>
-
-                    <td>
-                      <strong>8</strong> Trucks
-                    </td>
-
-                    <td>
-                      ৳ 25,000
-                    </td>
-
-                    <td>
-                      <strong>৳ 200,000</strong>
-                    </td>
-
-                    <td>
-                      21 Sep 2026
-                    </td>
-
-                    <td>
-                      <span className="text-warning">
-                        <i className="mdi mdi-checkbox-blank-circle mr-1"></i>
-                        Pending
-                      </span>
-                    </td>
-
-                    <td>
-                      <button className="btn btn-sm btn-outline-info mr-2">
-                        <i className="mdi mdi-eye"></i>
-                      </button>
-
-                      <button className="btn btn-sm btn-outline-danger">
-                        <i className="mdi mdi-delete"></i>
-                      </button>
-                    </td>
-                  </tr>
-
-                  {/* Stock In 6 */}
-                  <tr>
-                    <td>6</td>
-
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <div className="mr-3">
-                          <i
-                            className="mdi mdi-flash"
-                            style={{
-                              fontSize: "28px",
-                              color: "#2196F3"
-                            }}
-                          ></i>
-                        </div>
-
-                        <div>
-                          <h6 className="mb-1">
-                            Electrical Cable
-                          </h6>
-                          <small className="text-muted">
-                            CAB-002
-                          </small>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td>
-                      Electrical Solutions Ltd.
-                    </td>
-
-                    <td>
-                      <strong>500</strong> Meters
-                    </td>
-
-                    <td>
-                      ৳ 180
-                    </td>
-
-                    <td>
-                      <strong>৳ 90,000</strong>
-                    </td>
-
-                    <td>
-                      20 Sep 2026
-                    </td>
-
-                    <td>
-                      <span className="text-success">
-                        <i className="mdi mdi-checkbox-blank-circle mr-1"></i>
-                        Received
-                      </span>
-                    </td>
-
-                    <td>
-                      <button className="btn btn-sm btn-outline-info mr-2">
-                        <i className="mdi mdi-eye"></i>
-                      </button>
-
-                      <button className="btn btn-sm btn-outline-danger">
-                        <i className="mdi mdi-delete"></i>
-                      </button>
-                    </td>
-                  </tr>
-
-                </tbody>
-
-              </table>
             </div>
-
-            {/* Pagination */}
-            <div className="d-flex justify-content-between align-items-center mt-4">
-
-              <p className="text-muted mb-0">
-                Showing 1 to 6 of 32 stock in records
-              </p>
-
-              <nav>
-                <ul className="pagination mb-0">
-
-                  <li className="page-item disabled">
-                    <a className="page-link" href="#">
-                      Previous
-                    </a>
-                  </li>
-
-                  <li className="page-item active">
-                    <a className="page-link" href="#">
-                      1
-                    </a>
-                  </li>
-
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      2
-                    </a>
-                  </li>
-
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      3
-                    </a>
-                  </li>
-
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      Next
-                    </a>
-                  </li>
-
-                </ul>
-              </nav>
-
-            </div>
-
           </div>
         </div>
       </div>
-
     </div>
   );
 }

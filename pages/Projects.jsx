@@ -1,12 +1,24 @@
+import React from "react";
+
 function Projects() {
+    const [ projects, setProjects] = React.useState([]);
+    function fetchProject () {
+        fetch ('http://localhost/nirmanic_api/projects/index.php')
+        .then (response=>response.json())
+        .then (data=>setProjects(data))
+        .catch (error=>console.error("Fetching projects error:",error));
+    }
+    React.useEffect(()=>{
+        fetchProject();
+    },[]);
     return (
-      <div className="content-wrapper">
+    <div className="content-wrapper">
         <div className="page-header">
           <h3 className="page-title">All Projects</h3>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
-              <li className="breadcrumb-item"><a href="#">Projects</a></li>
-              <li className="breadcrumb-item active" aria-current="page"> Project List </li>
+              <li className="breadcrumb-item">Projects & Clients</li>
+              <li className="breadcrumb-item active" aria-current="page"><a href="#">Project List</a></li>
             </ol>
           </nav>
         </div>
@@ -23,50 +35,58 @@ function Projects() {
                 </div>
             </form>
         </div>
-       <div className="col-12 grid-margin">
-        <div className="card">
-          <div className="card-body">
-            <div className="row">
-                <div className="d-flex align-items-center w-100">
-                    <div className="mr-3">
-                        <i className="mdi mdi-domain" style={{ fontSize: "32px", color: "#4B49AC" }} ></i>
+        <div className="col-12 grid-margin">
+            <div className="card">
+
+                {projects.map((project) => (
+
+                <div className="card-body" key={ project.id }>
+                    <div className="row">
+                        <div className="d-flex align-items-center w-100">
+                            <div className="mr-3">
+                                <i className="mdi mdi-domain" style={{ fontSize: "32px", color: "#4B49AC" }} ></i>
+                            </div>
+                            <div>
+                                <h6 className="mb-1">{project.name}</h6>
+                                    <small className="text-muted">{project.id} · {project.type}</small>
+                            </div>
+                            <div className="ml-auto">
+                                <span style={{color: "#0fa80f"}}>{project.status}</span>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h6 className="mb-1">Nirmanic Heights</h6>
-                            <small className="text-muted">PRJ-001 · Residential Building</small>
+                    <hr className="my-3" />
+                    <div className="row mb-3">
+                        <div className="col-md-6">
+                            <small className="text-muted d-block mb-1">Budget</small>
+                            <h6 className="mb-0">৳ {project.budget}</h6>
+                        </div>
+                        <div className="col-md-3">
+                            <small className="text-muted d-block mb-1">Client</small>
+                            <h6 className="mb-0">{project.client_id}</h6>
+                        </div>
+                        <div className="col-md-3 text-md-right">
+                            <small className="text-muted d-block mb-1">Manager</small>
+                            <h6 className="mb-0">Rahim Ahmed</h6>
+                        </div>
                     </div>
-                    <div className="ml-auto">
-                        <span style={{color: "#0fa80f"}}>Ongoing</span>
+                    <div className="d-flex justify-content-between align-items-center mb-2">
+                        <small className="text-muted">Progress</small>
+                        <small className="font-weight-bold">{project.progress}%</small>
+                    </div>
+                    <div className="progress mb-2" style={{ height: "6px" }}>
+                        <div className="progress-bar bg-primary" role="progressbar" style={{ width: `${project.progress}%` }} aria-valuenow={project.progress} aria-valuemin={0} aria-valuemax={100}>
+                        </div>
+                    </div>
+                    <div className="d-flex justify-content-between align-items-center">
+                        <small className="text-muted">Start: {project.start_date}</small>
+                        <small className="text-muted">Approximate End: {project.expected_completion_date}</small>
                     </div>
                 </div>
+                ))}
             </div>
-            <hr className="my-3" />
-            <div className="row mb-3">
-                <div className="col-md-6">
-                    <small className="text-muted d-block mb-1">Budget</small>
-                    <h6 className="mb-0">৳ 2.5 Cr</h6>
-                </div>
-                <div className="col-md-6">
-                    <small className="text-muted d-block mb-1">Manager</small>
-                    <h6 className="mb-0">Rahim Ahmed</h6>
-                </div>
-            </div>
-            <div className="d-flex justify-content-between align-items-center mb-2">
-                <small className="text-muted">Progress</small>
-                <small className="font-weight-bold">65%</small>
-            </div>
-            <div className="progress mb-2" style={{ height: "6px" }}>
-                <div className="progress-bar bg-primary" role="progressbar" style={{ width: "65%" }}aria-valuenow={65} aria-valuemin={0} aria-valuemax={100}>
-            </div>
-        </div>
-        <div className="d-flex justify-content-between align-items-center">
-            <small className="text-muted">Start: 01 Jan 2026</small>
-            <small className="text-muted">Approximate End: 30 Dec 2026</small>
-        </div>
+        </div> 
     </div>
-</div>
-</div> 
-</div>
     );
 }
 export default Projects;

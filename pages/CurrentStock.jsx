@@ -45,11 +45,10 @@ function CurrentStock() {
           </div>
         </form>
       </div>
-
-      {/* Stock Table */}
-      <div className="col-12 grid-margin">
-        <div className="card">
-          <div className="card-body">
+      <div className="row">
+        <div className="col-12 grid-margin">
+          <div className="card">
+            <div className="card-body">
 
             <h4 className="card-title mb-4">
               Current Stock
@@ -431,6 +430,7 @@ function CurrentStock() {
             </div>
 
           </div>
+        </div>
         </div>
       </div>
 

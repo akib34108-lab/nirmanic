@@ -63,7 +63,7 @@ function SidebarVertical() {
                 <span className="menu-title">Designations</span>
               </Link>
             </li>
-            <li className="nav-item" onClick={() => toggleModule("projects")} style={{ cursor: pointer }}>
+            <li className="nav-item" onClick={() => toggleModule("materials")} style={{ cursor: "pointer" }}>
               <a className="nav-link">
                 <i className="mdi mdi-package menu-icon"></i>
                 <span className="menu-title">Material & Stock</span>
@@ -71,50 +71,49 @@ function SidebarVertical() {
               </a>
             </li>
             { openModule === "materials" && (
-                <ul>
-                    
-                </ul>
+                <ul className="submenu" style={{ listStyle: "none", paddingLeft: "30px" }}>
+                  <li className="nav-item">
+                      <Link className="nav-link" to="/materials">
+                          <span className="menu-title">Materials List</span>
+                      </Link>
+                  </li>
+                  <li className="nav-item">
+                      <Link className="nav-link" to="/category">
+                        <span className="menu-title">Material Categories</span>
+                      </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/suppliers">
+                      <span className="menu-title">Suppliers</span>
+                    </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/current_stock">
+                  <span className="menu-title">Current Stock</span>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/stock_in">
+                  <span className="menu-title">Stock In</span>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/stock_out">
+                  <span className="menu-title">Stock Out</span>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/stock_adjustment">
+                  <span className="menu-title">Stock Adjustment</span>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/inventory_history">
+                  <span className="menu-title">Inventory History</span>
+                </Link>
+              </li>
+            </ul>
             )}
-            <li className="nav-item">
-              <Link className="nav-link" to="/materials">
-                <span className="menu-title">Materials</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/category">
-                <span className="menu-title">Categories</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/suppliers">
-                <span className="menu-title">Suppliers</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/current_stock">
-                <span className="menu-title">Current Stock</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/stock_in">
-                <span className="menu-title">Stock In</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/stock_out">
-                <span className="menu-title">Stock Out</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/stock_adjustment">
-                <span className="menu-title">Stock Adjustment</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/inventory_history">
-                <span className="menu-title">Inventory History</span>
-              </Link>
-            </li>
             <li className="nav-item">
               <Link className="nav-link" to="/form">
                 <i className="mdi mdi-format-list-bulleted menu-icon"></i>
