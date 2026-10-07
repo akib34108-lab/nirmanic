@@ -51,127 +51,136 @@ function EditProjects() {
             </ol>
           </nav>
         </div>
-       <div className="col-12 grid-margin">
-        <div className="card">
-          <div className="card-body">
-            <form onSubmit={ handleSubmit }>
-              <p className="card-description">Project Info</p>
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="form-group row">
-                    <label htmlFor="name" className="col-sm-3 col-form-label">Project Name</label>
-                    <div className="col-sm-9">
-                      <input onChange={(e) => setProjects({...projects, name: e.target.value})} value={projects.name || ''} name="name" type="text" id="name" className="form-control" />
+        <div className="col-12 grid-margin">
+          <div className="card">
+            <div className="card-body">
+              <form onSubmit={ handleSubmit }>
+                <p className="card-description">Project Info</p>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group row">
+                      <label htmlFor="name" className="col-sm-3 col-form-label">Project Name</label>
+                      <div className="col-sm-9">
+                        <input onChange={(e) => setProjects({...projects, name: e.target.value})} value={projects.name || ''} name="name" type="text" id="name" className="form-control" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group row">
+                      <label htmlFor="project_code" className="col-sm-3 col-form-label">Project Code</label>
+                      <div className="col-sm-9">
+                        <input onChange={(e) => setProjects({...projects, project_code: e.target.value})} value={projects.project_code || ''} name="project_code" type="text" id="project_code" className="form-control" />
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="col-md-6">
-                  <div className="form-group row">
-                    <label htmlFor="client_id" className="col-sm-3 col-form-label">Client ID</label>
-                    <div className="col-sm-9">
-                      <input onChange={(e) => setProjects({...projects, client_id: e.target.value})} value={projects.client_id || ''}  name="client_id" type="text" id="client_id" className="form-control" />
+                <div className="row">
+                    <div className="col-md-6">
+                      <div className="form-group row">
+                        <label htmlFor="client_id" className="col-sm-3 col-form-label">Client ID</label>
+                        <div className="col-sm-9">
+                          <input onChange={(e) => setProjects({...projects, client_id: e.target.value})} value={projects.client_id || ''}  name="client_id" type="text" id="client_id" className="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group row">
+                        <label htmlFor="location" className="col-sm-3 col-form-label">Location</label>
+                        <div className="col-sm-9">
+                          <input onChange={(e) => setProjects({...projects, location: e.target.value})} value={projects.location || ''} name="location" type="text" id="location" className="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-6">
+                      <div className="form-group row">
+                        <label htmlFor="type" className="col-sm-3 col-form-label">Type</label>
+                        <div className="col-sm-9">
+                            <select onChange={(e) => setProjects({...projects, type: e.target.value})} value={projects.type || ''} name="type" id="type" className="form-control">
+                                <option value="">Select Project Type</option>
+                                <option value="1">Residential</option>
+                                <option value="2">Commercial</option>
+                                <option value="3">Industrial</option>
+                                <option value="4">Infrastructure</option>
+                                <option value="5">Institutional</option>
+                                <option value="6">Hospitality</option>
+                                <option value="7">Government</option>
+                                <option value="8">Renovation</option>
+                                <option value="9">Other</option>
+                            </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group row">
+                        <label htmlFor="budget" className="col-sm-3 col-form-label">Budget</label>
+                        <div className="col-sm-9">
+                          <input onChange={(e) => setProjects({...projects, budget: e.target.value})} value={projects.budget || ''} name="budget" type="text" id="budget" className="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-6">
+                      <div className="form-group row">
+                        <label htmlFor="progress" className="col-sm-3 col-form-label">Progress</label>
+                        <div className="col-sm-9">
+                          <input onChange={(e) => setProjects({...projects, progress: e.target.value})} value={projects.progress || ''} name="progress" type="text" id="progress" className="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group row">
+                        <label htmlFor="status" className="col-sm-3 col-form-label">Status</label>
+                        <div className="col-sm-9">
+                            <select onChange={(e) => setProjects({...projects, status: e.target.value})} value={projects.status || ''} name="status" id="status" className="form-control">
+                                <option value="">Select Project Status</option>
+                                <option value="1">Planning</option>
+                                <option value="2">Upcoming</option>
+                                <option value="3">Ongoing</option>
+                                <option value="4">On Hold</option>
+                                <option value="5">Delayed</option>
+                                <option value="6">Completed</option>
+                                <option value="7">Cancelled</option>
+                            </select>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group row">
+                      <label htmlFor="start_date" className="col-sm-3 col-form-label">Start Date</label>
+                      <div className="col-sm-9">
+                        <input onChange={(e) => setProjects({...projects, start_date: e.target.value})} value={projects.start_date || ''} name="start_date" type="date" id="start_date" className="form-control" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group row">
+                      <label htmlFor="expected_completion_date" className="col-sm-3 col-form-label">Completion Date</label>
+                      <div className="col-sm-9">
+                        <input onChange={(e) => setProjects({...projects, expected_completion_date: e.target.value})} value={projects.expected_completion_date || ''} name="expected_completion_date" type="date" id="expected_completion_date" className="form-control" />
+                      </div>
                     </div>
                   </div>
                 </div>
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group row">
+                      <textarea onChange={(e) => setProjects({...projects, description: e.target.value})} value={projects.description || ''} name="description" id="description" className="form-control" rows="4"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-center">
+                    <button className="btn btn-primary" type="submit">Update Project</button>
+                </div>
+              </form>
             </div>
-            <div className="row">
-                <div className="col-md-6">
-                  <div className="form-group row">
-                    <label htmlFor="location" className="col-sm-3 col-form-label">Location</label>
-                    <div className="col-sm-9">
-                      <input onChange={(e) => setProjects({...projects, location: e.target.value})} value={projects.location || ''} name="location" type="text" id="location" className="form-control" />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="form-group row">
-                    <label htmlFor="type" className="col-sm-3 col-form-label">Type</label>
-                    <div className="col-sm-9">
-                        <select onChange={(e) => setProjects({...projects, type: e.target.value})} value={projects.type || ''} name="type" id="type" className="form-control">
-                            <option value="">Select Project Type</option>
-                            <option value="1">Residential</option>
-                            <option value="2">Commercial</option>
-                            <option value="3">Industrial</option>
-                            <option value="4">Infrastructure</option>
-                            <option value="5">Institutional</option>
-                            <option value="6">Hospitality</option>
-                            <option value="7">Government</option>
-                            <option value="8">Renovation</option>
-                            <option value="9">Other</option>
-                        </select>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-md-6">
-                  <div className="form-group row">
-                    <label htmlFor="budget" className="col-sm-3 col-form-label">Budget</label>
-                    <div className="col-sm-9">
-                      <input onChange={(e) => setProjects({...projects, budget: e.target.value})} value={projects.budget || ''} name="budget" type="text" id="budget" className="form-control" />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="form-group row">
-                    <label htmlFor="progress" className="col-sm-3 col-form-label">Progress</label>
-                    <div className="col-sm-9">
-                      <input onChange={(e) => setProjects({...projects, progress: e.target.value})} value={projects.progress || ''} name="progress" type="text" id="progress" className="form-control" />
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-md-6">
-                  <div className="form-group row">
-                    <label htmlFor="status" className="col-sm-3 col-form-label">Status</label>
-                    <div className="col-sm-9">
-                        <select onChange={(e) => setProjects({...projects, status: e.target.value})} value={projects.status || ''} name="status" id="status" className="form-control">
-                            <option value="">Select Project Status</option>
-                            <option value="1">Planning</option>
-                            <option value="2">Upcoming</option>
-                            <option value="3">Active</option>
-                            <option value="4">On Hold</option>
-                            <option value="5">Delayed</option>
-                            <option value="6">Completed</option>
-                            <option value="7">Cancelled</option>
-                        </select>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="form-group row">
-                    <label htmlFor="start_date" className="col-sm-3 col-form-label">Start Date</label>
-                    <div className="col-sm-9">
-                      <input onChange={(e) => setProjects({...projects, start_date: e.target.value})} value={projects.start_date || ''} name="start_date" type="date" id="start_date" className="form-control" />
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-md-6">
-                  <div className="form-group row">
-                    <label htmlFor="expected_completion_date" className="col-sm-3 col-form-label">Completion Date</label>
-                    <div className="col-sm-9">
-                      <input onChange={(e) => setProjects({...projects, expected_completion_date: e.target.value})} value={projects.expected_completion_date || ''} name="expected_completion_date" type="date" id="expected_completion_date" className="form-control" />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12">
-                  <div className="form-group row">
-                    <textarea onChange={(e) => setProjects({...projects, description: e.target.value})} value={projects.description || ''} name="description" id="description" className="form-control" rows="4"></textarea>
-                  </div>
-                </div>
-            </div>
-            <div className="text-center">
-                <button className="btn btn-primary" type="submit">Update Project</button>
-            </div>
-        </form>
-    </div>
-</div>
-</div>
-</div>
-
+          </div>
+        </div>
+      </div>
     );
 }
 export default EditProjects;

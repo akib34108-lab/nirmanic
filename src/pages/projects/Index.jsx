@@ -1,6 +1,35 @@
 import React from "react";
 import { Link } from "react-router";
 
+const projectTypes = {
+    1: "Residential",
+    2: "Commercial",
+    3: "Industrial",
+    4: "Infrastructure",
+    5: "Institutional",
+    6: "Hospitality",
+    7: "Government",
+    8: "Renovation",
+    9: "Other"
+};
+const projectStatuses = {
+    1: "Planning",
+    2: "Upcoming",
+    3: "Ongoing",
+    4: "On Hold",
+    5: "Delayed",
+    6: "Completed",
+    7: "Cancelled",
+};
+const projectStatusColors = {
+    1: "#6f42c1", // Planning
+    2: "#0d6efd", // Upcoming
+    3: "#198754", // Ongoing
+    4: "#fd7e14", // On Hold
+    5: "#f0ad00", // Delayed
+    6: "#157347", // Completed
+    7: "#dc3545", // Cancelled
+};
 function Projects() {
     const [ projects, setProjects] = React.useState([]);
     function fetchProject () {
@@ -34,7 +63,8 @@ function Projects() {
           <h3 className="page-title">All Projects</h3>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
-              <li className="breadcrumb-item">Projects & Clients</li>
+              <li className="breadcrumb-item">
+                <i className="mdi mdi-folder-multiple menu-icon pr-2" style={{ color: '#c0b553'}}></i>Projects & Clients</li>
               <li className="breadcrumb-item active" aria-current="page"><a href="#">Project List</a></li>
             </ol>
           </nav>
@@ -67,10 +97,11 @@ function Projects() {
                             </div>
                             <div>
                                 <h6 className="mb-1">{project.name}</h6>
-                                    <small className="text-muted">{project.id} · {project.type}</small>
+                                    <small className="text-muted">{project.project_code} · {projectTypes[project.type]}</small>
                             </div>
-                            <div className="ml-auto">
-                                <span style={{color: "#0fa80f"}}>{project.status}</span>
+                            <div className="ml-auto" style={{display: "flex",alignItems: "center",gap: "7px",color: projectStatusColors[project.status]}}>
+                                <span style={{width: "8px",height: "8px",borderRadius: "50%",backgroundColor: projectStatusColors[project.status],display: "inline-block"}}></span>
+                                <span>{projectStatuses[project.status]}</span>
                             </div>
                         </div>
                     </div>
@@ -94,7 +125,18 @@ function Projects() {
                         <small className="font-weight-bold">{project.progress}%</small>
                     </div>
                     <div className="progress mb-2" style={{ height: "6px" }}>
-                        <div className="progress-bar bg-primary" role="progressbar" style={{ width: `${project.progress}%` }} aria-valuenow={project.progress} aria-valuemin={0} aria-valuemax={100}>
+                        <div className="progress-bar" role="progressbar" style={{ width: `${project.progress}%`, backgroundColor:
+                            project.progress <= 20
+                            ? "#dc3545"
+                            : project.progress <= 40
+                            ? "#fd7e14"
+                            : project.progress <= 60
+                            ? "#ffc107"
+                            : project.progress <= 80
+                            ? "#0d6efd"
+                            : "#198754"
+                            }}
+                            aria-valuenow={project.progress} aria-valuemin={0} aria-valuemax={100} >
                         </div>
                     </div>
                     <div className="d-flex justify-content-between align-items-center">
@@ -107,9 +149,9 @@ function Projects() {
                             <p className="text-muted mb-0">{project.description}</p>
                         </div>
                         <div className="col-md-4 mt-3 text-md-right">
-                            <Link to={`/projects/edit/${project.id}`} style={{ backgroundColor: "black", color: "white" }} type="button" class="btn btn-outline-secondary btn-icon-text mr-1" title="Edit"> Edit <i class="mdi mdi-file-check btn-icon-append"></i>
+                            <Link to={`/projects/edit/${project.id}`} style={{ backgroundColor: "black", color: "white" }} type="button" className="btn btn-outline-secondary btn-icon-text mr-1" title="Edit"> Edit <i className="mdi mdi-file-check btn-icon-append"></i>
                             </Link>
-                            <button style={{ backgroundColor: "black", color: "white" }} type="button" class="btn btn-outline-secondary btn-icon-text" title="Delete" onClick={() => handleDelete(project.id)}> Delete <i className="mdi mdi-delete"></i>
+                            <button style={{ backgroundColor: "black", color: "white" }} type="button" className="btn btn-outline-secondary btn-icon-text" title="Delete" onClick={() => handleDelete(project.id)}> Delete <i className="mdi mdi-delete"></i>
                             </button>
                         </div>
                         </div>
