@@ -1,16 +1,33 @@
 import React from "react";
+import { Link } from "react-router";
 
 function Projects() {
     const [ projects, setProjects] = React.useState([]);
     function fetchProject () {
         fetch ('http://localhost/nirmanic_api/projects/index.php')
         .then (response=>response.json())
-        .then (data=>setProjects(data))
+        .then (data=>setProjects(data.data))
         .catch (error=>console.error("Fetching projects error:",error));
     }
     React.useEffect(()=>{
         fetchProject();
     },[]);
+    function handleDelete (id) {
+        if (window.confirm("Are you sure you want to delete this project?")) {
+            fetch('http://localhost/nirmanic_api/projects/delete.php?id=' + id, {
+                method: 'DELETE',
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status == 'true') {
+                    fetchProject();
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    }
     return (
     <div className="content-wrapper">
         <div className="page-header">
@@ -31,7 +48,9 @@ function Projects() {
                         <i className="mdi mdi-magnify"></i>
                         </span>
                     </div>
-                    <button className="btn btn-info ml-2">Add Project</button>
+                    <Link to="/projects/create" className="btn btn-info d-flex justify-content-center align-items-center">
+                        <i className="mdi mdi-plus"></i> Add Project
+                    </Link>
                 </div>
             </form>
         </div>
@@ -82,11 +101,19 @@ function Projects() {
                         <small className="text-muted">Start: {project.start_date}</small>
                         <small className="text-muted">Approximate End: {project.expected_completion_date}</small>
                     </div>
-                    <div className="mt-3">
+                    <div className="row">
+                        <div className="col-md-8 mt-3">
                             <small className="text-muted d-block mb-1">Description</small>
-                            <h6 className="mb-0">{project.description}</h6>
+                            <p className="text-muted mb-0">{project.description}</p>
+                        </div>
+                        <div className="col-md-4 mt-3 text-md-right">
+                            <Link to={`/projects/edit/${project.id}`} style={{ backgroundColor: "black", color: "white" }} type="button" class="btn btn-outline-secondary btn-icon-text mr-1" title="Edit"> Edit <i class="mdi mdi-file-check btn-icon-append"></i>
+                            </Link>
+                            <button style={{ backgroundColor: "black", color: "white" }} type="button" class="btn btn-outline-secondary btn-icon-text" title="Delete" onClick={() => handleDelete(project.id)}> Delete <i className="mdi mdi-delete"></i>
+                            </button>
+                        </div>
+                        </div>
                     </div>
-                </div>
                 ))}
             </div>
         </div> 

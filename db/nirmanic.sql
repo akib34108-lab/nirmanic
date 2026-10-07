@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2026 at 09:04 AM
+-- Generation Time: Oct 07, 2026 at 08:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -45,14 +45,6 @@ CREATE TABLE `projects` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `projects`
---
-
-INSERT INTO `projects` (`id`, `client_id`, `name`, `type`, `location`, `description`, `budget`, `progress`, `start_date`, `expected_completion_date`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'rasulbag building', NULL, 'chawkbazar', 'gkewjyoinsjefhw', '2500000000', 50, '2022-10-02', '2026-10-15', 4, NULL, NULL, NULL),
-(2, 2, 'kotowali', NULL, 'kotowali', NULL, 'oewiururh', 25, '2026-10-04', '2026-10-31', 2, NULL, NULL, NULL);
-
---
 -- Indexes for dumped tables
 --
 
@@ -70,7 +62,7 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

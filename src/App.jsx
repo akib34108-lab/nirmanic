@@ -1,21 +1,22 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import SidebarVertical from "/component/SidebarVertical.jsx";
-import SidebarHorizontal from "/component/SidebarHorizontal.jsx";
-import Dashboard from "/pages/Dashboard.jsx";
-import Footer from "/component/Footer.jsx";
-import Form from "/pages/Form.jsx";
-import Table from "/pages/Table.jsx";
-import Projects from "/pages/projects/Index.jsx";
-import CreateProjects from "/pages/projects/Create.jsx";
-import Designation from "/pages/Designation.jsx";
-import Materials from "/pages/Materials.jsx";
-import Category from "/pages/Category.jsx";
-import Suppliers from "/pages/Suppliers.jsx";
-import CurrentStock from "/pages/CurrentStock.jsx";
-import StockIn from "/pages/StockIn.jsx";
-import StockOut from "/pages/StockOut.jsx";
-import StockAdjustment from "/pages/StockAdjustment.jsx";
-import InventoryHistory from "/pages/InventoryHistory.jsx";
+import SidebarVertical from "./component/SidebarVertical.jsx";
+import SidebarHorizontal from "./component/SidebarHorizontal.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import Footer from "./component/Footer.jsx";
+import Form from "./pages/Form.jsx";
+import Table from "./pages/Table.jsx";
+import Projects from "./pages/projects/Index.jsx";
+import CreateProjects from "./pages/projects/Create.jsx";
+import EditProjects from "./pages/projects/Edit.jsx";
+import Designation from "./pages/Designation.jsx";
+import Materials from "./pages/Materials.jsx";
+import Category from "./pages/Category.jsx";
+import Suppliers from "./pages/Suppliers.jsx";
+import CurrentStock from "./pages/CurrentStock.jsx";
+import StockIn from "./pages/StockIn.jsx";
+import StockOut from "./pages/StockOut.jsx";
+import StockAdjustment from "./pages/StockAdjustment.jsx";
+import InventoryHistory from "./pages/InventoryHistory.jsx";
 function App() {
   return (
     <BrowserRouter>
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/projects">
                     <Route index element={<Projects />} />
                     <Route path="create" element={<CreateProjects />} />
+                    <Route path="edit/:id" element={<EditProjects />} />
                 </Route>
 
                 <Route path="/designation" element={<Designation />} />

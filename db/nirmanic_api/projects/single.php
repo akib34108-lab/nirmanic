@@ -1,10 +1,5 @@
 <?php
-include 'connection.php';
-$data = [];
+include '../connection.php';
 $id=$_GET['id'];
-$sql = "SELECT * FROM users where id=$id";
-$result=$db->query($sql);
-while($row = $result->fetch_assoc()){
-	$data= $row;
-}
-echo json_encode($data);
+$result=$db->common_select('projects','*',['id'=>$id]);
+echo json_encode($result);
