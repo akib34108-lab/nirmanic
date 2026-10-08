@@ -1,9 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 
-import SidebarVertical from "./component/SidebarVertical.jsx";
-import SidebarHorizontal from "./component/SidebarHorizontal.jsx";
-import Footer from "./component/Footer.jsx";
-
 import Dashboard from "./pages/Dashboard.jsx";
 import Designation from "./pages/Designation.jsx";
 
@@ -28,11 +24,6 @@ import Table from "./pages/Table.jsx";
 function App() {
   return (
     <BrowserRouter>
-      <div className="container-scroller">
-        <SidebarVertical />
-        <div className="container-fluid page-body-wrapper">
-          <SidebarHorizontal />
-          <div className="main-panel">
             <Routes>
                 <Route path="/" element={<Dashboard />} />
 
@@ -59,10 +50,6 @@ function App() {
                 <Route path="/form" element={<Form />} />
                 <Route path="/table" element={<Table />} />
             </Routes>
-            <Footer />
-          </div>
-        </div>
-      </div>
     </BrowserRouter>
   )
 }

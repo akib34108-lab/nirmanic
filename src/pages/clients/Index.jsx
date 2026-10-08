@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
+import Layout from "../Layout.jsx";
 
 const clientTypes = {
     1: "Individual",
@@ -55,6 +56,7 @@ const [ clients, setClients] = React.useState([]);
         }
     }
     return (
+        <Layout>
         <div className="content-wrapper">
             <div className="page-header">
                 <h3 className="page-title">All Clients</h3>
@@ -315,30 +317,8 @@ const [ clients, setClients] = React.useState([]);
                                                 </div>
                                             </td>
                                             <td className="text-center">
-                                                <div className="dropdown">
-                                                    <button
-                                                        className="btn btn-sm btn-light"
-                                                        type="button"
-                                                        data-toggle="dropdown"
-                                                    >
-                                                        <i className="mdi mdi-dots-horizontal"></i>
-                                                    </button>
-                                                    <div className="dropdown-menu dropdown-menu-right">
-                                                        <button className="dropdown-item">
-                                                            <i className="mdi mdi-eye-outline mr-2"></i>
-                                                            View Details
-                                                        </button>
-                                                        <button className="dropdown-item">
-                                                            <i className="mdi mdi-pencil-outline mr-2"></i>
-                                                            Edit Client
-                                                        </button>
-                                                        <div className="dropdown-divider"></div>
-                                                        <button className="dropdown-item text-danger">
-                                                            <i className="mdi mdi-delete-outline mr-2"></i>
-                                                            Delete
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                                <a href="">Edit</a>
+                                                <a href="">Delete</a>
                                             </td>
                                         </tr>
                                     ))}
@@ -349,6 +329,7 @@ const [ clients, setClients] = React.useState([]);
                 </div>
             </div>                        
         </div>
+        </Layout>
     );
 }
 

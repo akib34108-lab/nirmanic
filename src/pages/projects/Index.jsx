@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
+import Layout from "../Layout.jsx";
 
 const projectTypes = {
     1: "Residential",
@@ -58,6 +59,7 @@ function Projects() {
         }
     }
     return (
+        <Layout>
     <div className="content-wrapper">
         <div className="page-header">
           <h3 className="page-title">All Projects</h3>
@@ -160,6 +162,7 @@ function Projects() {
             </div>
         </div> 
     </div>
+    </Layout>
     );
 }
 export default Projects;

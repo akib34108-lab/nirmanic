@@ -1,0 +1,4 @@
+1. node : npm install
+2. react router : npm i react-router
+3. date picker : npm install react-datepicker
+4. axios : npm install axios

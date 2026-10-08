@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2026 at 10:05 PM
+-- Generation Time: Oct 08, 2026 at 09:00 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -47,7 +47,8 @@ CREATE TABLE `clients` (
 
 INSERT INTO `clients` (`id`, `name`, `company`, `phone`, `email`, `address`, `type`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'gfjtjyjty', '', '', '', '', 0, 0, NULL, NULL, NULL),
-(2, 'Mohammad Akibul Islam', 'IsDB', '01533198825', 'akib34108@gmail.com', 'New Housing Society, Fulkoli, Rahattarpul, Chattogram', 1, 3, NULL, NULL, NULL);
+(2, 'Mohammad Akibul Islam', 'IsDB', '01533198825', 'akib34108@gmail.com', 'New Housing Society, Fulkoli, Rahattarpul, Chattogram', 1, 3, NULL, NULL, NULL),
+(3, 'ftjrtu6ru', '', '', '', '', 0, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -107,7 +108,7 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `projects`

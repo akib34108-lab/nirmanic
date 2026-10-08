@@ -1,5 +1,7 @@
+import Layout from "./Layout.jsx";
 function Dashboard() {
     return (
+        <Layout>
         <div className="content-wrapper pb-0">
             <div className="page-header flex-wrap">
               <h3 className="mb-0"> Hi, welcome back! <span className="pl-0 h6 pl-sm-2 text-muted d-inline-block">Your web analytics dashboard template.</span>
@@ -792,6 +794,7 @@ function Dashboard() {
               </div>
             </div>
         </div>
+        </Layout>
     );
 }
 export default Dashboard;

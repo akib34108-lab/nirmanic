@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
+import Layout from "../Layout.jsx";
 
 function CreateClient() {
     function handleSubmit(e){
@@ -23,6 +24,7 @@ function CreateClient() {
     });
     }
     return (
+        <Layout>
         <div className="content-wrapper">
             <div className="page-header">
                 <h3 className="page-title">Create Client</h3>
@@ -42,7 +44,7 @@ function CreateClient() {
                 <div className="card">
                     <div className="card-body">
                         <form onSubmit={ handleSubmit }>
-                            <p className="card-description">Client Info</p>
+                            <p className="card-description fw-bold">Client Info</p>
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="form-group">
@@ -111,6 +113,7 @@ function CreateClient() {
                 </div>
             </div> 
         </div>
+        </Layout>
     );
 }
 export default CreateClient;
