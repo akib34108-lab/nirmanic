@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import Layout from "../../Layout.jsx";
+import axios from '../../../lib/axios.js';
 
 const projectTypes = {
     1: "Residential",
@@ -32,33 +33,25 @@ const projectStatusColors = {
     7: "#dc3545", // Cancelled
 };
 function Projects() {
-    const [ projects, setProjects] = React.useState([]);
-    function fetchProject () {
-        fetch ('http://localhost/nirmanic_api/projects/index.php')
-        .then (response=>response.json())
-        .then (data=>setProjects(data.data))
-        .catch (error=>console.error("Fetching projects error:",error));
+    const [ projects, setProjects ] = React.useState([]);
+    const fetchProject = async () => {
+        let res = await axios.get(`/projects/index.php`)
+        setProjects(res.data.data);
     }
     React.useEffect(()=>{
         fetchProject();
     },[]);
-    function handleDelete (id) {
-        if (window.confirm("Are you sure you want to delete this project?")) {
-            fetch('http://localhost/nirmanic_api/projects/delete.php?id=' + id, {
-                method: 'DELETE',
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status == 'true') {
-                    fetchProject();
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+
+    async function handleDelete(id) {
+    if (window.confirm("Are you sure you want to delete this project?")) {
+        let res = await axios.delete(`/projects/delete.php?id=${id}`)
+        if(res.data.status){
+        fetchProject();
         }
     }
-    return (
+    }
+
+  return (
         <Layout>
             <div className="content-wrapper">
                 <div className="page-header">
@@ -89,7 +82,7 @@ function Projects() {
                 <div className="col-12 grid-margin">
                     <div className="card">
 
-                        {projects.map((project) => (
+                        {projects && projects.map((project) => (
 
                         <div className="card-body" key={ project.id }>
                             <div className="row">

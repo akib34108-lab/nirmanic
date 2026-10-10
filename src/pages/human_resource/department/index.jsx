@@ -55,7 +55,7 @@ function Departments() {
                                     </span>
                                 </div>
                             </div>
-                            <Link to="/department/create" className="btn btn-info ml-2">
+                            <Link to="/human_resource/department/create" className="btn btn-info ml-2">
                                 <i className="mdi mdi-plus mr-1"></i> Add Department
                             </Link>
                         </div>

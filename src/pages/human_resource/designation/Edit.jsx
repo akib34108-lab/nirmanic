@@ -30,7 +30,7 @@ function EditDesignation() {
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);
-        window.location.href = '/designation';
+        window.location.href = '/human_resource/designation';
     })
     .catch((error) => {
         console.error('Error:', error);

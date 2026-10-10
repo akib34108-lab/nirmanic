@@ -2,40 +2,27 @@ import React from "react";
 import { Link } from "react-router";
 import { useParams } from "react-router";
 import Layout from "../../Layout.jsx";
+import axios from '../../../lib/axios.js';
 
 function EditProjects() {
     let { id } = useParams();
     const [ projects, setProjects] = React.useState([]);
-        function fetchProject () {
-            fetch ('http://localhost/nirmanic_api/projects/single.php?id=' + id)
-            .then (response=>response.json())
-            .then (data=>setProjects(data.data[0]))
-            .catch (error=>console.error("Fetching projects error:",error));
+      async function fetchProject () {
+        let res = await axios.get('/projects/single.php?id=' + id);
+            setProjects(res.data.data[0]);
         }
         React.useEffect(()=>{
             fetchProject();
         },[]);
 
-    function handleSubmit (e) {
+    async function handleSubmit (e) {
         e.preventDefault();
         const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
-        fetch('http://localhost/nirmanic_api/projects/update.php?id='+ projects.id, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        window.location.href = '/projects';
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-}
+        let res = await axios.post('/projects/update.php', formData);
+        if(res.status === 200) {
+          window.location.href = '/projects_clients/projects';
+        }
+      }
     return (
       <Layout>
         <div className="content-wrapper">
@@ -45,7 +32,7 @@ function EditProjects() {
               <ol className="breadcrumb">
                   <li className="breadcrumb-item">
                   <i className="mdi mdi-folder-multiple menu-icon pr-2" style={{ color: '#c0b553'}}></i>
-                      <Link to="/projects" style={{color: 'black'}}>Projects List</Link>
+                      <Link to="/projects_clients/projects" style={{color: 'black'}}>Projects List</Link>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
                       <a href="" title="Update Project">Update Project </a>

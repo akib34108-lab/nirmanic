@@ -55,7 +55,7 @@ function Designation() {
                                     </span>
                                 </div>
                             </div>
-                            <Link to="/designation/create" className="btn btn-info ml-2">
+                            <Link to="/human_resource/designation/create" className="btn btn-info ml-2">
                                 <i className="mdi mdi-plus mr-1"></i> Add Designation
                             </Link>
                         </div>
@@ -97,7 +97,7 @@ function Designation() {
                                                     <i className="mdi mdi-account-multiple text-muted mr-1"></i>4
                                                 </td>
                                                 <td className="text-center">
-                                                    <Link to={`/designation/edit/${designation.id}`}><i className="mdi mdi-pencil" style={{ fontSize:'25px', color: '#6f42c1', marginRight: '10px', cursor: "pointer",}}></i></Link>
+                                                    <Link to={`/human_resource/designation/edit/${designation.id}`}><i className="mdi mdi-pencil" style={{ fontSize:'25px', color: '#6f42c1', marginRight: '10px', cursor: "pointer",}}></i></Link>
                                                     <Link to={''} onClick={() => handleDelete(designation.id)}><i className="mdi mdi-delete" style={{ fontSize:'25px', color: '#6f42c1', marginRight: '10px', cursor: "pointer",}}></i></Link>
                                                 </td>
                                             </tr>

@@ -93,7 +93,7 @@ const filteredClients =
                                 <i className="mdi mdi-magnify"></i>
                                 </span>
                             </div>
-                            <Link to="/clients/create" className="btn btn-info d-flex justify-content-center align-items-center">
+                            <Link to="/projects_clients/clients/create" className="btn btn-info d-flex justify-content-center align-items-center">
                                 <i className="mdi mdi-plus"></i> Add Client
                             </Link>
                         </div>
@@ -169,7 +169,7 @@ const filteredClients =
                                                     </div>
                                                 </td>
                                                 <td className="text-center">
-                                                    <Link to={`/clients/edit/${client.id}`}><i className="mdi mdi-pencil" style={{ fontSize:'25px', color: '#6f42c1', marginRight: '10px', cursor: "pointer",}}></i></Link>
+                                                    <Link to={`/projects_clients/clients/edit/${client.id}`}><i className="mdi mdi-pencil" style={{ fontSize:'25px', color: '#6f42c1', marginRight: '10px', cursor: "pointer",}}></i></Link>
                                                     <Link to={''} onClick={() => handleDelete(client.id)}><i className="mdi mdi-delete" style={{ fontSize:'25px', color: '#6f42c1', marginRight: '10px', cursor: "pointer",}}></i></Link>
                                                 </td>
                                             </tr>

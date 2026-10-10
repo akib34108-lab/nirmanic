@@ -30,7 +30,7 @@ function EditClient() {
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);
-        window.location.href = '/clients';
+        window.location.href = '/projects_clients/clients';
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -45,7 +45,7 @@ function EditClient() {
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item active" aria-current="page">
                                 <i className="mdi mdi-folder-multiple menu-icon pr-2" style={{ color: '#c0b553'}}></i>
-                                <Link to="/clients" style={{color: 'black'}}>Client List</Link>
+                                <Link to="/projects_clients/clients" style={{color: 'black'}}>Client List</Link>
                             </li>
                             <li className="breadcrumb-item active" aria-current="page">
                                 <Link to="#">Update Client</Link>

@@ -17,7 +17,7 @@ function CreateDesignation() {
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                window.location.href = '/designation';
+                window.location.href = '/human_resource/designation';
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -32,7 +32,7 @@ function CreateDesignation() {
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item">
                         <i className="mdi mdi-folder-multiple menu-icon pr-2" style={{ color: '#c0b553'}}></i>
-                            <Link to="/designation" style={{color: 'black'}}>Designations List</Link>
+                            <Link to="/human_resource/designation" style={{color: 'black'}}>Designations List</Link>
                         </li>
                         <li className="breadcrumb-item active" aria-current="page">
                             <a href="" title="Create Designation">Create Designation </a>

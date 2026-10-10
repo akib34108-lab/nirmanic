@@ -4,31 +4,21 @@ import Layout from "../../Layout.jsx";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from '../../../lib/axios.js';
 
 function CreateProjects() {
     const [startDate, setStartDate] = useState(null);
     const [completionDate, setCompletionDate] = useState(null);
 
-    function handleSubmit (e) {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
-        fetch('http://localhost/nirmanic_api/projects/create.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-    })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                window.location.href = '/projects';
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-    });
-}
+    async function handleSubmit(e){
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    
+    let res = await axios.post('/projects/create.php', formData);
+    if(res.status === 200) {
+      window.location.href = '/projects_clients/projects';
+    }
+  }
     return (
         <Layout>
           <div className="content-wrapper">
@@ -38,7 +28,7 @@ function CreateProjects() {
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item">
                     <i className="mdi mdi-folder-multiple menu-icon pr-2" style={{ color: '#c0b553'}}></i>
-                        <Link to="/projects" style={{color: 'black'}}>Projects List</Link>
+                        <Link to="/projects_clients/projects" style={{color: 'black'}}>Projects List</Link>
                     </li>
                     <li className="breadcrumb-item active" aria-current="page">
                         <a href="" title="Create Project">Create Project </a>

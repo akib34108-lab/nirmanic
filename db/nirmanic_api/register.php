@@ -1,11 +1,9 @@
 <?php 
 include 'connection.php';
 $data = json_decode(file_get_contents("php://input"), true);
-
 $data['password']=sha1($data['password']);
 if($data){
 	if($data['name'] && $data['email'] && $data['password']){
-		
 		$result=$db->common_insert("users",$data);
 		echo json_encode($result);
 	}else{
