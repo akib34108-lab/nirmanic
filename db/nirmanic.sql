@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2026 at 09:00 AM
+-- Generation Time: Oct 10, 2026 at 04:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `clients` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `client_name` varchar(255) DEFAULT NULL,
   `company` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -45,10 +45,33 @@ CREATE TABLE `clients` (
 -- Dumping data for table `clients`
 --
 
-INSERT INTO `clients` (`id`, `name`, `company`, `phone`, `email`, `address`, `type`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'gfjtjyjty', '', '', '', '', 0, 0, NULL, NULL, NULL),
-(2, 'Mohammad Akibul Islam', 'IsDB', '01533198825', 'akib34108@gmail.com', 'New Housing Society, Fulkoli, Rahattarpul, Chattogram', 1, 3, NULL, NULL, NULL),
-(3, 'ftjrtu6ru', '', '', '', '', 0, 0, NULL, NULL, NULL);
+INSERT INTO `clients` (`id`, `client_name`, `company`, `phone`, `email`, `address`, `type`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Arif Hossain', 'Bashundhara Group', '+880 1712-458921', 'arif.hossain@example.com', 'Bashundhara R/A, Dhaka', 3, 1, NULL, NULL, NULL),
+(2, 'Fahim Chowdhury', 'Bay View Properties Ltd.', '+880 1611-782456', 'fahim.chowdhury@example.com', 'Khulshi, Chattogram', 2, 1, NULL, NULL, NULL),
+(3, 'Saif Rahman', 'Uttara Commercial Tower', '+880 1819-624735', 'saif.rahman@example.com', 'Sector 7, Uttara, Dhaka', 4, 1, NULL, NULL, NULL),
+(4, 'Shakil Ahmed', 'Ocean View Resorts Ltd.', '+880 1716-924583', 'shakil.ahmed@example.com', 'Hotel-Motel Zone, Cox\'s Bazar', 10, 1, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `designation`
+--
+
+CREATE TABLE `designation` (
+  `id` int(11) NOT NULL,
+  `designation_name` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `designation`
+--
+
+INSERT INTO `designation` (`id`, `designation_name`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(4, 'qwwte4t', 'rthrhgr', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -80,9 +103,36 @@ CREATE TABLE `projects` (
 
 INSERT INTO `projects` (`id`, `project_code`, `client_id`, `name`, `type`, `location`, `description`, `budget`, `progress`, `start_date`, `expected_completion_date`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'PRJ-2026-001', 1, 'Bashundhara Residential Complex', 1, 'Bashundhara, R/A, Dhaka', 'Construction of a modern 12 store residential complex with 96 apartments, basement parking, rooftop facilities, and essential utility services.', '18.90Cr', 15, '2025-02-02', '2028-11-05', 3, NULL, NULL, NULL),
-(2, 'PRJ-2026-002', 2, 'Uttara Commercial Tower', 2, 'Uttara, Dhaka', 'Development of a 15 store commercial building including office spaces, retail areas, parking facilities, elevators, and modern fire safety systems.', '12.75Cr', 80, '2026-10-07', '2026-10-31', 1, NULL, NULL, NULL),
-(3, 'PRJ-2026-003', 3, 'Chattogram Bay View Apartments', 1, 'Khulshi, Chattogram', 'Construction of a premium residential apartment complex with modern amenities, underground parking, landscaped areas, and utility infrastructure.', '9.80Cr', 25, '2026-10-29', '2027-03-19', 2, NULL, NULL, NULL),
+(2, 'PRJ-2026-002', 3, 'Uttara Commercial Tower', 2, 'Uttara, Dhaka', 'Development of a 15 store commercial building including office spaces, retail areas, parking facilities, elevators, and modern fire safety systems.', '12.75Cr', 80, '2026-10-07', '2026-10-31', 1, NULL, NULL, NULL),
+(3, 'PRJ-2026-003', 2, 'Chattogram Bay View Apartments', 1, 'Khulshi, Chattogram', 'Construction of a premium residential apartment complex with modern amenities, underground parking, landscaped areas, and utility infrastructure.', '9.80Cr', 25, '2026-10-29', '2027-03-19', 2, NULL, NULL, NULL),
 (4, 'PRJ-2026-004', 4, 'Cox\'s Bazar Hotel Project', 6, 'Cox\'s Bazar', 'Construction of a modern beachfront hotel with guest rooms, restaurants, conference facilities, swimming pool, parking, and recreational areas.', '21.03Cr', 90, '2024-05-21', '2026-11-23', 3, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `contact_no` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `remember_token` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `contact_no`, `email`, `password`, `status`, `remember_token`, `image`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Mohammad Akibul Islam', NULL, 'akib34108@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '23921791547841435606', NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -95,9 +145,21 @@ ALTER TABLE `clients`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `designation`
+--
+ALTER TABLE `designation`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `projects`
 --
 ALTER TABLE `projects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -108,13 +170,25 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `designation`
+--
+ALTER TABLE `designation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

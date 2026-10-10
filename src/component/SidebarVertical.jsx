@@ -24,17 +24,11 @@ function SidebarVertical() {
                   <span className="login-status online"></span>
                 </div>
                 <div className="nav-profile-text d-flex flex-column pr-3">
-                  <span className="font-weight-medium mb-2">Henry Klein</span>
+                  <span className="font-weight-medium mb-2">{JSON.parse(sessionStorage.getItem("userdata")).name}</span>
                   <span className="font-weight-normal">$8,753.00</span>
                 </div>
                 <span className="badge badge-danger text-white ml-3 rounded">3</span>
               </a>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                <i className="mdi mdi-home menu-icon"></i>
-                <span className="menu-title">Dashboard</span>
-              </Link>
             </li>
             <li className="nav-item" onClick={() => toggleModule("projects")} style={{ cursor: "pointer" }}>
                 <a className="nav-link">
@@ -57,12 +51,27 @@ function SidebarVertical() {
                 </li>
             </ul>
             )}
-            <li className="nav-item">
-              <Link className="nav-link" to="/designation">
-                <i className="mdi mdi-account-card-details menu-icon"></i>
-                <span className="menu-title">Designations</span>
-              </Link>
+            <li className="nav-item" onClick={() => toggleModule("human")} style={{ cursor: "pointer" }}>
+                <a className="nav-link">
+                    <i className="mdi mdi-account-group menu-icon"></i>
+                    <span className="menu-title">Human Resources</span>
+                    <i className={ openModule === "human" ? "mdi mdi-menu-down" : "mdi mdi-menu-right"} style={{ marginLeft: "auto", fontSize: "15px" }}></i>
+                </a>
             </li>
+            {openModule === "human" && (
+            <ul className="submenu" style={{ listStyle: "none", paddingLeft: "30px" }}>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/designation">
+                        <span className="menu-title">Designations</span>
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/employees">
+                        <span className="menu-title">Employees</span>
+                    </Link>
+                </li>
+            </ul>
+            )}
             <li className="nav-item" onClick={() => toggleModule("materials")} style={{ cursor: "pointer" }}>
               <a className="nav-link">
                 <i className="mdi mdi-package menu-icon"></i>

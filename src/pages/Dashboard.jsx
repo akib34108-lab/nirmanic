@@ -4,7 +4,7 @@ function Dashboard() {
         <Layout>
         <div className="content-wrapper pb-0">
             <div className="page-header flex-wrap">
-              <h3 className="mb-0"> Hi, welcome back! <span className="pl-0 h6 pl-sm-2 text-muted d-inline-block">Your web analytics dashboard template.</span>
+              <h3 className="mb-0"> Hi {JSON.parse(sessionStorage.getItem("userdata")).name}, welcome back! <span className="pl-0 h6 pl-sm-2 text-muted d-inline-block">Your web analytics dashboard is ready.</span>
               </h3>
               <div className="d-flex">
                 <button type="button" className="btn btn-sm bg-white btn-icon-text border">
