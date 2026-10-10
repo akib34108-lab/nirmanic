@@ -1,6 +1,6 @@
 
 import { Link } from "react-router";
-import Layout from "../Layout.jsx";
+import Layout from "../../Layout.jsx";
 
 function CreateDesignation() {
     function handleSubmit (e) {

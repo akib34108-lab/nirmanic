@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../Layout.jsx";
+import Layout from "../../Layout.jsx";
 import { Link } from "react-router";
 function Designation() {
     const [ designation, setDesignation] = React.useState([]);
@@ -19,6 +19,7 @@ function Designation() {
                 })
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data);
                     if (data.status == 'true') {
                         fetchDesignation();
                     }
@@ -86,7 +87,7 @@ function Designation() {
                                                             <i className="mdi mdi-account-tie" style={{ fontSize: "28px", color: "#4B49AC" }}></i>
                                                         </div>
                                                         <div>
-                                                            <h6 className="mb-1">{designation.name}</h6>
+                                                            <h6 className="mb-1">{designation.designation_name}</h6>
                                                             <small className="text-muted">{designation.description}</small>
                                                         </div>
                                                     </div>

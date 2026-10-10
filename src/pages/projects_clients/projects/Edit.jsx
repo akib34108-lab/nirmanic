@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import { useParams } from "react-router";
-import Layout from "../Layout.jsx";
+import Layout from "../../Layout.jsx";
 
 function EditProjects() {
     let { id } = useParams();

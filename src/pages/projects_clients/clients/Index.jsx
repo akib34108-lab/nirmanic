@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-import Layout from "../Layout.jsx";
+import Layout from "../../Layout.jsx";
 
 const clientTypes = {
     1: "Individual",

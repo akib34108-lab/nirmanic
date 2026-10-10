@@ -1,33 +1,46 @@
-
+import React from "react";
 import { Link } from "react-router";
-import Layout from "../Layout.jsx";
+import { useParams } from "react-router";
+import Layout from "../../Layout.jsx";
 
-function CreateClient() {
-    function handleSubmit(e){
+function EditClient() {
+    let { id } = useParams();
+    const [ client, setClient] = React.useState([]);
+        function fetchClient () {
+            fetch ('http://localhost/nirmanic_api/clients/single.php?id=' + id)
+            .then (response=>response.json())
+            .then (data=>setClient(data.data[0]))
+            .catch (error=>console.error("Fetching clients error:",error));
+        }
+        React.useEffect(()=>{
+            fetchClient();
+        },[]);
+
+    function handleSubmit (e) {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
-        fetch('http://localhost/nirmanic_api/clients/create.php',{
+        fetch('http://localhost/nirmanic_api/clients/update.php?id='+ client.id, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
-        })
-        .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                window.location.href = '/clients';
-            })
-            .catch((error) => {
-                console.error('Error:', error);
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        window.location.href = '/clients';
+    })
+    .catch((error) => {
+        console.error('Error:', error);
     });
-    }
+}
     return (
         <Layout>
             <div className="content-wrapper">
                 <div className="page-header">
-                    <h3 className="page-title">Create Client</h3>
+                    <h3 className="page-title">Update Client</h3>
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item active" aria-current="page">
@@ -35,7 +48,7 @@ function CreateClient() {
                                 <Link to="/clients" style={{color: 'black'}}>Client List</Link>
                             </li>
                             <li className="breadcrumb-item active" aria-current="page">
-                                <Link to="#">Add Client</Link>
+                                <Link to="#">Update Client</Link>
                             </li>
                         </ol>
                     </nav>
@@ -48,36 +61,36 @@ function CreateClient() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <input id="name" name="client_name" type="text" className="form-control" placeholder="Enter Full Name"/>
+                                            <input onChange={(e) => setClient({...client, client_name: e.target.value})} value={client.client_name || ''} id="name" name="name" type="text" className="form-control" placeholder="Enter Full Name"/>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <input id="company" name="company" type="text" className="form-control" placeholder="Enter Company Name"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <div className="form-group">
-                                            <input id="phone" name="phone" type="tel" className="form-control" placeholder="Enter Phone Number"/>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="form-group">
-                                            <input id="email" name="email" type="email" className="form-control" placeholder="Enter Email"/>                                       
+                                            <input onChange={(e) => setClient({...client, company: e.target.value})} value={client.company || ''} id="company" name="company" type="text" className="form-control" placeholder="Enter Company Name"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <input id="address" name="address" type="text" className="form-control" placeholder="Address"/>
+                                            <input onChange={(e) => setClient({...client, phone: e.target.value})} value={client.phone || ''} id="phone" name="phone" type="tel" className="form-control" placeholder="Enter Phone Number"/>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <select name="type" className="form-control">
+                                            <input onChange={(e) => setClient({...client, email: e.target.value})} value={client.email || ''} id="email" name="email" type="email" className="form-control" placeholder="Enter Email"/>                                       
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="form-group">
+                                            <input onChange={(e) => setClient({...client, address: e.target.value})} value={client.address || ''} id="address" name="address" type="text" className="form-control" placeholder="Address"/>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="form-group">
+                                            <select onChange={(e) => setClient({...client, type: e.target.value})} value={client.type || ''} name="type" className="form-control">
                                                 <option value="">Select Client Type</option>
                                                 <option value="1">Individual</option>
                                                 <option value="2">Property Developer</option>
@@ -94,7 +107,7 @@ function CreateClient() {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <select name="status" className="form-control">
+                                            <select onChange={(e) => setClient({...client, status: e.target.value})} value={client.status || ''} name="status" className="form-control">
                                                 <option value="">Select Client Status</option>
                                                 <option value="1">Active</option>
                                                 <option value="2">Pending</option>
@@ -105,7 +118,7 @@ function CreateClient() {
                                         </div>
                                     </div>
                                     <div className="col-md-6">
-                                        <button type="submit" className="btn btn-primary">Create Client</button>
+                                        <button type="submit" className="btn btn-primary">Update Client</button>
                                     </div>
                                 </div>
                             </form>
@@ -116,4 +129,4 @@ function CreateClient() {
         </Layout>
     );
 }
-export default CreateClient;
+export default EditClient;

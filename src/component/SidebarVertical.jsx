@@ -40,12 +40,12 @@ function SidebarVertical() {
             {openModule === "projects" && (
             <ul className="submenu" style={{ listStyle: "none", paddingLeft: "30px" }}>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/projects">
+                    <Link className="nav-link" to="/projects_clients/projects">
                         <span className="menu-title">Projects List</span>
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/clients">
+                    <Link className="nav-link" to="/projects_clients/clients">
                         <span className="menu-title">Our Clients</span>
                     </Link>
                 </li>
@@ -61,12 +61,17 @@ function SidebarVertical() {
             {openModule === "human" && (
             <ul className="submenu" style={{ listStyle: "none", paddingLeft: "30px" }}>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/designation">
+                    <Link className="nav-link" to="/human_resource/designation">
                         <span className="menu-title">Designations</span>
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/employees">
+                    <Link className="nav-link" to="/human_resource/department">
+                        <span className="menu-title">Departments</span>
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/human_resource/employees">
                         <span className="menu-title">Employees</span>
                     </Link>
                 </li>

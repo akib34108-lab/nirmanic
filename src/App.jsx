@@ -5,17 +5,21 @@ import Register from "./pages/Register.jsx";
 
 import Dashboard from "./pages/Dashboard.jsx";
 
-import Designation from "./pages/designation/Index.jsx";
-import CreateDesignation from "./pages/designation/Create.jsx";
-import EditDesignation from "./pages/designation/Edit.jsx";
+import Designation from "./pages/human_resource/designation/Index.jsx";
+import CreateDesignation from "./pages/human_resource/designation/Create.jsx";
+import EditDesignation from "./pages/human_resource/designation/Edit.jsx";
 
-import Projects from "./pages/projects/Index.jsx";
-import CreateProjects from "./pages/projects/Create.jsx";
-import EditProjects from "./pages/projects/Edit.jsx";
+import Projects from "./pages/projects_clients/projects/Index.jsx";
+import CreateProjects from "./pages/projects_clients/projects/Create.jsx";
+import EditProjects from "./pages/projects_clients/projects/Edit.jsx";
 
-import Clients from "./pages/clients/index.jsx";
-import CreateClient from "./pages/clients/Create.jsx";
-import EditClient from "./pages/clients/Edit.jsx";
+import Clients from "./pages/projects_clients/clients/Index.jsx";
+import CreateClient from "./pages/projects_clients/clients/Create.jsx";
+import EditClient from "./pages/projects_clients/clients/Edit.jsx";
+
+import Departments from "./pages/human_resource/department/Index.jsx";
+import CreateDepartment from "./pages/human_resource/department/Create.jsx";
+import EditDepartment from "./pages/human_resource/department/Edit.jsx";
 
 import Materials from "./pages/Materials.jsx";
 import Category from "./pages/Category.jsx";
@@ -38,22 +42,28 @@ function App() {
 
                 <Route path="/dashboard" element={<Dashboard />} />
 
-                <Route path="/projects">
+                <Route path="/projects_clients/projects">
                     <Route index element={<Projects />} />
                     <Route path="create" element={<CreateProjects />} />
                     <Route path="edit/:id" element={<EditProjects />} />
                 </Route>
 
-                <Route path="/clients">
+                <Route path="/projects_clients/clients">
                   <Route index element={<Clients/>}/>
                   <Route path="create" element={<CreateClient />} />
                   <Route path="edit/:id" element={<EditClient />} />
                 </Route>
 
-                <Route path="/designation">
+                <Route path="/human_resource/designation">
                   <Route index element={<Designation/>}/>
                   <Route path="create" element={<CreateDesignation />} />
                   <Route path="edit/:id" element={<EditDesignation />} />
+                </Route>
+
+                <Route path="/human_resource/department">
+                  <Route index element={<Departments/>}/>
+                  <Route path="create" element={<CreateDepartment />} />
+                  <Route path="edit/:id" element={<EditDepartment />} />
                 </Route>
                 
                 <Route path="/materials" element={<Materials />} />

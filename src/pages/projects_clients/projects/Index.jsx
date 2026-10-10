@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-import Layout from "../Layout.jsx";
+import Layout from "../../Layout.jsx";
 
 const projectTypes = {
     1: "Residential",
@@ -80,7 +80,7 @@ function Projects() {
                                 <i className="mdi mdi-magnify"></i>
                                 </span>
                             </div>
-                            <Link to="/projects/create" className="btn btn-info d-flex justify-content-center align-items-center">
+                            <Link to="/projects_clients/projects/create" className="btn btn-info d-flex justify-content-center align-items-center">
                                 <i className="mdi mdi-plus"></i> Add Project
                             </Link>
                         </div>
@@ -151,7 +151,7 @@ function Projects() {
                                     <p className="text-muted mb-0">{project.description}</p>
                                 </div>
                                 <div className="col-md-4 mt-3 text-md-right">
-                                    <Link to={`/projects/edit/${project.id}`} style={{ backgroundColor: "black", color: "white" }} type="button" className="btn btn-outline-secondary btn-icon-text mr-1" title="Edit"> Edit <i className="mdi mdi-file-check btn-icon-append"></i>
+                                    <Link to={`/projects_clients/projects/edit/${project.id}`} style={{ backgroundColor: "black", color: "white" }} type="button" className="btn btn-outline-secondary btn-icon-text mr-1" title="Edit"> Edit <i className="mdi mdi-file-check btn-icon-append"></i>
                                     </Link>
                                     <button style={{ backgroundColor: "black", color: "white" }} type="button" className="btn btn-outline-secondary btn-icon-text" title="Delete" onClick={() => handleDelete(project.id)}> Delete <i className="mdi mdi-delete"></i>
                                     </button>
