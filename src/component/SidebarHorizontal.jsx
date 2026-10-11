@@ -31,8 +31,8 @@ const toggleProfile = () => {
                 <li className="nav-item nav-profile border-0" style={{ position: "relative" }}>
                     <span className="profile-name" onClick={toggleProfile} style={{ border: "none", borderRadius: "20px",  padding: "7px 16px", fontSize: "15px", fontWeight: "500", cursor: "pointer",}}>Super Admin</span>
                     {openProfile && (
-                    <div className="dropdown-menu show" style={{ position: "absolute", top: "100%", right: 0, left: "auto", backgroundColor: "transparent", border: "1px solid black"}}>
-                        <Link className="dropdown-item" to="/profile" onClick={() => setOpenProfile(false)}>
+                    <div className="dropdown-menu show" style={{ position: "absolute", top: "100%", right: 0, left: "auto", border: "1px solid black"}}>
+                        <Link className="dropdown-item" to="/profile" onClick={() => setOpenProfile(false)} style={{ borderBottom: "1px solid black"}}>
                         <i className="mdi mdi-account mr-2 text-success"></i>Profile</Link>
                         <Link className="dropdown-item" to="/logout" onClick={() => setOpenProfile(false)}>
                         <i className="mdi mdi-logout mr-2 text-primary"></i>Signout</Link>

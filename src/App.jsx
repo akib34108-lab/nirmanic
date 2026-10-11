@@ -28,6 +28,9 @@ import Designation from "./pages/human_resource/designation/Index.jsx";
 import CreateDesignation from "./pages/human_resource/designation/Create.jsx";
 import EditDesignation from "./pages/human_resource/designation/Edit.jsx";
 
+import Employee from "./pages/human_resource/employees/Index.jsx";
+import CreateEmployee from "./pages/human_resource/employees/Create.jsx";
+
 import Materials from "./pages/Materials.jsx";
 import Category from "./pages/Category.jsx";
 import Suppliers from "./pages/Suppliers.jsx";
@@ -68,6 +71,11 @@ function App() {
                       <Route index element={<Clients/>}/>
                       <Route path="create" element={<CreateClient />} />
                       <Route path="edit/:id" element={<EditClient />} />
+                    </Route>
+
+                    <Route path="/human_resource/employees">
+                      <Route index element={<Employee/>}/>
+                      <Route path="create" element={<CreateEmployee />} />
                     </Route>
 
                     <Route path="/human_resource/designation">

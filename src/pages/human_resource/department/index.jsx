@@ -1,32 +1,22 @@
 import React from "react";
 import Layout from "../../Layout.jsx";
 import { Link } from "react-router";
+import axios from "../../../lib/axios.js";
 function Departments() {
     const [ department, setDepartment] = React.useState([]);
-        function fetchDepartment () {
-            fetch ('http://localhost/nirmanic_api/department/index.php')
-            .then (response=>response.json())
-            .then (data=>setDepartment(data.data))
-            .catch (error=>console.error("Fetching department error:",error));
+        async function fetchDepartment () {
+            let res = await axios.get(`/department/index.php`)
+            setDepartment(res.data.data);
         }
         React.useEffect(()=>{
             fetchDepartment();
         },[]);
-        function handleDelete (id) {
-            if (window.confirm("Are you sure you want to delete this department?")) {
-                fetch('http://localhost/nirmanic_api/department/delete.php?id=' + id, {
-                    method: 'DELETE',
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    if (data.status == 'true') {
-                        fetchDepartment();
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
+        async function handleDelete (id,departmentName) {
+            if(window.confirm(`Are you sure want to delete this ${departmentName}?`)) {
+                let res = await axios.delete(`/department/delete.php?id=${id}`)
+                if(res.data.status) {
+                    await fetchDepartment();
+                }
             }
         }
         return (
@@ -71,14 +61,13 @@ function Departments() {
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Designations</th>
                                                 <th>Department</th>
-                                                <th>Employees</th>
+                                                <th>Description</th>
                                                 <th className="text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {department.map((dept) => (
+                                            {department && department.map((dept) => (
                                             <tr key={dept.id}>
                                                 <td>{dept.id}</td>
                                                 <td>
@@ -88,17 +77,19 @@ function Departments() {
                                                         </div>
                                                         <div>
                                                             <h6 className="mb-1">{dept.department_name}</h6>
-                                                            <small className="text-muted">{dept.description}</small>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td>Management</td>
                                                 <td>
-                                                    <i className="mdi mdi-account-multiple text-muted mr-1"></i>4
+                                                    <div className="d-flex align-items-center">
+                                                        <div>
+                                                            <h6 className="mb-1">{dept.description}</h6>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                                 <td className="text-center">
-                                                    <Link to={`/department/edit/${dept.id}`}><i className="mdi mdi-pencil" style={{ fontSize:'25px', color: '#6f42c1', marginRight: '10px', cursor: "pointer",}}></i></Link>
-                                                    <Link to={''} onClick={() => handleDelete(dept.id)}><i className="mdi mdi-delete" style={{ fontSize:'25px', color: '#6f42c1', marginRight: '10px', cursor: "pointer",}}></i></Link>
+                                                    <Link to={`/human_resource/department/edit/${dept.id}`}><i className="mdi mdi-pencil" style={{ fontSize:'25px', color: '#6f42c1', marginRight: '10px', cursor: "pointer",}}></i></Link>
+                                                    <Link to={''} onClick={() => handleDelete(dept.id, dept.department_name)}><i className="mdi mdi-delete" style={{ fontSize:'25px', color: '#6f42c1', marginRight: '10px', cursor: "pointer",}}></i></Link>
                                                 </td>
                                             </tr>
                                             ))}

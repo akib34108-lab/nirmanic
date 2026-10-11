@@ -45,10 +45,12 @@ function CreateDesignation() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-3">
-                                    <div className="form-group">
-                                        <div className="text-center">
-                                            <button className="btn btn-primary" type="submit">Create Designation</button>
+                                <div className="row">
+                                    <div className="col-md-12">
+                                        <div className="form-group">
+                                            <div className="text-center">
+                                                <button className="btn btn-primary" type="submit">Create Designation</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

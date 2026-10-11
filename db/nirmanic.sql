@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2026 at 04:12 AM
+-- Generation Time: Oct 11, 2026 at 08:05 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -54,6 +54,21 @@ INSERT INTO `clients` (`id`, `client_name`, `company`, `phone`, `email`, `addres
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `department`
+--
+
+CREATE TABLE `department` (
+  `id` int(11) NOT NULL,
+  `department_name` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `designation`
 --
 
@@ -66,12 +81,35 @@ CREATE TABLE `designation` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `designation`
+-- Table structure for table `employee`
 --
 
-INSERT INTO `designation` (`id`, `designation_name`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(4, 'qwwte4t', 'rthrhgr', NULL, NULL, NULL);
+CREATE TABLE `employee` (
+  `id` int(11) NOT NULL,
+  `employee_name` varchar(255) DEFAULT NULL,
+  `phone` int(16) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `nid` varchar(20) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `basic_salary` varchar(255) DEFAULT NULL,
+  `joining_date` date DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `bank_account` varchar(255) DEFAULT NULL,
+  `experience` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`id`, `employee_name`, `phone`, `address`, `nid`, `image`, `basic_salary`, `joining_date`, `email`, `bank_account`, `experience`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'rtyr', 0, '', '', NULL, '', '0000-00-00', '', '', '', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -102,10 +140,7 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `project_code`, `client_id`, `name`, `type`, `location`, `description`, `budget`, `progress`, `start_date`, `expected_completion_date`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'PRJ-2026-001', 1, 'Bashundhara Residential Complex', 1, 'Bashundhara, R/A, Dhaka', 'Construction of a modern 12 store residential complex with 96 apartments, basement parking, rooftop facilities, and essential utility services.', '18.90Cr', 15, '2025-02-02', '2028-11-05', 3, NULL, NULL, NULL),
-(2, 'PRJ-2026-002', 3, 'Uttara Commercial Tower', 2, 'Uttara, Dhaka', 'Development of a 15 store commercial building including office spaces, retail areas, parking facilities, elevators, and modern fire safety systems.', '12.75Cr', 80, '2026-10-07', '2026-10-31', 1, NULL, NULL, NULL),
-(3, 'PRJ-2026-003', 2, 'Chattogram Bay View Apartments', 1, 'Khulshi, Chattogram', 'Construction of a premium residential apartment complex with modern amenities, underground parking, landscaped areas, and utility infrastructure.', '9.80Cr', 25, '2026-10-29', '2027-03-19', 2, NULL, NULL, NULL),
-(4, 'PRJ-2026-004', 4, 'Cox\'s Bazar Hotel Project', 6, 'Cox\'s Bazar', 'Construction of a modern beachfront hotel with guest rooms, restaurants, conference facilities, swimming pool, parking, and recreational areas.', '21.03Cr', 90, '2024-05-21', '2026-11-23', 3, NULL, NULL, NULL);
+(1, 'PRJ-2026-001', 1, 'Bashundhara Residential Complex', 1, 'Bashundhara, R/A, Dhaka', 'Construction of a modern 12 store residential complex with 96 apartments, basement parking, rooftop facilities, and essential utility services.', '18.90Cr', 15, '2025-02-02', '2028-11-05', 3, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -132,7 +167,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `contact_no`, `email`, `password`, `status`, `remember_token`, `image`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Mohammad Akibul Islam', NULL, 'akib34108@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '23921791547841435606', NULL, NULL, NULL, NULL);
+(1, 'Mohammad Akibul Islam', NULL, 'akib34108@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '90751791739998708874', NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -145,9 +180,21 @@ ALTER TABLE `clients`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `department`
+--
+ALTER TABLE `department`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `designation`
 --
 ALTER TABLE `designation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `employee`
+--
+ALTER TABLE `employee`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -173,16 +220,28 @@ ALTER TABLE `clients`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `department`
+--
+ALTER TABLE `department`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `designation`
 --
 ALTER TABLE `designation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `employee`
+--
+ALTER TABLE `employee`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`

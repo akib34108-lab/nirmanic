@@ -1,27 +1,16 @@
 
 import { Link } from "react-router";
 import Layout from "../../Layout.jsx";
+import axios from "../../../lib/axios.js";
 
 function CreateDepartment() {
-    function handleSubmit (e) {
+    async function handleSubmit (e) {
         e.preventDefault();
         const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
-        fetch('http://localhost/nirmanic_api/designation/create.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-    })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                window.location.href = '/human_resource/department';
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-    });
+        let res = await axios.post(`/department/create.php`, formData);
+        if(res.status === 200) {
+            window.location.href = '/human_resource/department';
+        }
 }
     return (
         <Layout>
@@ -57,10 +46,12 @@ function CreateDepartment() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-3">
-                                    <div className="form-group">
-                                        <div className="text-center">
-                                            <button className="btn btn-primary" type="submit">Create Department</button>
+                                <div className="row">
+                                    <div className="col-md-12">
+                                        <div className="form-group">
+                                            <div className="text-center">
+                                                <button className="btn btn-primary" type="submit">Create Department</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

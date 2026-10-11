@@ -24,7 +24,7 @@ function SidebarVertical() {
                   <span className="login-status online"></span>
                 </div>
                 <div className="nav-profile-text d-flex flex-column pr-3">
-                  <span className="font-weight-medium mb-2">{JSON.parse(sessionStorage.getItem("userdata")).name}</span>
+                  <span className="font-weight-medium mb-2">{JSON.parse(localStorage.getItem("userdata")).name}</span>
                   <span className="font-weight-normal">$8,753.00</span>
                 </div>
                 <span className="badge badge-danger text-white ml-3 rounded">3</span>
@@ -61,18 +61,18 @@ function SidebarVertical() {
             {openModule === "human" && (
             <ul className="submenu" style={{ listStyle: "none", paddingLeft: "30px" }}>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/human_resource/designation">
-                        <span className="menu-title">Designations</span>
+                    <Link className="nav-link" to="/human_resource/employees">
+                        <span className="menu-title">Employees</span>
                     </Link>
                 </li>
                 <li className="nav-item">
                     <Link className="nav-link" to="/human_resource/department">
-                        <span className="menu-title">Departments</span>
+                        <span className="menu-title">Department</span>
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/human_resource/employees">
-                        <span className="menu-title">Employees</span>
+                    <Link className="nav-link" to="/human_resource/designation">
+                        <span className="menu-title">Designations</span>
                     </Link>
                 </li>
             </ul>

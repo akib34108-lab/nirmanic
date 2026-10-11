@@ -2,39 +2,26 @@ import React from "react";
 import { Link } from "react-router";
 import { useParams } from "react-router";
 import Layout from "../../Layout.jsx";
+import axios from "../../../lib/axios.js";
 
 function EditDepartment() {
     let { id } = useParams();
     const [ department, setDepartment] = React.useState([]);
-        function fetchDepartment () {
-            fetch ('http://localhost/nirmanic_api/department/single.php?id=' + id)
-            .then (response=>response.json())
-            .then (data=>setDepartment(data.data[0]))
-            .catch (error=>console.error("Fetching departments error:",error));
+        async function fetchDepartment () {
+            let res = await axios.get('/department/single.php?id=' + id);
+              setDepartment(res.data.data[0]);
         }
         React.useEffect(()=>{
             fetchDepartment();
         },[]);
 
-    function handleSubmit (e) {
+    async function handleSubmit (e) {
         e.preventDefault();
         const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
-        fetch('http://localhost/nirmanic_api/department/update.php?id='+ department.id, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        window.location.href = '/human_resource/department';
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+        let res = await axios.post('/department/update.php?id=' + id, formData);
+        if(res.status === 200) {
+          window.location.href = '/human_resource/department';
+        }
 }
     return (
       <Layout>
@@ -45,7 +32,7 @@ function EditDepartment() {
               <ol className="breadcrumb">
                   <li className="breadcrumb-item">
                   <i className="mdi mdi-folder-multiple menu-icon pr-2" style={{ color: '#c0b553'}}></i>
-                      <Link to="/department" style={{color: 'black'}}>Departments List</Link>
+                      <Link to="/human_resource/department" style={{color: 'black'}}>Departments List</Link>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
                       <a href="" title="Update Department">Update Department </a>
