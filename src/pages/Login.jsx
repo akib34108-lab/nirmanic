@@ -15,8 +15,8 @@ function Login() {
         password: form.get("password")
       })
       .then((response) => {
-        sessionStorage.setItem("access_token", response.data.jwt);
-        sessionStorage.setItem("userdata", response.data.data);
+        localStorage.setItem("access_token", response.data.jwt);
+        localStorage.setItem("userdata", response.data.data);
         window.location.href='./dashboard';
       })
       .catch(() => {
@@ -109,28 +109,10 @@ function Login() {
                             <label htmlFor="password">Password</label>
                             <div className="input-wrapper">
                                 <i className="mdi mdi-lock-outline"></i>
-                                <input
-    name="password"
-    id="password"
-    type={passwordVisible ? "text" : "password"}
-    className="form-control"
-    placeholder="Enter your password"
-    required
-/>
-
-<button
-    type="button"
-    className="password-toggle"
-    onClick={() => setPasswordVisible(!passwordVisible)}
->
-    <i
-        className={
-            passwordVisible
-                ? "mdi mdi-eye-outline"
-                : "mdi mdi-eye-off-outline"
-        }
-    ></i>
-</button>
+                                <input name="password" id="password" type={passwordVisible ? "text" : "password"} className="form-control" placeholder="Enter your password" required/>
+                                <button type="button" className="password-toggle" onClick={() => setPasswordVisible(!passwordVisible)}>
+                                    <i className={ passwordVisible ? "mdi mdi-eye-outline" : "mdi mdi-eye-off-outline"}></i>
+                                </button>
                             </div>
                         </div>
                         <div className="login-options">

@@ -2,39 +2,26 @@ import React from "react";
 import { Link } from "react-router";
 import { useParams } from "react-router";
 import Layout from "../../Layout.jsx";
+import axios from '../../../lib/axios.js';
 
 function EditDesignation() {
     let { id } = useParams();
     const [ designation, setDesignation] = React.useState([]);
-        function fetchDesignation () {
-            fetch ('http://localhost/nirmanic_api/designation/single.php?id=' + id)
-            .then (response=>response.json())
-            .then (data=>setDesignation(data.data[0]))
-            .catch (error=>console.error("Fetching designations error:",error));
-        }
+       async function fetchDesignation () {
+        let res = await axios.get(`/designation/single.php?id=` + id)
+            setDesignation(res.data.data[0]);
+       }
         React.useEffect(()=>{
             fetchDesignation();
         },[]);
 
-    function handleSubmit (e) {
+    async function handleSubmit (e) {
         e.preventDefault();
         const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
-        fetch('http://localhost/nirmanic_api/designation/update.php?id='+ designation.id, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        window.location.href = '/human_resource/designation';
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+        let res = await axios.post('/designation/update.php?id=' + id, formData);
+        if(res.status === 200) {
+         window.location.href = '/human_resource/designation';
+        }
 }
     return (
       <Layout>

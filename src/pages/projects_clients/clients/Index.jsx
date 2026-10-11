@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import Layout from "../../Layout.jsx";
+import axios from '../../../lib/axios.js';
 
 const clientTypes = {
     1: "Individual",
@@ -46,29 +47,19 @@ const filteredClients =
         : clients.filter(
             client => String(client.status) === selectedStatus
         );
-    function fetchClients () {
-        fetch ('http://localhost/nirmanic_api/clients/index.php')
-        .then (response=>response.json())
-        .then (data=>setClients(data.data))
-        .catch (error=>console.error("Fetching clients error:",error));
+    async function fetchClients () {
+        let res = await axios.get('/clients/index.php');
+        setClients(res.data.data);
     }
     React.useEffect(()=>{
         fetchClients();
     },[]);
-    function handleDelete (id) {
+    async function handleDelete (id) {
         if (window.confirm("Are you sure you want to delete this client?")) {
-            fetch('http://localhost/nirmanic_api/clients/delete.php?id=' + id, {
-                method: 'DELETE',
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status == 'true') {
-                    fetchClients();
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+            let res = await axios.delete(`/clients/delete.php?id=${id}`);
+            if (res.data.status) {
+                await fetchClients();
+            }
         }
     }
     return (

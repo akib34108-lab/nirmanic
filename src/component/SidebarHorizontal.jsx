@@ -1,4 +1,11 @@
+import { Link } from "react-router";
+import { useState } from "react";
 function SidebarHorizontal() {
+    const [openProfile, setOpenProfile] = useState(false);
+
+const toggleProfile = () => {
+  setOpenProfile(!openProfile);
+};
     return (
         <nav className="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
           <div className="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">
@@ -21,17 +28,17 @@ function SidebarHorizontal() {
               </li>
             </ul>
             <ul className="navbar-nav navbar-nav-right ml-lg-auto">
-              <li className="nav-item nav-profile dropdown border-0">
-                <a className="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
-                  <span className="profile-name" style={{ border: "none",  borderRadius: "20px", padding: "7px 16px", fontSize: "15px", fontWeight: "500", cursor: "pointer"}}>Super Admin</span>
-                </a>
-                <div className="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
-                  <a className="dropdown-item" href="#">
-                    <i className="mdi mdi-cached mr-2 text-success"></i> Profile </a>
-                  <a className="dropdown-item" href="#">
-                    <i className="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
-                </div>
-              </li>
+                <li className="nav-item nav-profile border-0" style={{ position: "relative" }}>
+                    <span className="profile-name" onClick={toggleProfile} style={{ border: "none", borderRadius: "20px",  padding: "7px 16px", fontSize: "15px", fontWeight: "500", cursor: "pointer",}}>Super Admin</span>
+                    {openProfile && (
+                    <div className="dropdown-menu show" style={{ position: "absolute", top: "100%", right: 0, left: "auto", backgroundColor: "transparent", border: "1px solid black"}}>
+                        <Link className="dropdown-item" to="/profile" onClick={() => setOpenProfile(false)}>
+                        <i className="mdi mdi-account mr-2 text-success"></i>Profile</Link>
+                        <Link className="dropdown-item" to="/logout" onClick={() => setOpenProfile(false)}>
+                        <i className="mdi mdi-logout mr-2 text-primary"></i>Signout</Link>
+                    </div>
+                    )}
+                </li>
             </ul>
             <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
               <span className="mdi mdi-menu"></span>

@@ -2,39 +2,27 @@ import React from "react";
 import { Link } from "react-router";
 import { useParams } from "react-router";
 import Layout from "../../Layout.jsx";
+import axios from '../../../lib/axios.js';
 
 function EditClient() {
     let { id } = useParams();
     const [ client, setClient] = React.useState([]);
-        function fetchClient () {
-            fetch ('http://localhost/nirmanic_api/clients/single.php?id=' + id)
-            .then (response=>response.json())
-            .then (data=>setClient(data.data[0]))
-            .catch (error=>console.error("Fetching clients error:",error));
+        async function fetchClient () {
+            let res = await axios.get('/clients/single.php?id=' + id);
+            setClient(res.data.data[0]);
         }
-        React.useEffect(()=>{
-            fetchClient();
-        },[]);
 
-    function handleSubmit (e) {
+    React.useEffect(()=>{
+        fetchClient();
+    },[]);
+
+    async function handleSubmit (e) {
         e.preventDefault();
         const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
-        fetch('http://localhost/nirmanic_api/clients/update.php?id='+ client.id, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        window.location.href = '/projects_clients/clients';
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+        let res = await axios.post('/clients/update.php?id=' + id, formData);
+         if(res.status === 200) {
+             window.location.href = '/projects_clients/clients';
+        }
 }
     return (
         <Layout>
@@ -61,7 +49,7 @@ function EditClient() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <input onChange={(e) => setClient({...client, client_name: e.target.value})} value={client.client_name || ''} id="name" name="name" type="text" className="form-control" placeholder="Enter Full Name"/>
+                                            <input onChange={(e) => setClient({...client, client_name: e.target.value})} value={client.client_name || ''} id="name" name="client_name" type="text" className="form-control" placeholder="Enter Full Name"/>
                                         </div>
                                     </div>
                                     <div className="col-md-6">

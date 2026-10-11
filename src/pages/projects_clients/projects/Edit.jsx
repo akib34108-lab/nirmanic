@@ -18,9 +18,9 @@ function EditProjects() {
     async function handleSubmit (e) {
         e.preventDefault();
         const formData = new FormData(e.target);
-        let res = await axios.post('/projects/update.php', formData);
+        let res = await axios.post('/projects/update.php?id=' + id, formData);
         if(res.status === 200) {
-          window.location.href = '/projects_clients/projects';
+         window.location.href = '/projects_clients/projects';
         }
       }
     return (

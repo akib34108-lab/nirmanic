@@ -1,6 +1,6 @@
 <?php
 include '../connection.php';
-$data = json_decode( file_get_contents('php://input'), true);
+$data = $_POST;
 $id=$_GET['id'];
-$res=$db->common_update("clients",$data,["id"=>$id]);
-echo json_encode($res);
+ $res=$db->common_update('clients',$data,['id'=>$id]);
+ echo json_encode($res);

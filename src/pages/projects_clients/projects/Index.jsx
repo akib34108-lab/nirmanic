@@ -46,9 +46,9 @@ function Projects() {
     if (window.confirm("Are you sure you want to delete this project?")) {
         let res = await axios.delete(`/projects/delete.php?id=${id}`)
         if(res.data.status){
-        fetchProject();
+            await fetchProject();
+            }
         }
-    }
     }
 
   return (

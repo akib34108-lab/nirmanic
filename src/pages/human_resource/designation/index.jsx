@@ -1,34 +1,24 @@
 import React from "react";
 import Layout from "../../Layout.jsx";
 import { Link } from "react-router";
+import axios from '../../../lib/axios.js';
 function Designation() {
     const [ designation, setDesignation] = React.useState([]);
-        function fetchDesignation () {
-            fetch ('http://localhost/nirmanic_api/designation/index.php')
-            .then (response=>response.json())
-            .then (data=>setDesignation(data.data))
-            .catch (error=>console.error("Fetching designation error:",error));
+        async function fetchDesignation () {
+            let res = await axios.get(`/designation/index.php`)
+            setDesignation(res.data.data);
         }
         React.useEffect(()=>{
             fetchDesignation();
         },[]);
-        function handleDelete (id) {
+        async function handleDelete (id) {
             if (window.confirm("Are you sure you want to delete this designation?")) {
-                fetch('http://localhost/nirmanic_api/designation/delete.php?id=' + id, {
-                    method: 'DELETE',
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    if (data.status == 'true') {
-                        fetchDesignation();
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
+                let res = await axios.delete(`/designation/delete.php?id=${id}`)
+                if(res.data.status){
+            await fetchDesignation();
             }
         }
+    }
         return (
 
         <Layout>
@@ -78,7 +68,7 @@ function Designation() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {designation.map((designation) => (
+                                            {designation && designation.map((designation) => (
                                             <tr key={designation.id}>
                                                 <td>{designation.id}</td>
                                                 <td>

@@ -1,9 +1,19 @@
 <?php
 include '../connection.php';
 include '../auth_check.php';
-$data = json_decode(file_get_contents('php://input'),true);
-$res = [];
-if($data['name']){
-    $res = $db->common_insert('clients', $data);
+
+// $uploadDir = '../';
+// $image="";
+// if (!empty($_FILES['image'])) {
+//     $name = rand().basename($_FILES['image']['name']);
+//     $targetPath = 'client/'.$name;
+// 
+//     if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $targetPath)) {
+//         $_POST['image']=$targetPath;
+//     }
+// } 
+$res=[];
+if($_POST['client_name']){
+    $res=$db->common_insert('clients', $_POST);
 }
 echo json_encode($res);

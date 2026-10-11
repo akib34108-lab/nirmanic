@@ -1,28 +1,17 @@
-
 import { Link } from "react-router";
 import Layout from "../../Layout.jsx";
+import axios from '../../../lib/axios.js';
 
 function CreateClient() {
-    function handleSubmit(e){
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
-        fetch('http://localhost/nirmanic_api/clients/create.php',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                window.location.href = '/projects_clients/clients';
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-    });
+    async function handleSubmit(e){
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    
+    let res = await axios.post('/clients/create.php', formData);
+    if(res.status === 200) {
+      window.location.href = '/projects_clients/clients';
     }
+  }
     return (
         <Layout>
             <div className="content-wrapper">
