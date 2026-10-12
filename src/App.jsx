@@ -30,6 +30,7 @@ import EditDesignation from "./pages/human_resource/designation/Edit.jsx";
 
 import Employee from "./pages/human_resource/employees/Index.jsx";
 import CreateEmployee from "./pages/human_resource/employees/Create.jsx";
+import EditEmployee from "./pages/human_resource/employees/Edit.jsx";
 
 import Materials from "./pages/Materials.jsx";
 import Category from "./pages/Category.jsx";
@@ -76,6 +77,7 @@ function App() {
                     <Route path="/human_resource/employees">
                       <Route index element={<Employee/>}/>
                       <Route path="create" element={<CreateEmployee />} />
+                      <Route path="edit/:id" element={<EditEmployee />} />
                     </Route>
 
                     <Route path="/human_resource/designation">

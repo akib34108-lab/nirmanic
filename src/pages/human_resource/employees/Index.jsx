@@ -3,18 +3,6 @@ import { Link } from "react-router";
 import Layout from "../../Layout.jsx";
 import axios from '../../../lib/axios.js';
 
-const employeeTypes = {
-    1: "Individual",
-    2: "Property Developer",
-    3: "Corporate",
-    4: "Industrial",
-    5: "Government",
-    6: "Hospitality",
-    7: "Educational",
-    8: "Health Care",
-    9: "NGO",
-    10: "Real Estate Company",
-};
 const employeeStatuses = {
     1: "Active",
     2: "Pending",
@@ -45,7 +33,7 @@ const filteredEmployee =
     selectedStatus === "all"
         ? employee
         : employee.filter(
-            employee => String(employee.joining_date) === selectedStatus
+            employee => String(employee.status) === selectedStatus
         );
     async function fetchEmployee () {
         let res = await axios.get('/employees/index.php');
@@ -104,9 +92,8 @@ const filteredEmployee =
                                             <th>#</th>
                                             <th>Employee</th>
                                             <th>Contact Information</th>
-                                            <th>Type</th>
+                                            <th>Image</th>
                                             <th>Status</th>
-                                            <th>Projects</th>
                                             <th className="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -121,11 +108,14 @@ const filteredEmployee =
                                                         </div>
                                                         <div>
                                                             <h6 className="mb-1 font-weight-bold" style={{fontSize: "14px"}}>{employee.employee_name}</h6>
-                                                            <div className="text-muted"style={{fontSize: "12px"}}>{employee.nid}</div>
+                                                            <div className="text-muted"style={{fontSize: "12px"}}>{employee.designation_id}<br/>{employee.department_id}<br/>{employee.experience} years experience</div>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
+                                                    <div className="d-flex align-items-center mb-1" style={{fontSize: "12px"}}>
+                                                        <i className="mdi mdi-account-details mr-2" style={{color: "#0f9d8a"}}></i><span className="fw-bold" style={{color: "#0f9d8a"}}>{employee.nid}</span>
+                                                    </div>
                                                     <div className="d-flex align-items-center mb-1" style={{fontSize: "12px"}}>
                                                         <i className="mdi mdi-phone-outline mr-2" style={{color: "#0f9d8a"}}></i>
                                                         <span className="fw-bold" style={{color: "#0f9d8a"}}>{employee.phone}</span>
@@ -140,29 +130,18 @@ const filteredEmployee =
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <span style={{ display: "inline-flex", alignItems: "center", padding: "5px 10px", borderRadius: "20px", backgroundColor: "#f1f5f9", color: "#495057", fontSize: "11px", fontWeight: "500"}}>{employeeTypes[employee.experience]} </span>
+                                                    {employee.image && (
+                              <img src={`${import.meta.env.VITE_API_URL}${employee.image}`} alt={employee.name} className="img-fluid" width="100" />
+                            )}
                                                 </td>
                                                 <td>
-                                                    <div className="ml-auto" style={{display: "flex",alignItems: "center",gap: "7px",color: employeeStatusColors[employee.joining_date]}}>
-                                                        <span style={{width: "8px",height: "8px",borderRadius: "50%",backgroundColor: employeeStatusColors[employee.joining_date],display: "inline-block"}}></span>
-                                                        <span>{employeeStatuses[employee.joining_date]}</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div className="d-flex align-items-center">
-                                                        <div className="mr-2 d-flex align-items-center justify-content-center" style={{ width: "30px", height: "30px", borderRadius: "6px", backgroundColor: "#f1f7ff", color: "#0c7ff2"}}>
-                                                            <i className="mdi mdi-office-building-outline"></i>
-                                                        </div>
-                                                        <div>
-                                                            <strong style={{ fontSize: "14px"}}>{employee.basic_salary}</strong>
-                                                            <div
-                                                                className="text-muted" style={{ fontSize: "10px"}}>Projects
-                                                            </div>
-                                                        </div>
+                                                    <div className="ml-auto" style={{display: "flex",alignItems: "center",gap: "7px",color: employeeStatusColors[employee.status]}}>
+                                                        <span style={{width: "8px",height: "8px",borderRadius: "50%",backgroundColor: employeeStatusColors[employee.status],display: "inline-block"}}></span>
+                                                        <span>{employeeStatuses[employee.status]}</span>
                                                     </div>
                                                 </td>
                                                 <td className="text-center">
-                                                    <Link to={`/human_resource/employees/edit/${employees.id}`}><i className="mdi mdi-pencil" style={{ fontSize:'25px', color: '#6f42c1', marginRight: '10px', cursor: "pointer",}}></i></Link>
+                                                    <Link to={`/human_resource/employees/edit/${employee.id}`}><i className="mdi mdi-pencil" style={{ fontSize:'25px', color: '#6f42c1', marginRight: '10px', cursor: "pointer",}}></i></Link>
                                                     <Link to={''} onClick={() => handleDelete(employee.id, employee.employee_name)}><i className="mdi mdi-delete" style={{ fontSize:'25px', color: '#6f42c1', marginRight: '10px', cursor: "pointer",}}></i></Link>
                                                 </td>
                                             </tr>
