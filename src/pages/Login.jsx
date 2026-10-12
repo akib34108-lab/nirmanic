@@ -6,24 +6,41 @@ import { Link } from "react-router";
 function Login() {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [message, setMessage] = useState("");
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-    const form = new FormData(event.target);
-    axios
-      .post(`${import.meta.env.VITE_API_URL}login.php`, {
-        email: form.get("email"),
-        password: form.get("password")
-      })
-      .then((response) => {
-        localStorage.setItem("access_token", response.data.jwt);
-        localStorage.setItem("userdata", response.data.data);
-        window.location.href='./dashboard';
-      })
-      .catch(() => {
-        setMessage("An error occurred while creating your account. Please try again.");
-      });
-  } 
-
+        setMessage("");
+        const form = new FormData(event.target);
+        try {
+            const response = await axios.post(
+                `${import.meta.env.VITE_API_URL}login.php`,
+                {
+                    email: form.get("email"),
+                    password: form.get("password"),
+                }
+            );
+            if (!response.data.jwt) {
+                setMessage(
+                    response.data.message || "Invalid email or password."
+                );
+                return;
+            }
+            localStorage.setItem("access_token", response.data.jwt);
+            localStorage.setItem(
+                "userdata",
+                JSON.stringify(response.data.data)
+            );
+            window.location.href = "/dashboard";
+        } catch (error) {
+            if (error.response) {
+                setMessage(
+                    error.response.data.message ||
+                    "Invalid email or password."
+                );
+            } else {
+                setMessage("Unable to connect to the server. Please try again.");
+            }
+        }
+    };
     return (
         <div className="login-page">
             <div className="login-left">

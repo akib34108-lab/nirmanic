@@ -1,0 +1,159 @@
+
+.attendance-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: #fff;
+  border: 1px solid #e3ebf5;
+  border-radius: 7px;
+}
+
+.attendance-table {
+  width: 100%;
+  min-width: 1100px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 12px;
+  color: #243b64;
+}
+
+.attendance-table thead th {
+  padding: 14px 10px;
+  background: #f3f6fb;
+  color: #18345f;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid #e2eaf5;
+}
+
+.attendance-table tbody td {
+  padding: 11px 10px;
+  height: 59px;
+  border-bottom: 1px solid #e6edf7;
+  vertical-align: middle;
+}
+
+.attendance-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.attendance-table tbody tr:hover {
+  background: #f8fbff;
+}
+
+.attendance-employee {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 150px;
+}
+
+.attendance-avatar {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #edf2f8;
+}
+
+.attendance-employee-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.employee-name {
+  color: #18345f;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.employee-id {
+  color: #6883b0;
+  font-size: 11px;
+}
+
+.project-name {
+  max-width: 145px;
+  line-height: 1.6;
+  color: #58729e;
+}
+
+.attendance-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.attendance-status.present {
+  color: #079b65;
+  background: #d7f8eb;
+}
+
+.attendance-status.late {
+  color: #e98200;
+  background: #fff0d7;
+}
+
+.attendance-status.absent {
+  color: #e63852;
+  background: #ffe0e6;
+}
+
+.attendance-status.early-leave {
+  color: #803cff;
+  background: #f0e7ff;
+}
+
+.attendance-status.half-day {
+  color: #2167f5;
+  background: #e4eeff;
+}
+
+.attendance-status.on-leave {
+  color: #0d9fa8;
+  background: #d9f7f7;
+}
+
+.actions-heading,
+.actions-cell {
+  text-align: center !important;
+}
+
+.attendance-more-btn {
+  width: 30px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: #153768;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.attendance-more-btn i {
+  font-size: 21px;
+}
+
+.attendance-more-btn:hover {
+  background: #eaf2ff;
+  color: #2167f5;
+}
+
+@media (max-width: 768px) {
+  .attendance-table {
+    min-width: 1100px;
+  }
+}

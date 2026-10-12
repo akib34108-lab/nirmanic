@@ -6,9 +6,12 @@ $id=$_GET['id'];
  $get_res=$db->common_select('employee','*',['id'=>$id]);
  if($get_res['status'] && count($get_res['data'])>0){
      $employee=$get_res['data'][0];
-     if(file_exists('../'.$employee->image)){
-         unlink('../'.$employee->image);
-     }
+     if (!empty($employee->image)) {
+        $imagePath = __DIR__ . '/../' . ltrim($employee->image, '/\\'); 
+        if (is_file($imagePath)) {
+            unlink($imagePath);
+        }
+    }
  }
 $res=$db->common_delete('employee',['id'=>$id]);
 

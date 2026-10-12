@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2026 at 09:05 AM
+-- Generation Time: Oct 12, 2026 at 09:46 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -107,22 +107,28 @@ CREATE TABLE `employee` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `employee`
+-- Table structure for table `employee_attendance`
 --
 
-INSERT INTO `employee` (`id`, `designation_id`, `department_id`, `employee_name`, `phone`, `address`, `nid`, `image`, `basic_salary`, `joining_date`, `email`, `bank_account`, `experience`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(4, 2, 4, 'Rahim Ahmed', '+8801533198825', 'Agrabad, Chattogram, Bangladesh', '19951234567890123', NULL, '1.2 lakh', '2026-07-13', 'rahim@gmail.com', '11111111111111111', '08', 2, NULL, NULL, NULL),
-(10, 0, 0, 'ertege', '', '', '', 'images/employee/b3bdf33f45121f11.png', '', '0000-00-00', '', '', '', 0, NULL, NULL, NULL),
-(11, 0, 0, 'asafa', '', '', '', 'images/employee/4f43511e1aaeec83.jpg', '', '0000-00-00', '', '', '', 0, NULL, NULL, NULL),
-(12, 0, 0, 'rgere', '', '', '', 'images/employee/b8371413cd92067e.jpg', '', '0000-00-00', '', '', '', 0, NULL, NULL, NULL),
-(13, 0, 0, 'akib', '', '', '', NULL, '', '0000-00-00', '', '', '', 0, NULL, NULL, NULL),
-(14, 0, 0, 'akib', '', '', '', NULL, '', '0000-00-00', '', '', '', 0, NULL, NULL, NULL),
-(15, 0, 0, 'akib', '', '', '', NULL, '', '0000-00-00', '', '', '', 0, NULL, NULL, NULL),
-(16, 0, 0, 'akib', '', '', '', NULL, '', '0000-00-00', '', '', '', 0, NULL, NULL, NULL),
-(17, 0, 0, 'akib', '', '', '', NULL, '', '0000-00-00', '', '', '', 0, NULL, NULL, NULL),
-(19, 0, 0, 'pro', '', '', '', NULL, '', '0000-00-00', '', '', '', 0, NULL, NULL, NULL),
-(20, 0, 0, 'pro', '', '', '', NULL, '', '0000-00-00', '', '', '', 0, NULL, NULL, NULL);
+CREATE TABLE `employee_attendance` (
+  `id` int(11) NOT NULL,
+  `employee_id` int(20) DEFAULT NULL,
+  `project_id` int(20) DEFAULT NULL,
+  `attendance_date` date DEFAULT NULL,
+  `check_in` time DEFAULT NULL,
+  `check_out` time DEFAULT NULL,
+  `working_hours` decimal(10,0) DEFAULT NULL,
+  `late_min` int(11) DEFAULT NULL,
+  `early_leave_min` int(11) DEFAULT NULL,
+  `overtime_hour` decimal(10,0) DEFAULT NULL,
+  `status` int(20) DEFAULT NULL COMMENT '1=present, 2=absent, 3=late, 4=leave, 5=halfday, 6=holiday',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -180,7 +186,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `contact_no`, `email`, `password`, `status`, `remember_token`, `image`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Mohammad Akibul Islam', NULL, 'akib34108@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '77711791774235120099', NULL, NULL, NULL, NULL);
+(1, 'Mohammad Akibul Islam', NULL, 'akib34108@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '29911791830061207691', NULL, NULL, NULL, NULL),
+(2, 'Riyad Uddin', NULL, 'riad@gmail.com', '6bb0e3b82a69a2bdf7139d17eeb5f79818b92a4d', 1, '65441791830217721624', NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -208,6 +215,12 @@ ALTER TABLE `designation`
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `employee_attendance`
+--
+ALTER TABLE `employee_attendance`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -248,7 +261,13 @@ ALTER TABLE `designation`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `employee_attendance`
+--
+ALTER TABLE `employee_attendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `projects`
@@ -260,7 +279,7 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

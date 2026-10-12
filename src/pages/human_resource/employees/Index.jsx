@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import Layout from "../../Layout.jsx";
 import axios from '../../../lib/axios.js';
+import "./Index.css";
 
 const employeeStatuses = {
     1: "Active",
@@ -28,6 +29,7 @@ const employeeStatusesTab = [
 
 function Employee() {
 const [ employee, setEmployee] = React.useState([]);
+const [openMenu, setOpenMenu] = React.useState(null);
 const [selectedStatus, setSelectedStatus] = React.useState("all");
 const filteredEmployee =
     selectedStatus === "all"
@@ -92,7 +94,8 @@ const filteredEmployee =
                                             <th>#</th>
                                             <th>Employee</th>
                                             <th>Contact Information</th>
-                                            <th>Image</th>
+                                            <th>Basic Salary</th>
+                                            <th>Joining Date</th>
                                             <th>Status</th>
                                             <th className="text-center">Action</th>
                                         </tr>
@@ -103,19 +106,44 @@ const filteredEmployee =
                                                 <td>{employee.id}</td>
                                                 <td>
                                                     <div className="d-flex align-items-center">
-                                                        <div className="d-flex align-items-center justify-content-center rounded-circle mr-3" style={{width: "46px",height: "46px",minWidth: "46px",backgroundColor: "#eaf6ff",color: "#0c7ff2",fontSize: "17px",fontWeight: "600"}}>
-                                                            {employee.employee_name.charAt(0)}
-                                                        </div>
+                                                        <div
+    className="d-flex align-items-center justify-content-center rounded-circle mr-3"
+    style={{
+        width: "46px",
+        height: "46px",
+        minWidth: "46px",
+        overflow: "hidden",
+        backgroundColor: "#eaf6ff",
+    }}
+>
+    {employee.image ? (
+        <img
+            src={`${import.meta.env.VITE_API_URL}${employee.image}`}
+            alt={employee.employee_name}
+            style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                borderRadius: "50%",
+            }}
+        />
+    ) : (
+        <span style={{
+            color: "#0c7ff2",
+            fontSize: "17px",
+            fontWeight: "600",
+        }}>
+            {employee.employee_name.charAt(0)}
+        </span>
+    )}
+</div>
                                                         <div>
                                                             <h6 className="mb-1 font-weight-bold" style={{fontSize: "14px"}}>{employee.employee_name}</h6>
-                                                            <div className="text-muted"style={{fontSize: "12px"}}>{employee.designation_id}<br/>{employee.department_id}<br/>{employee.experience} years experience</div>
+                                                            <div className="text-muted"style={{fontSize: "12px"}}>{employee.designation_id}<br/>{employee.department_id}</div>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <div className="d-flex align-items-center mb-1" style={{fontSize: "12px"}}>
-                                                        <i className="mdi mdi-account-details mr-2" style={{color: "#0f9d8a"}}></i><span className="fw-bold" style={{color: "#0f9d8a"}}>{employee.nid}</span>
-                                                    </div>
                                                     <div className="d-flex align-items-center mb-1" style={{fontSize: "12px"}}>
                                                         <i className="mdi mdi-phone-outline mr-2" style={{color: "#0f9d8a"}}></i>
                                                         <span className="fw-bold" style={{color: "#0f9d8a"}}>{employee.phone}</span>
@@ -130,9 +158,10 @@ const filteredEmployee =
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    {employee.image && (
-                              <img src={`${import.meta.env.VITE_API_URL}${employee.image}`} alt={employee.name} className="img-fluid" width="100" />
-                            )}
+                                                    <span className="fw-bold">{employee.basic_salary}</span>
+                                                </td>
+                                                <td>
+                                                    <span className="fw-bold">{employee.joining_date}</span>
                                                 </td>
                                                 <td>
                                                     <div className="ml-auto" style={{display: "flex",alignItems: "center",gap: "7px",color: employeeStatusColors[employee.status]}}>
@@ -141,8 +170,16 @@ const filteredEmployee =
                                                     </div>
                                                 </td>
                                                 <td className="text-center">
-                                                    <Link to={`/human_resource/employees/edit/${employee.id}`}><i className="mdi mdi-pencil" style={{ fontSize:'25px', color: '#6f42c1', marginRight: '10px', cursor: "pointer",}}></i></Link>
-                                                    <Link to={''} onClick={() => handleDelete(employee.id, employee.employee_name)}><i className="mdi mdi-delete" style={{ fontSize:'25px', color: '#6f42c1', marginRight: '10px', cursor: "pointer",}}></i></Link>
+                                                    <div className="employee-action-menu">
+                                                        <button type="button" className="action-menu-btn" onClick={() => setOpenMenu( openMenu === employee.id ? null : employee.id)}title="More Actions"><i className="mdi mdi-dots-vertical"></i></button>
+                                                        {openMenu === employee.id && (
+                                                            <div className="action-dropdown">
+                                                                <Link to={`/human_resource/employees/profile/${employee.id}`} className="action-dropdown-item" onClick={() => setOpenMenu(null)}><i className="mdi mdi-account-box-outline"></i><span>View Profile</span></Link>
+                                                                <Link to={`/human_resource/employees/edit/${employee.id}`} className="action-dropdown-item" onClick={() => setOpenMenu(null)}><i className="mdi mdi-pencil-outline"></i><span>Edit Employee</span></Link>
+                                                                <button type="button" className="action-dropdown-item delete-action" onClick={() => { setOpenMenu(null);  handleDelete(employee.id, employee.employee_name);}}><i className="mdi mdi-delete-outline"></i><span>Delete Employee</span></button>
+                                                            </div>
+                                                        )}
+                                                    </div>
                                                 </td>
                                             </tr>
                                         ))}

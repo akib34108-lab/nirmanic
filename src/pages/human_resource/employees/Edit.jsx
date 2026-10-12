@@ -110,7 +110,14 @@ function EditEmployee() {
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <input onChange={(e) => setEmployee({...employee, status: e.target.value})} value={employee.status || ''} id="status" name="status" type="text" className="form-control" placeholder="Status"/>
+                                            <select onChange={(e) => setEmployee({...employee, status: e.target.value})} value={employee.status || '' } name="status" className="form-control">
+                                                <option value="">Select Client Status</option>
+                                                <option value="1">Active</option>
+                                                <option value="2">Pending</option>
+                                                <option value="3">Prospect</option>
+                                                <option value="4">Inactive</option>
+                                                <option value="5">Blocked</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
