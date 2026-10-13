@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2026 at 09:46 PM
+-- Generation Time: Oct 13, 2026 at 08:56 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,6 +66,13 @@ CREATE TABLE `department` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `department`
+--
+
+INSERT INTO `department` (`id`, `department_name`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Software Development', ' Collaborates with team members to deliver reliable, user-friendly web solutions and troubleshoots technical issues as needed.', NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -80,6 +87,13 @@ CREATE TABLE `designation` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `designation`
+--
+
+INSERT INTO `designation` (`id`, `designation_name`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Full Stack Web Developer', 'Responsible for designing, developing, testing, and maintaining responsive web applications. Develops front-end interfaces and back-end functionality, manages databases, integrates APIs, and ensures website performance, security, and scalability.', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -107,6 +121,13 @@ CREATE TABLE `employee` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`id`, `designation_id`, `department_id`, `employee_name`, `phone`, `address`, `nid`, `image`, `basic_salary`, `joining_date`, `email`, `bank_account`, `experience`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, 1, 1, 'Mohammad Akibul Islam', '01879228978', 'GPO circle, New market, Chattogram', '12957201295720', 'image/employee/1944480036_ChatGPT Image Sep 9, 2026, 10_40_14 AM.png', '12,00,000', '2026-10-13', 'akib34108@gmail.com', '12129595720', '2', 1, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -125,6 +146,26 @@ CREATE TABLE `employee_attendance` (
   `early_leave_min` int(11) DEFAULT NULL,
   `overtime_hour` decimal(10,0) DEFAULT NULL,
   `status` int(20) DEFAULT NULL COMMENT '1=present, 2=absent, 3=late, 4=leave, 5=halfday, 6=holiday',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `material_list`
+--
+
+CREATE TABLE `material_list` (
+  `id` int(11) NOT NULL,
+  `material_name` varchar(255) DEFAULT NULL,
+  `category_id` int(20) DEFAULT NULL,
+  `unit_id` int(20) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `current_stock` decimal(10,0) DEFAULT NULL,
+  `minimum_stock` decimal(10,0) DEFAULT NULL,
+  `status` int(4) DEFAULT NULL COMMENT '1=in_stock, 2=low_stock, 3=out_of_stock',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -186,7 +227,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `contact_no`, `email`, `password`, `status`, `remember_token`, `image`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Mohammad Akibul Islam', NULL, 'akib34108@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '29911791830061207691', NULL, NULL, NULL, NULL),
+(1, 'Mohammad Akibul Islam', NULL, 'akib34108@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '87411791872132265741', NULL, NULL, NULL, NULL),
 (2, 'Riyad Uddin', NULL, 'riad@gmail.com', '6bb0e3b82a69a2bdf7139d17eeb5f79818b92a4d', 1, '65441791830217721624', NULL, NULL, NULL, NULL);
 
 --
@@ -224,6 +265,12 @@ ALTER TABLE `employee_attendance`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `material_list`
+--
+ALTER TABLE `material_list`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `projects`
 --
 ALTER TABLE `projects`
@@ -249,24 +296,30 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `designation`
 --
 ALTER TABLE `designation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `employee_attendance`
 --
 ALTER TABLE `employee_attendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `material_list`
+--
+ALTER TABLE `material_list`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --

@@ -122,6 +122,11 @@ function EditEmployee() {
                                     </div>
                                 </div>
                                 <div className="row">
+                                    <div className="col-md-12">
+                                        <div className="form-group">
+                                            <input type="file" name="image"  accept="image/*"  className="form-control" id="image"/>
+                                        </div>
+                                    </div>
                                      <div className="col-md-12 text-center">
                                         <button type="submit" className="btn btn-primary">Update Employee</button>
                                     </div>

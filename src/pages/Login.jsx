@@ -26,8 +26,7 @@ function Login() {
             }
             localStorage.setItem("access_token", response.data.jwt);
             localStorage.setItem(
-                "userdata",
-                JSON.stringify(response.data.data)
+                "userdata",response.data.data
             );
             window.location.href = "/dashboard";
         } catch (error) {

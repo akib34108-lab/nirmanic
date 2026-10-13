@@ -1,5 +1,8 @@
-function Category() {
+import Layout from "../Layout";
+
+function MaterialsCategory() {
     return (
+    <Layout>
         <div className="content-wrapper">
 
             {/* Page Header */}
@@ -697,7 +700,8 @@ function Category() {
             </div>
 
         </div>
+    </Layout>
     );
 }
 
-export default Category;
+export default MaterialsCategory;

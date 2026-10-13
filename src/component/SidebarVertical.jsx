@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 import { useState } from "react";
 function SidebarVertical() {
+    let userData=JSON.parse(localStorage.getItem("userdata"));
+    
     const [openModule, setOpenModule] = useState("");
     const toggleModule = (moduleName) => {
     setOpenModule(
@@ -24,7 +26,7 @@ function SidebarVertical() {
                   <span className="login-status online"></span>
                 </div>
                 <div className="nav-profile-text d-flex flex-column pr-3">
-                  <span className="font-weight-medium mb-2">{JSON.parse(localStorage.getItem("userdata")).name}</span>
+                  <span className="font-weight-medium mb-2"> {userData.name} </span>
                   <span className="font-weight-normal">$8,753.00</span>
                 </div>
                 <span className="badge badge-danger text-white ml-3 rounded">3</span>
@@ -87,16 +89,36 @@ function SidebarVertical() {
             { openModule === "materials" && (
                 <ul className="submenu" style={{ listStyle: "none", paddingLeft: "30px" }}>
                   <li className="nav-item">
-                      <Link className="nav-link" to="/materials">
+                      <Link className="nav-link" to="/material_stock/material_list">
                           <span className="menu-title">Materials List</span>
                       </Link>
                   </li>
-                  <li className="nav-item">
-                      <Link className="nav-link" to="/category">
+                  {/* <li className="nav-item">
+                      <Link className="nav-link" to="/material_stock/category">
                         <span className="menu-title">Material Categories</span>
                       </Link>
                   </li>
                   <li className="nav-item">
+                      <Link className="nav-link" to="/material_stock/purchase">
+                        <span className="menu-title">Material Purchase</span>
+                      </Link>
+                  </li>
+                  <li className="nav-item">
+                      <Link className="nav-link" to="/material_stock/inventory">
+                        <span className="menu-title">Material Inventory</span>
+                      </Link>
+                  </li>
+                  <li className="nav-item">
+                      <Link className="nav-link" to="/material_stock/issues">
+                        <span className="menu-title">Material Issues</span>
+                      </Link>
+                  </li>
+                  <li className="nav-item">
+                      <Link className="nav-link" to="/material_stock/transaction">
+                        <span className="menu-title">Material Transaction</span>
+                      </Link>
+                  </li> */}
+                  {/* <li className="nav-item">
                     <Link className="nav-link" to="/suppliers">
                       <span className="menu-title">Suppliers</span>
                     </Link>
@@ -125,7 +147,7 @@ function SidebarVertical() {
                 <Link className="nav-link" to="/inventory_history">
                   <span className="menu-title">Inventory History</span>
                 </Link>
-              </li>
+              </li> */}
             </ul>
             )}
             <li className="nav-item">

@@ -33,14 +33,17 @@ import CreateEmployee from "./pages/human_resource/employees/Create.jsx";
 import EditEmployee from "./pages/human_resource/employees/Edit.jsx";
 import EmployeeProfile from "./pages/human_resource/employees/Profile.jsx";
 
-import Materials from "./pages/Materials.jsx";
-import Category from "./pages/Category.jsx";
-import Suppliers from "./pages/Suppliers.jsx";
-import CurrentStock from "./pages/CurrentStock.jsx";
-import StockIn from "./pages/StockIn.jsx";
-import StockOut from "./pages/StockOut.jsx";
-import StockAdjustment from "./pages/StockAdjustment.jsx";
-import InventoryHistory from "./pages/InventoryHistory.jsx";
+//Material & Stock
+import Materials from "./pages/material_stock/material_list/Index.jsx";
+import MaterialsCreate from "./pages/material_stock/material_list/Create.jsx";
+
+// import MaterialsCategory from "./pages/material_stock/Category.jsx";
+// import Suppliers from "./pages/Suppliers.jsx";
+// import CurrentStock from "./pages/CurrentStock.jsx";
+// import StockIn from "./pages/StockIn.jsx";
+// import StockOut from "./pages/StockOut.jsx";
+// import StockAdjustment from "./pages/StockAdjustment.jsx";
+// import InventoryHistory from "./pages/InventoryHistory.jsx";
 
 import Form from "./pages/Form.jsx";
 import Table from "./pages/Table.jsx";
@@ -93,15 +96,18 @@ function App() {
                       <Route path="create" element={<CreateDepartment />} />
                       <Route path="edit/:id" element={<EditDepartment />} />
                     </Route>
+
+                    <Route path="/material_stock/material_list">
+                      <Route index element={<Materials/>}/>
+                      <Route path="create" element={<MaterialsCreate />} />
+                    </Route>
                     
-                    <Route path="/materials" element={<Materials />} />
-                    <Route path="/category" element={<Category />} />
-                    <Route path="/suppliers" element={<Suppliers />} />
+                    {/* <Route path="/suppliers" element={<Suppliers />} />
                     <Route path="/current_stock" element={<CurrentStock />} />
                     <Route path="/stock_in" element={<StockIn />} />
                     <Route path="/stock_out" element={<StockOut />} />
                     <Route path="/stock_adjustment" element={<StockAdjustment />} />
-                    <Route path="/inventory_history" element={<InventoryHistory />} />
+                    <Route path="/inventory_history" element={<InventoryHistory />} /> */}
                     <Route path="/form" element={<Form />} />
                     <Route path="/table" element={<Table />} />
                   </Route>

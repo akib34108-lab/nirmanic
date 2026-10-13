@@ -101,45 +101,29 @@ const filteredEmployee =
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {filteredEmployee.map((employee) => (
+                                        {filteredEmployee && filteredEmployee.map((employee) => (
                                             <tr key={employee.id}>
                                                 <td>{employee.id}</td>
                                                 <td>
                                                     <div className="d-flex align-items-center">
                                                         <div
-    className="d-flex align-items-center justify-content-center rounded-circle mr-3"
-    style={{
-        width: "46px",
-        height: "46px",
-        minWidth: "46px",
-        overflow: "hidden",
-        backgroundColor: "#eaf6ff",
-    }}
->
-    {employee.image ? (
-        <img
-            src={`${import.meta.env.VITE_API_URL}${employee.image}`}
-            alt={employee.employee_name}
-            style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                borderRadius: "50%",
-            }}
-        />
-    ) : (
-        <span style={{
-            color: "#0c7ff2",
-            fontSize: "17px",
-            fontWeight: "600",
-        }}>
-            {employee.employee_name.charAt(0)}
-        </span>
-    )}
-</div>
+                                                        className="d-flex align-items-center justify-content-center rounded-circle mr-3"
+                                                        style={{ width: "46px", height: "46px", minWidth: "46px", overflow: "hidden", backgroundColor: "#eaf6ff",}}>
+                                                            {employee.image ? (
+                                                            <img
+                                                                src={`${import.meta.env.VITE_API_URL}${employee.image}`} alt={employee.employee_name} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%",}}/>) : (
+                                                            <span style={{
+                                                                color: "#0c7ff2",
+                                                                fontSize: "17px",
+                                                                fontWeight: "600",
+                                                            }}>
+                                                                {employee.employee_name.charAt(0)}
+                                                            </span>
+                                                        )}
+                                                        </div>
                                                         <div>
                                                             <h6 className="mb-1 font-weight-bold" style={{fontSize: "14px"}}>{employee.employee_name}</h6>
-                                                            <div className="text-muted"style={{fontSize: "12px"}}>{employee.designation_id}<br/>{employee.department_id}</div>
+                                                            <div className="text-muted"style={{fontSize: "12px"}}>{employee.designation_name}<br/>{employee.department_name}</div>
                                                         </div>
                                                     </div>
                                                 </td>

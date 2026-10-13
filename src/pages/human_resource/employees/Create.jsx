@@ -82,12 +82,12 @@ function CreateEmployee() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <input id="department_id" name="department_id" type="text" className="form-control" placeholder="Department ID"/>
+                                            <input id="department_id" name="department_id" type="text" className="form-control" placeholder="Department"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <input id="designation_id" name="designation_id" type="text" className="form-control" placeholder="Designation ID"/>
+                                            <input id="designation_id" name="designation_id" type="text" className="form-control" placeholder="Designation"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">

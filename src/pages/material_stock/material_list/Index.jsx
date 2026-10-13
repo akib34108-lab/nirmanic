@@ -1,5 +1,9 @@
+import Layout from "../../Layout.jsx";
+import { Link } from "react-router";
+
 function Materials() {
     return (
+    <Layout >
         <div className="content-wrapper">
 
             {/* Page Header */}
@@ -36,11 +40,9 @@ function Materials() {
                                 </span>
                             </div>
                         </div>
-
-                        <button type="button" className="btn btn-info ml-2">
-                            <i className="mdi mdi-plus mr-1"></i>
-                            Add Material
-                        </button>
+                                <Link to="/material_stock/material_list/create" className="btn btn-info d-flex justify-content-center align-items-center">
+                                    <i className="mdi mdi-plus"></i> Add Material
+                                </Link>
 
                     </div>
                 </form>
@@ -363,6 +365,7 @@ function Materials() {
             </div>
 
         </div>
+    </Layout>
     );
 }
 
