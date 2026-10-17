@@ -1,28 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import Layout from "../../Layout.jsx";
 import axios from '../../../lib/axios.js';
 
 function CreateEmployee() {
-    const [error, setError] = useState("");
-
+    const [department, setDepartment] = useState([]);
+    const [designation, setDesignation] = useState([]);
+    useEffect(() => {
+        async function fetchDepartments() {
+            let res = await axios.get("/department/index.php");
+                if (res.data.data) {
+                    setDepartment(res.data.data);
+                }
+        }
+        fetchDepartments();
+    }, []);
+    useEffect(() => {
+        async function fetchDesignation() {
+            let res = await axios.get("/designation/index.php");
+                if (res.data.data) {
+                    setDesignation(res.data.data);
+                }
+        }
+        fetchDesignation();
+    }, []);
     async function handleSubmit(e){
         e.preventDefault();
-        setError("");
         const formData = new FormData(e.target);
-
-        try {
-            const res = await axios.post('/employees/create.php', formData);
-            if (res.data?.status === true) {
+        let res = await axios.post('/employees/create.php', formData);
+            if (res.status === 200) {
                 window.location.href = '/human_resource/employees';
-                return;
             }
-
-            setError(res.data?.message || "Employee could not be created.");
-        } catch (err) {
-            setError(err.response?.data?.message || err.message || "Employee could not be created.");
         }
-  }
     return (
         <Layout>
             <div className="content-wrapper">
@@ -82,12 +91,22 @@ function CreateEmployee() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <input id="department_id" name="department_id" type="text" className="form-control" placeholder="Department"/>
+                                            <select name="department_id" className="form-control">
+                                                <option value="">Select Department</option>
+                                                {department.map((department) => (
+                                                    <option key={department.id} value={department.id}>{department.department_name}</option>
+                                                ))}
+                                            </select>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <input id="designation_id" name="designation_id" type="text" className="form-control" placeholder="Designation"/>
+                                            <select name="designation_id" className="form-control">
+                                                <option value="">Select Designaion</option>
+                                                {designation.map((designation) => (
+                                                    <option key={designation.id} value={designation.id}>{designation.designation_name}</option>
+                                                ))}
+                                            </select>
                                         </div>
                                     </div>
                                     <div className="col-md-4">

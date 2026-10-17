@@ -1,7 +1,37 @@
 import Layout from "../../Layout.jsx";
 import { Link } from "react-router";
+import axios from "../../../lib/axios.js";
+import { useState, useEffect } from "react";
 
 function MaterialsCreate() {
+  const [category, setCategory] = useState([]);
+    const [unit, setUnit] = useState([]);
+    useEffect(() => {
+        async function fetchCategory() {
+            let res = await axios.get("/material_category/index.php");
+                if (res.data.data) {
+                    setCategory(res.data.data);
+                }
+        }
+        fetchCategory();
+    }, []);
+    useEffect(() => {
+        async function fetchUnit() {
+            let res = await axios.get("/material_unit/index.php");
+                if (res.data.data) {
+                    setUnit(res.data.data);
+                }
+        }
+        fetchUnit();
+    }, []);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    let res = await axios.post('/material_list/create.php', formData);
+      if (res.status === 200) {
+        window.location.href = '/material_stock/material_list';
+      }
+  }
     
     return (
         <Layout>
@@ -24,90 +54,39 @@ function MaterialsCreate() {
               <div className="card">
                 <div className="card-body">
                   <form onSubmit={ handleSubmit }>
-                    <p className="card-description fw-bold">Project Info</p>
+                    <p className="card-description fw-bold">Material Info</p>
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                            <input placeholder="Project Name" name="name" type="text" id="name" className="form-control" />
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-group">
-                            <input placeholder="Project Code" name="project_code" type="text" id="project_code" className="form-control" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-6">
-                          <div className="form-group">
-                              <input placeholder="Client ID" name="client_id" type="text" id="client_id" className="form-control" />
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                              <input placeholder="Location" name="location" type="text" id="location" className="form-control" />
-                          </div>
-                        </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <div className="form-group">
-                              <select name="type" id="type" className="form-control">
-                                  <option value="">Select Project Type</option>
-                                  <option value="1">Residential</option>
-                                  <option value="2">Commercial</option>
-                                  <option value="3">Industrial</option>
-                                  <option value="4">Infrastructure</option>
-                                  <option value="5">Institutional</option>
-                                  <option value="6">Hospitality</option>
-                                  <option value="7">Government</option>
-                                  <option value="8">Renovation</option>
-                                  <option value="9">Other</option>
-                              </select>
+                            <input placeholder="Material Name" name="material_name" type="text" className="form-control" />
                         </div>
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                            <input placeholder="Budget" name="budget" type="text" id="budget" className="form-control" />
+                            <select name="unit_id" className="form-control">
+                                <option value="">Select Unit</option>
+                                {unit.map((unit) => (
+                                    <option key={unit.id} value={unit.id}>{unit.short_name}</option>
+                                ))}
+                            </select>
                         </div>
                       </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-6">
-                          <div className="form-group">
-                              <input placeholder="Progress" name="progress" type="text" id="progress" className="form-control" />
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                                <select placeholder="Select Project Status" name="status" id="status" className="form-control">
-                                    <option value="">Select Project Status</option>
-                                    <option value="1">Planning</option>
-                                    <option value="2">Upcoming</option>
-                                    <option value="3">Ongoing</option>
-                                    <option value="4">On Hold</option>
-                                    <option value="5">Delayed</option>
-                                    <option value="6">Completed</option>
-                                    <option value="7">Cancelled</option>
-                                </select>
-                          </div>
-                        </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-3">
+                      <div className="col-md-6">
                         <div className="form-group">
-                            <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} placeholderText="Start Date" dateFormat="yyyy-MM-dd" className="form-control" id="start_date"/>
+                            <select name="category_id" className="form-control">
+                                <option value="">Select Category</option>
+                                {category.map((category) => (
+                                    <option key={category.id} value={category.id}>{category.category_name}</option>
+                                ))}
+                            </select>
                         </div>
                       </div>
-                      <div className="col-md-3">
-                        <div className="form-group">
-                            <DatePicker selected={completionDate} onChange={(date) => setCompletionDate(date)} placeholderText="Expected Completion Date" dateFormat="yyyy-MM-dd" className="form-control" id="expected_completion_date"/>
-                        </div>
-                      </div>
-                      <div className="col-md-3">
+                      <div className="col-md-6">
                         <div className="form-group">
                             <div className="text-center">
-                                <button className="btn btn-primary" type="submit">Create Project</button>
+                                <button className="btn btn-primary" type="submit">Create Material</button>
                             </div>
                             </div>
                         </div>
@@ -117,7 +96,7 @@ function MaterialsCreate() {
               </div>
             </div>
           </div>
-      </Layout>
+        </Layout>
     );
 }
 export default MaterialsCreate;

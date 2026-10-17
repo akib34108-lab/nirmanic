@@ -58,6 +58,13 @@ function Designation() {
                                 <h4 className="card-title mb-4">Designation List</h4>
                                 <div className="table-responsive">
                                     <table className="table table-hover">
+                                        <colgroup>
+                                            <col style={{ width: "5%" }} />
+                                            <col style={{ width: "40%" }} />
+                                            <col style={{ width: "17%" }} />
+                                            <col style={{ width: "13%" }} />
+                                            <col style={{ width: "25%" }} />
+                                        </colgroup>
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -76,9 +83,9 @@ function Designation() {
                                                         <div className="mr-3">
                                                             <i className="mdi mdi-account-tie" style={{ fontSize: "28px", color: "#4B49AC" }}></i>
                                                         </div>
-                                                        <div>
-                                                            <h6 className="mb-1">{designation.designation_name}</h6>
-                                                            <small className="text-muted">{designation.description}</small>
+                                                        <div style={{ minWidth: 0, flex: 1 }}>
+                                                            <h6 className="mb-1" style={{ overflowWrap: "anywhere", whiteSpace: "normal",}}>{designation.designation_name}</h6>
+                                                            <small className="text-muted" style={{ display: "block", whiteSpace: "normal",  overflowWrap: "anywhere", lineHeight: "1.5",}}>{designation.description}</small>
                                                         </div>
                                                     </div>
                                                 </td>

@@ -10,7 +10,7 @@ function SidebarVertical() {
     );
   };
     return (
-        <nav className="sidebar sidebar-offcanvas" id="sidebar">
+        <nav className="sidebar sidebar-offcanvas sidebar-vertical" id="sidebar">
           <div className="sidebar-brand-wrapper d-flex align-items-center">
             <a className="sidebar-brand brand-logo" href="/dashboard" style={{ display: 'block', marginLeft: '15px' }}>
             <img src="assets/images/logo.png" alt="logo" style={{ width: '150px', height: 'auto', display: 'block' }} /></a>
@@ -67,16 +67,6 @@ function SidebarVertical() {
                         <span className="menu-title">Employees</span>
                     </Link>
                 </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/human_resource/department">
-                        <span className="menu-title">Department</span>
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/human_resource/designation">
-                        <span className="menu-title">Designations</span>
-                    </Link>
-                </li>
             </ul>
             )}
             <li className="nav-item" onClick={() => toggleModule("materials")} style={{ cursor: "pointer" }}>
@@ -92,22 +82,18 @@ function SidebarVertical() {
                       <Link className="nav-link" to="/material_stock/material_list">
                           <span className="menu-title">Materials List</span>
                       </Link>
-                  </li>
-                  {/* <li className="nav-item">
-                      <Link className="nav-link" to="/material_stock/category">
-                        <span className="menu-title">Material Categories</span>
-                      </Link>
-                  </li>
+                  </li> 
                   <li className="nav-item">
-                      <Link className="nav-link" to="/material_stock/purchase">
+                      <Link className="nav-link" to="/material_stock/material_purchase">
                         <span className="menu-title">Material Purchase</span>
                       </Link>
                   </li>
                   <li className="nav-item">
-                      <Link className="nav-link" to="/material_stock/inventory">
+                      <Link className="nav-link" to="/material_stock/material_inventory">
                         <span className="menu-title">Material Inventory</span>
                       </Link>
                   </li>
+                  {/*
                   <li className="nav-item">
                       <Link className="nav-link" to="/material_stock/issues">
                         <span className="menu-title">Material Issues</span>
@@ -118,11 +104,7 @@ function SidebarVertical() {
                         <span className="menu-title">Material Transaction</span>
                       </Link>
                   </li> */}
-                  {/* <li className="nav-item">
-                    <Link className="nav-link" to="/suppliers">
-                      <span className="menu-title">Suppliers</span>
-                    </Link>
-              </li>
+                  {/*
               <li className="nav-item">
                 <Link className="nav-link" to="/current_stock">
                   <span className="menu-title">Current Stock</span>

@@ -1,7 +1,7 @@
 
 import { Link } from "react-router";
 import Layout from "../../Layout.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from '../../../lib/axios.js';
@@ -9,6 +9,21 @@ import axios from '../../../lib/axios.js';
 function CreateProjects() {
     const [startDate, setStartDate] = useState(null);
     const [completionDate, setCompletionDate] = useState(null);
+    const [employee, setEmployee] = useState([]);
+    const [client, setClient] = useState([]);
+
+    const fetchEmployee = async () => {
+        let res = await axios.get(`/employees/index.php`)
+        setEmployee(res.data.data); 
+    }
+    const fetchClient = async () => {
+        let res = await axios.get(`/clients/index.php`)
+        setClient(res.data.data);
+    }
+    useEffect(()=>{
+        fetchEmployee();
+        fetchClient();
+    },[]);
 
     async function handleSubmit(e){
     e.preventDefault();
@@ -56,7 +71,12 @@ function CreateProjects() {
                     <div className="row">
                         <div className="col-md-6">
                           <div className="form-group">
-                              <input placeholder="Client ID" name="client_id" type="text" id="client_id" className="form-control" />
+                              <select name="client_id" id="client_id" className="form-control">
+                                  <option value="">Select Client</option>
+                                  {client.map((client) => (
+                                      <option key={client.id} value={client.id}>{client.client_name}</option>
+                                  ))}
+                              </select>
                           </div>
                         </div>
                         <div className="col-md-6">
@@ -110,23 +130,40 @@ function CreateProjects() {
                         </div>
                     </div>
                     <div className="row">
-                      <div className="col-md-3">
+                      <div className="col-md-4">
                         <div className="form-group">
-                            <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} placeholderText="Start Date" dateFormat="yyyy-MM-dd" className="form-control" id="start_date"/>
+                            <DatePicker name="start_date" selected={startDate} onChange={(date) => setStartDate(date)} placeholderText="Start Date" dateFormat="yyyy-MM-dd" className="form-control" id="start_date"/>
                         </div>
                       </div>
-                      <div className="col-md-3">
+                      <div className="col-md-4">
                         <div className="form-group">
-                            <DatePicker selected={completionDate} onChange={(date) => setCompletionDate(date)} placeholderText="Expected Completion Date" dateFormat="yyyy-MM-dd" className="form-control" id="expected_completion_date"/>
+                            <DatePicker name="expected_completion_date" selected={completionDate} onChange={(date) => setCompletionDate(date)} placeholderText="Expected Completion Date" dateFormat="yyyy-MM-dd" className="form-control" id="expected_completion_date"/>
                         </div>
                       </div>
-                      <div className="col-md-3">
+                      <div className="col-md-4">
+                        <div className="form-group">
+                            <select name="employee_id" id="employee_id" className="form-control">
+                                <option value="">Select Project Employee</option>
+                                {employee.map((emp) => (
+                                    <option key={emp.id} value={emp.id}>{emp.employee_name}</option>
+                                ))}
+                            </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row"> 
+                      <div className="col-md-12">
+                        <div className="form-group">
+                            <textarea placeholder="Description" name="description" id="description" className="form-control" rows="4"></textarea>
+                        </div>
+                      </div>
+                      <div className="col-md-12">
                         <div className="form-group">
                             <div className="text-center">
                                 <button className="btn btn-primary" type="submit">Create Project</button>
                             </div>
-                            </div>
                         </div>
+                      </div>
                     </div>
                   </form>
                 </div>

@@ -112,7 +112,7 @@ function Projects() {
                                 </div>
                                 <div className="col-md-3 text-md-right">
                                     <small className="text-muted d-block mb-1">Manager</small>
-                                    <h6 className="mb-0">Rahim Ahmed</h6>
+                                    <h6 className="mb-0">{project.employee_name}</h6>
                                 </div>
                             </div>
                             <div className="d-flex justify-content-between align-items-center mb-2">

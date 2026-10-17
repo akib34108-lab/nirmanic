@@ -7,13 +7,26 @@ import axios from '../../../lib/axios.js';
 function EditEmployee() {
     let { id } = useParams();
     const [ employee, setEmployee] = React.useState([]);
+    const [department, setDepartment] = React.useState([]);
+    const [designation, setDesignation] = React.useState([]);
         async function fetchEmployee () {
             let res = await axios.get('/employees/single.php?id=' + id);
             setEmployee(res.data.data[0]);
         }
-
+        async function fetchDepartments() {
+            let res = await axios.get("/department/index.php");
+            if (res.data.data) {
+                setDepartment(res.data.data);
+            }}
+        async function fetchDesignation() {
+            let res = await axios.get("/designation/index.php");
+            if (res.data.data) {
+                setDesignation(res.data.data);
+            }}
     React.useEffect(()=>{
         fetchEmployee();
+        fetchDepartments();
+        fetchDesignation();
     },[]);
 
     async function handleSubmit (e) {
@@ -83,12 +96,22 @@ function EditEmployee() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <input onChange={(e) => setEmployee({...employee, department_id: e.target.value})} value={employee.department_id || ''} id="department_id" name="department_id" type="text" className="form-control" placeholder="Department ID"/>
+                                            <select onChange={(e) => setEmployee({...employee, department_id: e.target.value})} value={employee.department_id || ''} name="department_id" className="form-control">
+                                                <option value="">Select Department</option>
+                                                {department.map((department) => (
+                                                    <option key={department.id} value={department.id}>{department.department_name}</option>
+                                                ))}
+                                            </select>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <input onChange={(e) => setEmployee({...employee, designation_id: e.target.value})} value={employee.designation_id || ''} id="designation_id" name="designation_id" type="text" className="form-control" placeholder="Designation ID"/>
+                                            <select onChange={(e) => setEmployee({...employee, designation_id: e.target.value})} value={employee.designation_id || ''} name="designation_id" className="form-control">
+                                                <option value="">Select Designation</option>
+                                                {designation.map((designation) => (
+                                                    <option key={designation.id} value={designation.id}>{designation.designation_name}</option>
+                                                ))}
+                                            </select>
                                         </div>
                                     </div>
                                     <div className="col-md-4">

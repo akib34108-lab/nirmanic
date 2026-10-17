@@ -148,14 +148,8 @@ const filteredClients =
                                                 </td>
                                                 <td>
                                                     <div className="d-flex align-items-center">
-                                                        <div className="mr-2 d-flex align-items-center justify-content-center" style={{ width: "30px", height: "30px", borderRadius: "6px", backgroundColor: "#f1f7ff", color: "#0c7ff2"}}>
-                                                            <i className="mdi mdi-office-building-outline"></i>
-                                                        </div>
                                                         <div>
-                                                            <strong style={{ fontSize: "14px"}}>{client.projects}</strong>
-                                                            <div
-                                                                className="text-muted" style={{ fontSize: "10px"}}>Projects
-                                                            </div>
+                                                            <span style={{ fontSize: "14px"}}>{client.project_number}</span>
                                                         </div>
                                                     </div>
                                                 </td>

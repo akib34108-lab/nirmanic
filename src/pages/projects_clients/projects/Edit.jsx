@@ -7,12 +7,24 @@ import axios from '../../../lib/axios.js';
 function EditProjects() {
     let { id } = useParams();
     const [ projects, setProjects] = React.useState([]);
+    const [employee, setEmployee] = React.useState([]);
+    const [client, setClient] = React.useState([]);
       async function fetchProject () {
         let res = await axios.get('/projects/single.php?id=' + id);
             setProjects(res.data.data[0]);
         }
+      async function fetchEmployee () {
+        let res = await axios.get('/employees/index.php');
+            setEmployee(res.data.data);
+        }
+      async function fetchClient () {
+        let res = await axios.get('/clients/index.php');
+            setClient(res.data.data);
+        }
         React.useEffect(()=>{
             fetchProject();
+            fetchEmployee();
+            fetchClient();
         },[]);
 
     async function handleSubmit (e) {
@@ -60,7 +72,12 @@ function EditProjects() {
                   <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                            <input onChange={(e) => setProjects({...projects, client_id: e.target.value})} value={projects.client_id || ''}  name="client_id" type="text" id="client_id" className="form-control" />
+                            <select onChange={(e) => setProjects({...projects, client_id: e.target.value})} value={projects.client_id || ''} name="client_id" className="form-control">
+                                <option value="">Select Client</option>
+                                {client.map((client) => (
+                                    <option key={client.id} value={client.id}>{client.client_name}</option>
+                                ))}
+                            </select>
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -114,14 +131,24 @@ function EditProjects() {
                       </div>
                   </div>
                   <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-4">
                       <div className="form-group">
                           <input onChange={(e) => setProjects({...projects, start_date: e.target.value})} value={projects.start_date || ''} name="start_date" type="date" id="start_date" className="form-control" />
                       </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-4">
                       <div className="form-group">
                           <input onChange={(e) => setProjects({...projects, expected_completion_date: e.target.value})} value={projects.expected_completion_date || ''} name="expected_completion_date" type="date" id="expected_completion_date" className="form-control" />
+                      </div>
+                    </div>
+                    <div className="col-md-4">
+                      <div className="form-group">
+                          <select onChange={(e) => setProjects({...projects, employee_id: e.target.value})} value={projects.employee_id || ''} name="employee_id" className="form-control">
+                                <option value="">Select Employee</option>
+                                {employee.map((employee) => (
+                                    <option key={employee.id} value={employee.id}>{employee.employee_name}</option>
+                                ))}
+                            </select>
                       </div>
                     </div>
                   </div>

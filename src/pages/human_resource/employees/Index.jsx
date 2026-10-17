@@ -74,9 +74,11 @@ const filteredEmployee =
                                 <i className="mdi mdi-magnify"></i>
                                 </span>
                             </div>
-                            <Link to="/human_resource/employees/create" className="btn btn-info d-flex justify-content-center align-items-center">
+                            <Link to="/human_resource/employees/create" className="btn btn-info d-flex justify-content-center align-items-center mr-2">
                                 <i className="mdi mdi-plus"></i> Add Employee
                             </Link>
+                            <Link to="../human_resource/department" className="btn btn-info d-flex justify-content-center align-items-center mr-2">Department</Link>
+                            <Link to="/human_resource/designation" className="btn btn-info d-flex justify-content-center align-items-center">Designation</Link>
                         </div>
                     </form>
                 </div>

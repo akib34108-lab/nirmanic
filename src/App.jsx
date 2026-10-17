@@ -36,14 +36,27 @@ import EmployeeProfile from "./pages/human_resource/employees/Profile.jsx";
 //Material & Stock
 import Materials from "./pages/material_stock/material_list/Index.jsx";
 import MaterialsCreate from "./pages/material_stock/material_list/Create.jsx";
+import MaterialsEdit from "./pages/material_stock/material_list/Edit.jsx";
 
-// import MaterialsCategory from "./pages/material_stock/Category.jsx";
-// import Suppliers from "./pages/Suppliers.jsx";
-// import CurrentStock from "./pages/CurrentStock.jsx";
-// import StockIn from "./pages/StockIn.jsx";
-// import StockOut from "./pages/StockOut.jsx";
-// import StockAdjustment from "./pages/StockAdjustment.jsx";
-// import InventoryHistory from "./pages/InventoryHistory.jsx";
+import MaterialsCategory from "./pages/material_stock/material_category/Index.jsx";
+import MaterialsCategoryCreate from "./pages/material_stock/material_category/Create.jsx";
+import MaterialsCategoryEdit from "./pages/material_stock/material_category/Edit.jsx";
+
+import MaterialsUnit from "./pages/material_stock/material_unit/Index.jsx";
+import MaterialsUnitCreate from "./pages/material_stock/material_unit/Create.jsx";
+import MaterialsUnitEdit from "./pages/material_stock/material_unit/Edit.jsx";
+
+import MaterialsPurchase from "./pages/material_stock/material_purchase/Index.jsx";
+import MaterialsPurchaseCreate from "./pages/material_stock/material_purchase/Create.jsx";
+import MaterialsPurchaseEdit from "./pages/material_stock/material_purchase/Edit.jsx";
+
+import MaterialsInventory from "./pages/material_stock/material_inventory/Index.jsx";
+import MaterialsInventoryCreate from "./pages/material_stock/material_inventory/Create.jsx";
+import MaterialsInventoryEdit from "./pages/material_stock/material_inventory/Edit.jsx";
+
+import Suppliers from "./pages/material_stock/supplier/Index.jsx";
+import SuppliersCreate from "./pages/material_stock/supplier/Create.jsx";
+import SuppliersEdit from "./pages/material_stock/supplier/Edit.jsx";
 
 import Form from "./pages/Form.jsx";
 import Table from "./pages/Table.jsx";
@@ -100,14 +113,39 @@ function App() {
                     <Route path="/material_stock/material_list">
                       <Route index element={<Materials/>}/>
                       <Route path="create" element={<MaterialsCreate />} />
+                      <Route path="edit/:id" element={<MaterialsEdit />} />
                     </Route>
-                    
-                    {/* <Route path="/suppliers" element={<Suppliers />} />
-                    <Route path="/current_stock" element={<CurrentStock />} />
-                    <Route path="/stock_in" element={<StockIn />} />
-                    <Route path="/stock_out" element={<StockOut />} />
-                    <Route path="/stock_adjustment" element={<StockAdjustment />} />
-                    <Route path="/inventory_history" element={<InventoryHistory />} /> */}
+
+                    <Route path="/material_stock/material_category">
+                      <Route index element={<MaterialsCategory/>}/>
+                      <Route path="create" element={<MaterialsCategoryCreate />} />
+                      <Route path="edit/:id" element={<MaterialsCategoryEdit />} />
+                    </Route>
+
+                    <Route path="/material_stock/material_unit">
+                      <Route index element={<MaterialsUnit/>}/>
+                      <Route path="create" element={<MaterialsUnitCreate />} />
+                      <Route path="edit/:id" element={<MaterialsUnitEdit />} />
+                    </Route>
+
+                    <Route path="/material_stock/material_purchase">
+                      <Route index element={<MaterialsPurchase/>}/>
+                      <Route path="create" element={<MaterialsPurchaseCreate />} />
+                      <Route path="edit/:id" element={<MaterialsPurchaseEdit />} />
+                    </Route>
+
+                    <Route path="/material_stock/material_inventory">
+                      <Route index element={<MaterialsInventory/>}/>
+                      <Route path="create" element={<MaterialsInventoryCreate />} />
+                      <Route path="edit/:id" element={<MaterialsInventoryEdit />} />
+                    </Route>
+
+                    <Route path="/material_stock/supplier">
+                      <Route index element={<Suppliers/>}/>
+                      <Route path="create" element={<SuppliersCreate />} />
+                      <Route path="edit/:id" element={<SuppliersEdit />} />
+                    </Route>
+
                     <Route path="/form" element={<Form />} />
                     <Route path="/table" element={<Table />} />
                   </Route>

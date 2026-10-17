@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2026 at 08:56 AM
+-- Generation Time: Oct 17, 2026 at 04:21 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -71,7 +71,8 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`id`, `department_name`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Software Development', ' Collaborates with team members to deliver reliable, user-friendly web solutions and troubleshoots technical issues as needed.', NULL, NULL, NULL);
+(1, 'Software Development', ' Collaborates with team members to deliver reliable, user-friendly web solutions and troubleshoots technical issues as needed.', NULL, NULL, NULL),
+(2, 'fgnfgn', 'fgnfgf', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -154,6 +155,49 @@ CREATE TABLE `employee_attendance` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `material_category`
+--
+
+CREATE TABLE `material_category` (
+  `id` int(11) NOT NULL,
+  `category_name` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `material_category`
+--
+
+INSERT INTO `material_category` (`id`, `category_name`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(4, 'Cement', 'Cement used for concrete, mortar, and construction work.', NULL, NULL, NULL),
+(5, 'Masonry', 'Bricks and masonry materials used for walls and partitions.', NULL, NULL, NULL),
+(6, 'Steel', 'Steel rods and reinforcement materials for structural strength.', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `material_inventory`
+--
+
+CREATE TABLE `material_inventory` (
+  `id` int(11) NOT NULL,
+  `material_id` int(11) DEFAULT NULL,
+  `project_id` int(11) DEFAULT NULL,
+  `quantity_available` decimal(10,0) DEFAULT NULL,
+  `quantity_used` decimal(10,0) DEFAULT NULL,
+  `current_stock` decimal(10,0) DEFAULT NULL,
+  `minimum_stock` decimal(10,0) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `material_list`
 --
 
@@ -162,14 +206,76 @@ CREATE TABLE `material_list` (
   `material_name` varchar(255) DEFAULT NULL,
   `category_id` int(20) DEFAULT NULL,
   `unit_id` int(20) DEFAULT NULL,
-  `description` text DEFAULT NULL,
   `current_stock` decimal(10,0) DEFAULT NULL,
-  `minimum_stock` decimal(10,0) DEFAULT NULL,
-  `status` int(4) DEFAULT NULL COMMENT '1=in_stock, 2=low_stock, 3=out_of_stock',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `material_list`
+--
+
+INSERT INTO `material_list` (`id`, `material_name`, `category_id`, `unit_id`, `current_stock`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(4, 'Bricks', 5, 4, NULL, NULL, NULL, NULL),
+(5, 'Rod', 6, 5, NULL, NULL, NULL, NULL),
+(6, 'Cement', 4, 4, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `material_purchase`
+--
+
+CREATE TABLE `material_purchase` (
+  `id` int(11) NOT NULL,
+  `purchase_no` varchar(255) DEFAULT NULL,
+  `purchase_date` date DEFAULT NULL,
+  `supplier_id` int(20) DEFAULT NULL,
+  `project_id` int(11) DEFAULT NULL,
+  `material_id` int(11) DEFAULT NULL,
+  `quantity` decimal(10,0) DEFAULT NULL,
+  `unit_price` decimal(10,0) DEFAULT NULL,
+  `total_amount` decimal(10,0) DEFAULT NULL,
+  `status` int(4) DEFAULT NULL COMMENT '1=draft, 2=pending, 3=ordered, 4=partially_received, 5=received, 6=cancelled',
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `material_purchase`
+--
+
+INSERT INTO `material_purchase` (`id`, `purchase_no`, `purchase_date`, `supplier_id`, `project_id`, `material_id`, `quantity`, `unit_price`, `total_amount`, `status`, `notes`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(6, '01', '2026-07-06', 2, 1, 6, 500, 23, 11685, 5, NULL, NULL, NULL, NULL),
+(7, '02', '2026-08-18', 3, 1, 5, 40, 300, 12000, 3, NULL, NULL, NULL, NULL),
+(8, '03', '2026-10-15', 4, 1, 4, 2000, 11, 22000, 6, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `material_unit`
+--
+
+CREATE TABLE `material_unit` (
+  `id` int(11) NOT NULL,
+  `unit_name` varchar(255) DEFAULT NULL,
+  `short_name` varchar(100) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `update_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `material_unit`
+--
+
+INSERT INTO `material_unit` (`id`, `unit_name`, `short_name`, `deleted_at`, `created_at`, `update_at`) VALUES
+(4, 'Bag', 'B', NULL, NULL, NULL),
+(5, 'Ton', 'T', NULL, NULL, NULL),
+(6, 'Piece', 'P', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -181,6 +287,7 @@ CREATE TABLE `projects` (
   `id` int(11) NOT NULL,
   `project_code` varchar(255) DEFAULT NULL,
   `client_id` int(16) DEFAULT NULL,
+  `employee_id` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `type` int(16) DEFAULT NULL COMMENT '1=residential, 2=commercial, 3=industrial, 4=infrastructure, 5=institutional, 6=hospitality, 7=government, 8=renovation, 9=other',
   `location` varchar(255) DEFAULT NULL,
@@ -199,8 +306,35 @@ CREATE TABLE `projects` (
 -- Dumping data for table `projects`
 --
 
-INSERT INTO `projects` (`id`, `project_code`, `client_id`, `name`, `type`, `location`, `description`, `budget`, `progress`, `start_date`, `expected_completion_date`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'PRJ-2026-001', 1, 'Bashundhara Residential Complex', 1, 'Bashundhara, R/A, Dhaka', 'Construction of a modern 12 store residential complex with 96 apartments, basement parking, rooftop facilities, and essential utility services.', '18.90Cr', 15, '2025-02-02', '2028-11-05', 3, NULL, NULL, NULL);
+INSERT INTO `projects` (`id`, `project_code`, `client_id`, `employee_id`, `name`, `type`, `location`, `description`, `budget`, `progress`, `start_date`, `expected_completion_date`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'PRJ-2026-001', 1, 2, 'Bashundhara Residential Complex', 1, 'Bashundhara, R/A, Dhaka', 'Construction of a modern 12 store residential complex with 96 apartments, basement parking, rooftop facilities, and essential utility services.', '18.90Cr', 15, '2025-02-02', '2028-11-05', 3, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supplier`
+--
+
+CREATE TABLE `supplier` (
+  `id` int(11) NOT NULL,
+  `supplier_name` varchar(255) DEFAULT NULL,
+  `company_name` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  `deleted_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`id`, `supplier_name`, `company_name`, `phone`, `email`, `address`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, 'Mahmud Hasan', 'Shah Cement Industries Ltd.', '+880 1712-456781', 'cement.supplier@example.com', 'Dhaka, Bangladesh', NULL, NULL, NULL),
+(3, 'Tanvir Ahmed', 'Bangladesh Steel Re-Rolling Mills Ltd. (BSRM)', '+880 1819-563427', 'steel.supplier@example.com', 'Chattogram, Bangladesh', NULL, NULL, NULL),
+(4, 'Rakib Hossain', 'Karim Bricks & Blocks', '+880 1912-784563', 'bricks.supplier@example.com', 'Gazipur, Bangladesh', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -227,7 +361,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `contact_no`, `email`, `password`, `status`, `remember_token`, `image`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Mohammad Akibul Islam', NULL, 'akib34108@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '87411791872132265741', NULL, NULL, NULL, NULL),
+(1, 'Mohammad Akibul Islam', NULL, 'akib34108@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '46951792067682966502', NULL, NULL, NULL, NULL),
 (2, 'Riyad Uddin', NULL, 'riad@gmail.com', '6bb0e3b82a69a2bdf7139d17eeb5f79818b92a4d', 1, '65441791830217721624', NULL, NULL, NULL, NULL);
 
 --
@@ -265,15 +399,45 @@ ALTER TABLE `employee_attendance`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `material_category`
+--
+ALTER TABLE `material_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `material_inventory`
+--
+ALTER TABLE `material_inventory`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `material_list`
 --
 ALTER TABLE `material_list`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `material_purchase`
+--
+ALTER TABLE `material_purchase`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `material_unit`
+--
+ALTER TABLE `material_unit`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `projects`
 --
 ALTER TABLE `projects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `supplier`
+--
+ALTER TABLE `supplier`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -296,7 +460,7 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `designation`
@@ -308,7 +472,7 @@ ALTER TABLE `designation`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `employee_attendance`
@@ -317,16 +481,46 @@ ALTER TABLE `employee_attendance`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `material_category`
+--
+ALTER TABLE `material_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `material_inventory`
+--
+ALTER TABLE `material_inventory`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `material_list`
 --
 ALTER TABLE `material_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `material_purchase`
+--
+ALTER TABLE `material_purchase`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `material_unit`
+--
+ALTER TABLE `material_unit`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `supplier`
+--
+ALTER TABLE `supplier`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
