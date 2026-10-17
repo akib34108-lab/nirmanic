@@ -8,12 +8,19 @@ function MaterialsPurchaseCreate() {
   const [supplier, setSupplier] = useState([]);
   const [material, setMaterial] = useState([]);
   const [quantity, setQuantity] = useState("");
+  const [purchaseNo, setPurchaseNo ] = useState(0);
   const [unit, setUnit] = useState("");
   const totalAmount = quantity * unit ;
     async function fetchProject() {
             let res = await axios.get("projects/index.php");
                 if (res.data.data) {
                     setProject(res.data.data);
+                }
+        }
+    async function fetchPoNo() {
+            let res = await axios.get("material_purchase/get_po_no.php");
+                if (res.data.pur_no) {
+                    setPurchaseNo(res.data.pur_no);
                 }
         }
     async function fetchSupplier() {
@@ -29,6 +36,7 @@ function MaterialsPurchaseCreate() {
                 }
         }
     useEffect(() => {
+        fetchPoNo();
         fetchProject();
         fetchMaterial();
         fetchSupplier();
@@ -67,7 +75,7 @@ function MaterialsPurchaseCreate() {
                     <div className="row">
                       <div className="col-md-4">
                         <div className="form-group">
-                            <input placeholder="Purchase Number" name="purchase_no" type="text" className="form-control" />
+                            <input placeholder="Purchase Number" name="purchase_no" type="text" className="form-control" value={purchaseNo} readOnly />
                         </div>
                       </div>
                       <div className="col-md-4">

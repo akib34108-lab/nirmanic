@@ -58,6 +58,11 @@ import Suppliers from "./pages/material_stock/supplier/Index.jsx";
 import SuppliersCreate from "./pages/material_stock/supplier/Create.jsx";
 import SuppliersEdit from "./pages/material_stock/supplier/Edit.jsx";
 
+import Issue from "./pages/material_stock/material_issue/Index.jsx";
+import IssueCreate from "./pages/material_stock/material_issue/Create.jsx";
+import IssueEdit from "./pages/material_stock/material_issue/Edit.jsx";
+import IssueDetails from "./pages/material_stock/material_issue/Details.jsx";
+
 import Form from "./pages/Form.jsx";
 import Table from "./pages/Table.jsx";
 
@@ -144,6 +149,13 @@ function App() {
                       <Route index element={<Suppliers/>}/>
                       <Route path="create" element={<SuppliersCreate />} />
                       <Route path="edit/:id" element={<SuppliersEdit />} />
+                    </Route>
+
+                    <Route path="/material_stock/material_issue">
+                      <Route index element={<Issue/>}/>
+                      <Route path="create" element={<IssueCreate />} />
+                      <Route path="edit/:id" element={<IssueEdit />} />
+                      <Route path="details/:id" element={<IssueDetails />} />
                     </Route>
 
                     <Route path="/form" element={<Form />} />

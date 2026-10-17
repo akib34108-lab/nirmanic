@@ -93,9 +93,8 @@ function SidebarVertical() {
                         <span className="menu-title">Material Inventory</span>
                       </Link>
                   </li>
-                  {/*
                   <li className="nav-item">
-                      <Link className="nav-link" to="/material_stock/issues">
+                      <Link className="nav-link" to="/material_stock/material_issue">
                         <span className="menu-title">Material Issues</span>
                       </Link>
                   </li>
@@ -103,7 +102,7 @@ function SidebarVertical() {
                       <Link className="nav-link" to="/material_stock/transaction">
                         <span className="menu-title">Material Transaction</span>
                       </Link>
-                  </li> */}
+                  </li>
                   {/*
               <li className="nav-item">
                 <Link className="nav-link" to="/current_stock">

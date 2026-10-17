@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2026 at 04:21 AM
+-- Generation Time: Oct 17, 2026 at 09:05 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -198,6 +198,35 @@ CREATE TABLE `material_inventory` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `material_issue`
+--
+
+CREATE TABLE `material_issue` (
+  `id` int(11) NOT NULL,
+  `issue_no` int(11) DEFAULT NULL,
+  `project_id` int(11) DEFAULT NULL,
+  `issue_date` date DEFAULT NULL,
+  `issue_to` varchar(255) DEFAULT NULL,
+  `purpose` varchar(255) DEFAULT NULL,
+  `remark` text DEFAULT NULL,
+  `material_id` int(11) DEFAULT NULL,
+  `unit_id` int(11) DEFAULT NULL,
+  `quantity` decimal(10,0) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `material_issue`
+--
+
+INSERT INTO `material_issue` (`id`, `issue_no`, `project_id`, `issue_date`, `issue_to`, `purpose`, `remark`, `material_id`, `unit_id`, `quantity`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 1, '2026-10-06', '2', NULL, NULL, 4, NULL, 1000, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `material_list`
 --
 
@@ -361,7 +390,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `contact_no`, `email`, `password`, `status`, `remember_token`, `image`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Mohammad Akibul Islam', NULL, 'akib34108@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '46951792067682966502', NULL, NULL, NULL, NULL),
+(1, 'Mohammad Akibul Islam', NULL, 'akib34108@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '67971792206559215286', NULL, NULL, NULL, NULL),
 (2, 'Riyad Uddin', NULL, 'riad@gmail.com', '6bb0e3b82a69a2bdf7139d17eeb5f79818b92a4d', 1, '65441791830217721624', NULL, NULL, NULL, NULL);
 
 --
@@ -408,6 +437,12 @@ ALTER TABLE `material_category`
 -- Indexes for table `material_inventory`
 --
 ALTER TABLE `material_inventory`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `material_issue`
+--
+ALTER TABLE `material_issue`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -493,6 +528,12 @@ ALTER TABLE `material_inventory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `material_issue`
+--
+ALTER TABLE `material_issue`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `material_list`
 --
 ALTER TABLE `material_list`
@@ -502,7 +543,7 @@ ALTER TABLE `material_list`
 -- AUTO_INCREMENT for table `material_purchase`
 --
 ALTER TABLE `material_purchase`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `material_unit`
