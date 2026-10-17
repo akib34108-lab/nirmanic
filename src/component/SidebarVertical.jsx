@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { useState } from "react";
+import "./sidebar.css";
 function SidebarVertical() {
     let userData=JSON.parse(localStorage.getItem("userdata"));
     
@@ -13,7 +14,7 @@ function SidebarVertical() {
         <nav className="sidebar sidebar-offcanvas sidebar-vertical" id="sidebar">
           <div className="sidebar-brand-wrapper d-flex align-items-center">
             <a className="sidebar-brand brand-logo" href="/dashboard" style={{ display: 'block', marginLeft: '15px' }}>
-            <img src="assets/images/logo.png" alt="logo" style={{ width: '150px', height: 'auto', display: 'block' }} /></a>
+            <img src="assets/images/logo_white.svg" alt="logo" style={{ width: '150px', height: 'auto', display: 'block' }} /></a>
             <a className="sidebar-brand brand-logo-mini pl-4 pt-3" href="/dashboard"> 
             <img src="assets/images/logo-mini.svg" alt="logo" />
             </a>
@@ -99,37 +100,11 @@ function SidebarVertical() {
                       </Link>
                   </li>
                   <li className="nav-item">
-                      <Link className="nav-link" to="/material_stock/transaction">
+                      <Link className="nav-link" to="/material_stock/material_transaction">
                         <span className="menu-title">Material Transaction</span>
                       </Link>
                   </li>
-                  {/*
-              <li className="nav-item">
-                <Link className="nav-link" to="/current_stock">
-                  <span className="menu-title">Current Stock</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/stock_in">
-                  <span className="menu-title">Stock In</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/stock_out">
-                  <span className="menu-title">Stock Out</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/stock_adjustment">
-                  <span className="menu-title">Stock Adjustment</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/inventory_history">
-                  <span className="menu-title">Inventory History</span>
-                </Link>
-              </li> */}
-            </ul>
+                </ul>
             )}
             <li className="nav-item">
               <Link className="nav-link" to="/form">

@@ -1,0 +1,437 @@
+
+/* ==========================================
+   NIRMANIC - SIDEBAR & HEADER DESIGN
+========================================== */
+
+:root {
+    --nirmanic-primary: #243b64;
+    --nirmanic-primary-dark: #243b64;
+    --nirmanic-hover: #344f7d;
+    --nirmanic-accent: #64b5f6;
+    --nirmanic-text: #e5ecf6;
+    --nirmanic-muted: #aebed5;
+    --nirmanic-border: #edf0f5;
+    --nirmanic-white: #ffffff;
+    --nirmanic-shadow: 0 8px 24px rgba(28, 45, 75, 0.12);
+}
+
+/* ==========================================
+   SIDEBAR MAIN BACKGROUND
+========================================== */
+
+.sidebar.sidebar-vertical {
+    background: var(--nirmanic-primary) !important;
+    color: var(--nirmanic-text);
+    box-shadow: none !important;
+    border: none !important;
+    transition: background 0.3s ease;
+}
+
+/* Logo area - same as sidebar */
+
+.sidebar.sidebar-vertical .sidebar-brand-wrapper {
+    background: var(--nirmanic-primary) !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Logo image */
+
+.sidebar.sidebar-vertical .sidebar-brand-wrapper img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.25s ease;
+}
+
+.sidebar.sidebar-vertical .sidebar-brand-wrapper a:hover img {
+    transform: scale(1.03);
+}
+
+/* ==========================================
+   SIDEBAR PROFILE
+========================================== */
+
+.sidebar.sidebar-vertical .nav-profile {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.sidebar.sidebar-vertical .nav-profile > .nav-link {
+    margin: 12px 10px;
+    padding: 14px 10px;
+    border: none !important;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: none !important;
+    transition: background 0.25s ease;
+}
+
+.sidebar.sidebar-vertical .nav-profile > .nav-link:hover {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: none !important;
+}
+
+.sidebar.sidebar-vertical .nav-profile-image img {
+    border: 2px solid rgba(255, 255, 255, 0.45);
+}
+
+.sidebar.sidebar-vertical .nav-profile-text .font-weight-medium {
+    color: var(--nirmanic-white) !important;
+}
+
+.sidebar.sidebar-vertical .nav-profile-text .font-weight-normal {
+    color: var(--nirmanic-muted) !important;
+}
+
+/* ==========================================
+   SIDEBAR MAIN MENU
+========================================== */
+
+.sidebar.sidebar-vertical .nav > .nav-item {
+    margin: 5px 10px;
+    border-radius: 9px;
+    overflow: hidden;
+}
+
+.sidebar.sidebar-vertical .nav > .nav-item > .nav-link {
+    display: flex;
+    align-items: center;
+    min-height: 46px;
+    padding: 11px 13px;
+    color: var(--nirmanic-text) !important;
+    border: none !important;
+    border-radius: 9px;
+    background: transparent;
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        padding-left 0.25s ease;
+}
+
+.sidebar.sidebar-vertical .nav > .nav-item > .nav-link .menu-icon {
+    color: #9ec9ff !important;
+    font-size: 21px;
+    transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.sidebar.sidebar-vertical .nav > .nav-item > .nav-link .menu-title {
+    color: inherit !important;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+}
+
+.sidebar.sidebar-vertical .nav > .nav-item > .nav-link:hover {
+    color: var(--nirmanic-white) !important;
+    padding-left: 17px;
+}
+
+.sidebar.sidebar-vertical .nav > .nav-item > .nav-link:hover .menu-icon {
+    color: var(--nirmanic-white) !important;
+    transform: scale(1.08);
+}
+
+.sidebar.sidebar-vertical .nav > .nav-item > .nav-link > i:last-child {
+    color: var(--nirmanic-muted);
+    transition: color 0.25s ease;
+}
+
+.sidebar.sidebar-vertical .nav > .nav-item > .nav-link:hover > i:last-child {
+    color: var(--nirmanic-white);
+}
+
+/* ==========================================
+   SIDEBAR SUBMENU / DROPDOWN
+========================================== */
+
+.sidebar.sidebar-vertical .submenu {
+    margin: 2px 10px 10px !important;
+    padding: 7px !important;
+    background: rgba(12, 25, 47, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    list-style: none;
+    animation: nirmanicDropdown 0.22s ease-out;
+}
+
+.sidebar.sidebar-vertical .submenu .nav-item {
+    margin: 3px 0;
+    border-radius: 7px;
+}
+
+.sidebar.sidebar-vertical .submenu .nav-link {
+    position: relative;
+    padding: 10px 12px 10px 17px;
+    color: #c7d5e9 !important;
+    font-size: 13px;
+    border-radius: 7px;
+    transition:
+        background 0.22s ease,
+        color 0.22s ease,
+        padding-left 0.22s ease;
+}
+
+.sidebar.sidebar-vertical .submenu .nav-link::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #8ca7c9;
+    transform: translateY(-50%);
+    transition: background 0.22s ease, transform 0.22s ease;
+}
+
+.sidebar.sidebar-vertical .submenu .nav-link:hover {
+    color: var(--nirmanic-white) !important;
+    background: rgba(255, 255, 255, 0.10);
+    padding-left: 21px;
+}
+
+.sidebar.sidebar-vertical .submenu .nav-link:hover::before {
+    background: var(--nirmanic-accent);
+    transform: translateY(-50%) scale(1.5);
+}
+
+.sidebar.sidebar-vertical .submenu .menu-title {
+    color: inherit !important;
+}
+
+/* ==========================================
+   DROPDOWN ANIMATION
+========================================== */
+
+@keyframes nirmanicDropdown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   HEADER - CLEAN WHITE DESIGN
+========================================== */
+
+.navbar.fixed-top {
+    background: var(--nirmanic-white) !important;
+    border: none !important;
+    border-top: 0 !important;
+    border-bottom: 1px solid var(--nirmanic-border) !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.navbar.fixed-top .navbar-menu-wrapper {
+    background: var(--nirmanic-white) !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Header hamburger buttons */
+
+.navbar.fixed-top .navbar-toggler {
+    color: var(--nirmanic-primary) !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.navbar.fixed-top .navbar-toggler:hover {
+    background: #edf3fb !important;
+}
+
+/* Search area */
+
+.navbar.fixed-top .nav-search {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.navbar.fixed-top .nav-search .input-group {
+    border: 1px solid #e3e9f2;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f8fafd;
+    box-shadow: none !important;
+}
+
+.navbar.fixed-top .nav-search .form-control {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #253550;
+}
+
+.navbar.fixed-top .nav-search .input-group-text {
+    background: transparent !important;
+    border: none !important;
+    color: #7586a0;
+}
+
+/* ==========================================
+   SUPER ADMIN PROFILE BUTTON
+========================================== */
+
+.navbar.fixed-top .nav-profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.navbar.fixed-top .profile-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 13px;
+    border: 1px solid #e4eaf3;
+    border-radius: 10px;
+    background: #f8fafd;
+    color: var(--nirmanic-primary);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    transition:
+        background 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+/* Admin icon */
+
+.navbar.fixed-top .profile-name::before {
+    content: "\F0000";
+    font-family: "Material Design Icons";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 29px;
+    height: 29px;
+    border-radius: 8px;
+    background: #e4edfc;
+    color: #315b98;
+    font-size: 20px;
+}
+
+/* Dropdown arrow */
+
+.navbar.fixed-top .profile-name::after {
+    content: "\F0140";
+    font-family: "Material Design Icons";
+    font-size: 17px;
+    color: #71819a;
+    transition: transform 0.22s ease;
+}
+
+.navbar.fixed-top .profile-name:hover {
+    background: #eef4fc;
+    border-color: #cbd9ee;
+    box-shadow: 0 3px 10px rgba(36, 59, 100, 0.08);
+}
+
+/* ==========================================
+   SUPER ADMIN DROPDOWN
+========================================== */
+
+.navbar.fixed-top .nav-profile .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 12px;
+    left: auto;
+    min-width: 190px;
+    margin: 0;
+    padding: 7px;
+    background: var(--nirmanic-white);
+    border: 1px solid #e8edf5;
+    border-radius: 12px;
+    box-shadow: var(--nirmanic-shadow);
+    animation: nirmanicDropdown 0.2s ease-out;
+    z-index: 1100;
+}
+
+.navbar.fixed-top .nav-profile .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 12px;
+    margin: 2px 0;
+    border-radius: 8px;
+    color: #34445e;
+    font-size: 13px;
+    font-weight: 500;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        padding-left 0.2s ease;
+}
+
+.navbar.fixed-top .nav-profile .dropdown-item i {
+    font-size: 19px;
+    width: 21px;
+    text-align: center;
+}
+
+.navbar.fixed-top .nav-profile .dropdown-item:hover {
+    background: #edf3fc;
+    color: var(--nirmanic-primary);
+    padding-left: 16px;
+}
+
+/* Signout hover */
+
+.navbar.fixed-top .nav-profile .dropdown-item:last-child:hover {
+    background: #fff0f0;
+    color: #c0392b;
+}
+
+/* ==========================================
+   REMOVE UNWANTED DARK EDGES
+========================================== */
+
+html,
+body {
+    border: none !important;
+    outline: none !important;
+}
+
+.navbar,
+.navbar-menu-wrapper,
+.sidebar,
+.sidebar-brand-wrapper {
+    outline: none !important;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width: 991px) {
+    .navbar.fixed-top .nav-profile {
+        padding: 0 6px;
+    }
+
+    .navbar.fixed-top .profile-name {
+        padding: 7px 9px;
+        font-size: 12px;
+    }
+
+    .sidebar.sidebar-vertical .submenu {
+        margin-left: 7px !important;
+        margin-right: 7px !important;
+    }
+}

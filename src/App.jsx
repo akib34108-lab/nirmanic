@@ -63,6 +63,9 @@ import IssueCreate from "./pages/material_stock/material_issue/Create.jsx";
 import IssueEdit from "./pages/material_stock/material_issue/Edit.jsx";
 import IssueDetails from "./pages/material_stock/material_issue/Details.jsx";
 
+import MaterialTransaction from "./pages/material_stock/material_transaction/Index.jsx";
+import TransactionView from "./pages/material_stock/material_transaction/View.jsx";
+
 import Form from "./pages/Form.jsx";
 import Table from "./pages/Table.jsx";
 
@@ -156,6 +159,11 @@ function App() {
                       <Route path="create" element={<IssueCreate />} />
                       <Route path="edit/:id" element={<IssueEdit />} />
                       <Route path="details/:id" element={<IssueDetails />} />
+                    </Route>
+
+                    <Route path="/material_stock/material_transaction">
+                      <Route index element={<MaterialTransaction/>}/>
+                      <Route path="view/:id" element={<TransactionView />} />
                     </Route>
 
                     <Route path="/form" element={<Form />} />

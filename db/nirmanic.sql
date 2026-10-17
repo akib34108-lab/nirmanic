@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2026 at 09:05 AM
+-- Generation Time: Oct 17, 2026 at 09:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -209,9 +209,6 @@ CREATE TABLE `material_issue` (
   `issue_to` varchar(255) DEFAULT NULL,
   `purpose` varchar(255) DEFAULT NULL,
   `remark` text DEFAULT NULL,
-  `material_id` int(11) DEFAULT NULL,
-  `unit_id` int(11) DEFAULT NULL,
-  `quantity` decimal(10,0) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -221,8 +218,40 @@ CREATE TABLE `material_issue` (
 -- Dumping data for table `material_issue`
 --
 
-INSERT INTO `material_issue` (`id`, `issue_no`, `project_id`, `issue_date`, `issue_to`, `purpose`, `remark`, `material_id`, `unit_id`, `quantity`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 1, '2026-10-06', '2', NULL, NULL, 4, NULL, 1000, NULL, NULL, NULL);
+INSERT INTO `material_issue` (`id`, `issue_no`, `project_id`, `issue_date`, `issue_to`, `purpose`, `remark`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, 1, 1, '2026-10-16', '2', 'sasda', 'as', NULL, NULL, NULL),
+(3, 2, 1, '2026-10-17', '2', 'ae', 'e', NULL, NULL, NULL),
+(4, 3, 1, '2026-10-17', '2', 'swefw', 'd', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `material_issue_item`
+--
+
+CREATE TABLE `material_issue_item` (
+  `id` int(11) NOT NULL,
+  `issue_id` int(11) DEFAULT NULL,
+  `material_id` int(11) DEFAULT NULL,
+  `quantity` decimal(11,0) DEFAULT NULL,
+  `unit_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `material_issue_item`
+--
+
+INSERT INTO `material_issue_item` (`id`, `issue_id`, `material_id`, `quantity`, `unit_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 4, 1500, 6, NULL, NULL, NULL),
+(3, 1, 6, 2000, 4, NULL, NULL, NULL),
+(4, 2, 4, 5000, 6, NULL, NULL, NULL),
+(5, 2, 5, 500, 5, NULL, NULL, NULL),
+(6, 2, 6, 4000, 4, NULL, NULL, NULL),
+(7, 3, 6, 2000, 4, NULL, NULL, NULL),
+(8, 4, 4, 10000, 6, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -281,6 +310,28 @@ INSERT INTO `material_purchase` (`id`, `purchase_no`, `purchase_date`, `supplier
 (6, '01', '2026-07-06', 2, 1, 6, 500, 23, 11685, 5, NULL, NULL, NULL, NULL),
 (7, '02', '2026-08-18', 3, 1, 5, 40, 300, 12000, 3, NULL, NULL, NULL, NULL),
 (8, '03', '2026-10-15', 4, 1, 4, 2000, 11, 22000, 6, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `material_transaction`
+--
+
+CREATE TABLE `material_transaction` (
+  `id` int(11) NOT NULL,
+  `material_id` int(11) DEFAULT NULL,
+  `transaction_date` date DEFAULT NULL,
+  `transaction_type` int(11) DEFAULT NULL,
+  `ref_type` int(11) DEFAULT NULL,
+  `ref_id` int(11) DEFAULT NULL,
+  `quantity_in` decimal(10,0) DEFAULT NULL,
+  `quantity_out` decimal(10,0) DEFAULT NULL,
+  `balance_after` decimal(10,0) DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -390,7 +441,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `contact_no`, `email`, `password`, `status`, `remember_token`, `image`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Mohammad Akibul Islam', NULL, 'akib34108@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '67971792206559215286', NULL, NULL, NULL, NULL),
+(1, 'Mohammad Akibul Islam', NULL, 'akib34108@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '54101792257165332317', NULL, NULL, NULL, NULL),
 (2, 'Riyad Uddin', NULL, 'riad@gmail.com', '6bb0e3b82a69a2bdf7139d17eeb5f79818b92a4d', 1, '65441791830217721624', NULL, NULL, NULL, NULL);
 
 --
@@ -446,6 +497,12 @@ ALTER TABLE `material_issue`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `material_issue_item`
+--
+ALTER TABLE `material_issue_item`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `material_list`
 --
 ALTER TABLE `material_list`
@@ -455,6 +512,12 @@ ALTER TABLE `material_list`
 -- Indexes for table `material_purchase`
 --
 ALTER TABLE `material_purchase`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `material_transaction`
+--
+ALTER TABLE `material_transaction`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -531,7 +594,13 @@ ALTER TABLE `material_inventory`
 -- AUTO_INCREMENT for table `material_issue`
 --
 ALTER TABLE `material_issue`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `material_issue_item`
+--
+ALTER TABLE `material_issue_item`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `material_list`
@@ -544,6 +613,12 @@ ALTER TABLE `material_list`
 --
 ALTER TABLE `material_purchase`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `material_transaction`
+--
+ALTER TABLE `material_transaction`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `material_unit`
