@@ -6,6 +6,9 @@ import { useState, useEffect } from "react";
 function MaterialsInventoryCreate() {
   const [project, setProject] = useState([]);
   const [material, setMaterial] = useState([]);
+  const [quantityAvailable, setQuantityAvailable] = useState("");
+  const [quantityUsed, setQuantityUsed] = useState("");
+  const currentStock = Number(quantityAvailable || 0) - Number(quantityUsed || 0);
     async function fetchProject() {
       let res = await axios.get("/projects/index.php");
           if (res.data.data) {
@@ -26,8 +29,10 @@ function MaterialsInventoryCreate() {
     e.preventDefault();
     const formData = new FormData(e.target);
     let res = await axios.post('/material_inventory/create.php', formData);
-      if (res.status === 200) {
+      if (res.data.status) {
         window.location.href = '/material_stock/material_inventory';
+      } else {
+        window.alert(res.data.message || "Unable to create material inventory.");
       }
   }
     
@@ -56,7 +61,7 @@ function MaterialsInventoryCreate() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                            <select name="material_id" className="form-control">
+                            <select name="material_id" className="form-control" required defaultValue="">
                                 <option value="">Select Material</option>
                                 {material.map((material) => (
                                     <option key={material.id} value={material.id}>{material.material_name}</option>
@@ -66,7 +71,7 @@ function MaterialsInventoryCreate() {
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                            <select name="project_id" className="form-control">
+                            <select name="project_id" className="form-control" required defaultValue="">
                                 <option value="">Select Project</option>
                                 {project.map((project) => (
                                     <option key={project.id} value={project.id}>{project.name}</option>
@@ -78,24 +83,24 @@ function MaterialsInventoryCreate() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                            <input placeholder="Quantity Available" name="quantity_available" type="text" className="form-control" />
+                            <input value={quantityAvailable} onChange={(e) => setQuantityAvailable(e.target.value)} placeholder="Quantity Available" name="quantity_available" type="number" min="0" step="1" className="form-control" required />
                         </div>
                       </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                              <input placeholder="Quantity Used" name="quantity_used" type="text" className="form-control" />
+                              <input value={quantityUsed} onChange={(e) => setQuantityUsed(e.target.value)} placeholder="Quantity Used" name="quantity_used" type="number" min="0" step="1" className="form-control" required />
                           </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-6">
                           <div className="form-group">
-                              <input placeholder="Current Stock" name="current_stock" type="text" className="form-control" />
+                              <input value={currentStock} placeholder="Current Stock (calculated)" type="number" className="form-control" readOnly />
                           </div>
                         </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                              <input placeholder="Minimum Stock" name="minimum_stock" type="text" className="form-control" />
+                              <input placeholder="Minimum Stock" name="minimum_stock" type="number" min="0" step="1" className="form-control" required />
                           </div>
                       </div>
                     </div>

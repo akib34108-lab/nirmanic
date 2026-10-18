@@ -66,9 +66,6 @@ import IssueDetails from "./pages/material_stock/material_issue/Details.jsx";
 import MaterialTransaction from "./pages/material_stock/material_transaction/Index.jsx";
 import TransactionView from "./pages/material_stock/material_transaction/View.jsx";
 
-import Form from "./pages/Form.jsx";
-import Table from "./pages/Table.jsx";
-
 function App() {
   const [ isSignedIn, setIsSignedIn ] = useState(()=> {
     /* if you want, user will be logged in until they logout*/
@@ -165,9 +162,6 @@ function App() {
                       <Route index element={<MaterialTransaction/>}/>
                       <Route path="view/:id" element={<TransactionView />} />
                     </Route>
-
-                    <Route path="/form" element={<Form />} />
-                    <Route path="/table" element={<Table />} />
                   </Route>
             </Routes>
     </BrowserRouter>

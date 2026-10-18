@@ -2,3 +2,5 @@
 2. react router : npm i react-router
 3. date picker : npm install react-datepicker
 4. axios : npm install axios
+
+SELECT material_list.*, (select sum(material_purchase_item.quantity) from material_purchase_item where material_purchase_item.material_id=material_list.id) as stock_in, (select sum(material_issue_item.quantity) from material_issue_item where material_issue_item.material_id=material_list.id) as stock_out FROM `material_list`

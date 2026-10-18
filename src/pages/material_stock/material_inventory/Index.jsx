@@ -7,6 +7,11 @@ import "../../human_resource/employees/Index.css";
 function MaterialsInventory() {
    const [ inventory, setInventory ] = React.useState([]);
    const [openMenu, setOpenMenu] = React.useState(null);
+   const stockStatuses = {
+        1: { label: "In Stock", color: "#16A34A" },
+        2: { label: "Low Stock", color: "#F59E0B" },
+        3: { label: "Out of Stock", color: "#EF4444" },
+   };
     const fetchInventory  = async () => {
         let res = await axios.get(`/material_inventory/index.php`)
         setInventory (res.data.data);
@@ -17,11 +22,17 @@ function MaterialsInventory() {
 
     async function handleDelete(id, inventoryName) {
     if (window.confirm(`Are you sure you want to delete this ${inventoryName}?`)) {
-        let res = await axios.delete(`/material_inventory/delete.php?id=${id}`)
-        if(res.data.status){
-            await fetchInventory();
+        try {
+            const res = await axios.delete(`/material_inventory/delete.php?id=${id}`)
+            if(res.data.status){
+                await fetchInventory();
+            } else {
+                window.alert(res.data.message || "Unable to delete material inventory.");
             }
+        } catch (error) {
+            window.alert(error.response?.data?.message || "Unable to delete material inventory.");
         }
+    }
     }
     return (
     <Layout >
@@ -74,6 +85,7 @@ function MaterialsInventory() {
                                             <th>Quantity Used</th>
                                             <th>Current Stock</th>
                                             <th>Minimum Stock</th>
+                                            <th>Status</th>
                                             <th className="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -87,6 +99,9 @@ function MaterialsInventory() {
                                             <td>{ inventory.quantity_used }</td>
                                             <td>{ inventory.current_stock }</td>
                                             <td>{ inventory.minimum_stock }</td>
+                                            <td style={{ color: stockStatuses[inventory.status]?.color }}>
+                                                {stockStatuses[inventory.status]?.label || "-"}
+                                            </td>
                                             <td className="text-center">
                                                 <div className="employee-action-menu">
                                                     <button type="button" className="action-menu-btn" onClick={() => setOpenMenu( openMenu === inventory.id ? null : inventory.id)} title="More Actions"><i className="mdi mdi-dots-vertical"></i></button>

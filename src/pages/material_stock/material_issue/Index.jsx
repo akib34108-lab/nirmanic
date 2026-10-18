@@ -16,10 +16,18 @@ function Issue() {
     }, []);
     async function handleDelete(id, issueName) {
         if (window.confirm(`Are you sure you want to delete issue ${issueName}?`)) {
-            let res = await axios.delete(`/material_issue/delete.php?id=${id}`);
+            try {
+                const res = await axios.delete(`/material_issue/delete.php?id=${id}`);
                 if (res.data.status) {
                     await fetchIssue();
-                }}}
+                } else {
+                    window.alert(res.data.message || "Unable to delete material issue.");
+                }
+            } catch (error) {
+                window.alert(error.response?.data?.message || "Unable to delete material issue.");
+            }
+        }
+    }
     return (
         <Layout>
             <div className="content-wrapper">

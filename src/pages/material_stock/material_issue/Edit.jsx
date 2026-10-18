@@ -182,30 +182,12 @@ function IssueEdit() {
         setSaving(true);
 
         try {
-            // Update main issue
-            const issueFormData = new FormData();
-
-            Object.entries(formData).forEach(([key, value]) => {
-                issueFormData.append(key, value);
-            });
-
-            const issueRes = await axios.post(
-                `/material_issue/update.php?id=${id}`,
-                issueFormData
-            );
-
-            if (!issueRes.data.status) {
-                alert(
-                    issueRes.data.message ||
-                    "Failed to update material issue."
-                );
-                return;
-            }
-
-            // Update existing items, add new items and remove deleted items
             const itemFormData = new FormData();
 
             itemFormData.append("issue_id", id);
+            Object.entries(formData).forEach(([key, value]) => {
+                itemFormData.append(key, value);
+            });
             itemFormData.append("items", JSON.stringify(items));
 
             const itemRes = await axios.post(
@@ -213,11 +195,10 @@ function IssueEdit() {
                 itemFormData
             );
 
-           if (!itemRes.data.status) {
-    console.log("Update item response:", itemRes.data);
-    alert(JSON.stringify(itemRes.data, null, 2));
-    return;
-}
+            if (!itemRes.data.status) {
+                alert(itemRes.data.message || "Failed to update material issue.");
+                return;
+            }
 
             alert("Material issue updated successfully.");
 
@@ -287,8 +268,12 @@ function IssueEdit() {
                                 <div className="col-md-6 form-group">
                                     <label>Issue No *</label>
                                     <input
-                                        type="text"
+                                        type="number"
                                         name="issue_no"
+                                        min="1"
+                                        max="2147483647"
+                                        step="1"
+                                        inputMode="numeric"
                                         className="form-control"
                                         value={formData.issue_no}
                                         onChange={handleChange}

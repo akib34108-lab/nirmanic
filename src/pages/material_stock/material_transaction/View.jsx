@@ -18,7 +18,7 @@ function TransactionView() {
                 setError('');
 
                 const res = await axios.get(
-                    `/material_transactions/single.php?id=${id}`
+                    `/material_transaction/single.php?id=${id}`
                 );
 
                 // API response array অথবা {data: [...]} হতে পারে
@@ -91,8 +91,12 @@ function TransactionView() {
     );
 
     const transactionType = (
-        transaction?.trasaction_type || ''
-    ).toLowerCase();
+        Number(transaction?.transaction_type) === 1
+            ? 'stock in'
+            : Number(transaction?.transaction_type) === 2
+              ? 'stock out'
+              : transaction?.transaction_type || ''
+    ).toString().toLowerCase();
 
     const isStockIn =
         transactionType.includes('in') ||
@@ -264,19 +268,28 @@ function TransactionView() {
                                                         : 'badge-danger'
                                                 }`}
                                             >
-                                                {transaction.trasaction_type || '—'}
+                                                {Number(transaction.transaction_type) === 1
+                                                    ? 'Stock In'
+                                                    : Number(transaction.transaction_type) === 2
+                                                      ? 'Stock Out'
+                                                      : transaction.transaction_type || '—'}
                                             </span>
                                         }
                                     />
 
                                     <InfoItem
+                                        label="Project"
+                                        value={transaction.project_name}
+                                    />
+
+                                    <InfoItem
                                         label="Reference Type"
-                                        value={transaction.ref_type}
+                                        value={transaction.reference_type_label || transaction.ref_type}
                                     />
 
                                     <InfoItem
                                         label="Reference ID"
-                                        value={transaction.ref_id}
+                                        value={transaction.reference_number || transaction.ref_id}
                                     />
 
                                     <InfoItem

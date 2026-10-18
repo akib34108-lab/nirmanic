@@ -8,6 +8,9 @@ function IssueCreate() {
     const [material, setMaterial] = useState([]);
     const [employee, setEmployee] = useState([]);
     const [unit, setUnit] = useState([]);
+    const [inventory, setInventory] = useState([]);
+    const [projectId, setProjectId] = useState("");
+    const [feedback, setFeedback] = useState("");
     const [items, setItems] = useState([{ material_id: "", unit_id: "", quantity: "" }]);
     async function fetchProject() {
         let res = await axios.get("/projects/index.php");
@@ -25,36 +28,97 @@ function IssueCreate() {
         let res = await axios.get("/material_unit/index.php");
         if (res.data.data) setUnit(res.data.data);
     }
+    async function fetchInventory() {
+        const res = await axios.get("/material_inventory/index.php");
+        if (!res.data.status) {
+            throw new Error(res.data.message || "Unable to load project inventory.");
+        }
+        setInventory(res.data.data || []);
+    }
     useEffect(() => {
-        fetchProject();
-        fetchMaterial();
-        fetchIssueTo();
-        fetchUnit();
+        Promise.all([fetchProject(), fetchMaterial(), fetchIssueTo(), fetchUnit(), fetchInventory()])
+            .catch((error) => {
+                console.error("Material issue form loading failed:", error);
+                setFeedback(error.response?.data?.message || error.message || "Unable to load material issue form data.");
+            });
     }, []);
+    const availableStock = inventory.reduce((stockByMaterial, row) => {
+        if (String(row.project_id) === projectId && Number(row.current_stock) > 0) {
+            const key = String(row.material_id);
+            stockByMaterial.set(key, (stockByMaterial.get(key) || 0) + Number(row.current_stock));
+        }
+        return stockByMaterial;
+    }, new Map());
+    function availableQuantity(materialId) {
+        return availableStock.get(String(materialId)) || 0;
+    }
     function handleItemChange(index, field, value) {
-        const updatedItems = [...items];
-        updatedItems[index][field] = value;
-        setItems(updatedItems);
+        setItems((currentItems) =>
+            currentItems.map((item, itemIndex) => {
+                if (itemIndex !== index) return item;
+                if (field === "material_id") {
+                    const selectedMaterial = material.find((entry) => String(entry.id) === value);
+                    return {
+                        ...item,
+                        material_id: value,
+                        unit_id: selectedMaterial ? String(selectedMaterial.unit_id) : "",
+                    };
+                }
+                return { ...item, [field]: value };
+            })
+        );
     }
     function addItem() {
-        setItems([...items,{ material_id: "", unit_id: "", quantity: "" }]);
+        setItems((currentItems) => [...currentItems, { material_id: "", unit_id: "", quantity: "" }]);
     }
     function removeItem(index) {
-        setItems(items.filter((_, i) => i !== index));
+        setItems((currentItems) => currentItems.filter((_, i) => i !== index));
+    }
+    function handleProjectChange(value) {
+        setProjectId(value);
+        setFeedback("");
+        setItems((currentItems) =>
+            currentItems.map((item) => ({ ...item, material_id: "", unit_id: "", quantity: "" }))
+        );
     }
     async function handleSubmit(e) {
         e.preventDefault();
-            const formData = new FormData(e.target);
-            const issueRes = await axios.post("/material_issue/create.php", formData);
-            const issueId = issueRes.data.data;
-            const itemFormData = new FormData();
-            itemFormData.append("issue_id", issueId);
-            itemFormData.append("items", JSON.stringify(items));
-            const itemRes = await axios.post("/material_issue/create_item.php", itemFormData);
-            if (itemRes.data.status) {
-                window.location.href = "/material_stock/material_issue";
+        setFeedback("");
+        if (!projectId) {
+            setFeedback("Select a project before choosing materials.");
+            return;
+        }
+        const requestedByMaterial = new Map();
+        for (const item of items) {
+            const quantity = Number(item.quantity);
+            if (!item.material_id || !item.unit_id || !Number.isInteger(quantity) || quantity <= 0) {
+                setFeedback("Select a material and enter a positive whole-number quantity for every row.");
+                return;
+            }
+            const key = String(item.material_id);
+            requestedByMaterial.set(key, (requestedByMaterial.get(key) || 0) + quantity);
+        }
+        for (const [materialId, quantity] of requestedByMaterial) {
+            if (quantity > availableQuantity(materialId)) {
+                const materialName = material.find((entry) => String(entry.id) === materialId)?.material_name || "Selected material";
+                setFeedback(`${materialName}: requested quantity exceeds the ${availableQuantity(materialId)} available in this project.`);
+                return;
             }
         }
+        const formData = new FormData(e.currentTarget);
+        formData.append("items", JSON.stringify(items));
+        try {
+            const issueRes = await axios.post("/material_issue/create.php", formData);
+            if (issueRes.data.status) {
+                window.location.href = "/material_stock/material_issue";
+            } else {
+                setFeedback(issueRes.data.message || "Unable to create material issue.");
+            }
+        } catch (error) {
+            console.error("Material issue creation failed:", error);
+            setFeedback(error.response?.data?.message || "Unable to create material issue. Check your connection and try again.");
+        }
+    }
     return (
         <Layout>
             <div className="content-wrapper">
@@ -79,7 +143,7 @@ function IssueCreate() {
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label>Issue No</label>
-                                            <input name="issue_no" type="text" className="form-control" placeholder="Enter Issue No" required />
+                                            <input name="issue_no" type="number" min="1" max="2147483647" step="1" inputMode="numeric" className="form-control" placeholder="Enter Issue No" required />
                                         </div>
                                     </div>
                                     <div className="col-md-6">
@@ -93,7 +157,7 @@ function IssueCreate() {
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label>Project</label>
-                                            <select name="project_id" className="form-control" required>
+                                            <select name="project_id" className="form-control" value={projectId} onChange={(e) => handleProjectChange(e.target.value)} required>
                                                 <option value="">Select Project</option>
                                                 {project.map((p) => (
                                                 <option key={p.id} value={p.id}>{p.name}</option>
@@ -134,6 +198,12 @@ function IssueCreate() {
                                         <i className="mdi mdi-plus"></i> Add Item
                                     </button>
                                 </div>
+                                {feedback && <div className="alert alert-danger" role="alert">{feedback}</div>}
+                                {projectId && availableStock.size === 0 && (
+                                    <div className="alert alert-warning" role="status">
+                                        No materials have available stock in this project. Receive a purchase or add opening inventory before creating an issue.
+                                    </div>
+                                )}
                                 {items.map((item, index) => (
                                 <div className="row align-items-end mb-3" key={index}>
                                     <div className="col-md-4">
@@ -142,7 +212,11 @@ function IssueCreate() {
                                             <select className="form-control" value={item.material_id} onChange={(e) => handleItemChange(index, "material_id", e.target.value)} required>
                                                 <option value="">Select Material</option>
                                                 {material.map((m) => (
-                                                <option key={m.id} value={m.id}>{m.material_name}</option>
+                                                availableQuantity(m.id) > 0 && (
+                                                    <option key={m.id} value={m.id}>
+                                                        {m.material_name} — Available: {availableQuantity(m.id)}
+                                                    </option>
+                                                )
                                                 ))}
                                             </select>
                                         </div>
@@ -150,7 +224,7 @@ function IssueCreate() {
                                     <div className="col-md-3">
                                         <div className="form-group">
                                             <label>Unit</label>
-                                            <select className="form-control" value={item.unit_id} onChange={(e) => handleItemChange(index, "unit_id", e.target.value)} required>
+                                            <select className="form-control" value={item.unit_id} disabled required>
                                                 <option value="">Select Unit</option>
                                                 {unit.map((u) => (
                                                 <option key={u.id} value={u.id}>{u.unit_name}</option>
@@ -161,7 +235,7 @@ function IssueCreate() {
                                     <div className="col-md-3">
                                         <div className="form-group">
                                             <label>Quantity</label>
-                                            <input type="number" min="0.01" step="0.01" className="form-control" placeholder="Enter Quantity" value={item.quantity} onChange={(e) => handleItemChange(index, "quantity", e.target.value)} required />
+                                            <input type="number" min="1" max={availableQuantity(item.material_id) || undefined} step="1" className="form-control" placeholder="Enter Quantity" value={item.quantity} onChange={(e) => handleItemChange(index, "quantity", e.target.value)} required />
                                         </div>
                                     </div>
                                     <div className="col-md-2">

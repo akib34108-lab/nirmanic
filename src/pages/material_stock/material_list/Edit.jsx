@@ -93,24 +93,10 @@ function MaterialsEdit() {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-4">
-                          <div className="form-group">
-                              <input onChange={(e)=>setMaterial({...material, current_stock: e.target.value})} value={material.current_stock || ''} placeholder="Current Stock" name="current_stock" type="text" className="form-control" />
-                          </div>
-                        </div>
-                      <div className="col-md-4">
+                      <div className="col-md-12">
                         <div className="form-group">
-                              <input onChange={(e)=>setMaterial({...material, minimum_stock: e.target.value})} value={material.minimum_stock || ''} placeholder="Minimum Stock" name="minimum_stock" type="text" className="form-control" />
-                          </div>
-                      </div>
-                      <div className="col-md-4">
-                        <div className="form-group">
-                            <select onChange={(e)=>setMaterial({...material, status: e.target.value})} value={material.status || ''}  placeholder="Select Material Status" name="status" id="status" className="form-control">
-                                    <option value="">Select Material Status</option>
-                                    <option value="1">In Stock</option>
-                                    <option value="2">Low Stock</option>
-                                    <option value="3">Out of Stock</option>
-                                </select>
+                            <label htmlFor="material-current-stock">Total Current Stock</label>
+                            <input id="material-current-stock" value={material.current_stock ?? 0} type="number" className="form-control" readOnly />
                         </div>
                       </div>
                     </div>

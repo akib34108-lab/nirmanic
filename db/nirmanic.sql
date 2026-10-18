@@ -190,6 +190,7 @@ CREATE TABLE `material_inventory` (
   `quantity_used` decimal(10,0) DEFAULT NULL,
   `current_stock` decimal(10,0) DEFAULT NULL,
   `minimum_stock` decimal(10,0) DEFAULT NULL,
+  `status` int(4) DEFAULT NULL COMMENT '1=in stock, 2=low stock, 3=out of stock',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -314,15 +315,35 @@ INSERT INTO `material_purchase` (`id`, `purchase_no`, `purchase_date`, `supplier
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `material_purchase_item`
+--
+
+CREATE TABLE `material_purchase_item` (
+  `id` int(11) NOT NULL,
+  `purchase_id` int(11) DEFAULT NULL,
+  `material_id` int(11) DEFAULT NULL,
+  `quantity` decimal(10,0) DEFAULT NULL,
+  `unit_id` int(11) DEFAULT NULL,
+  `total_price` decimal(10,0) DEFAULT NULL,
+  `unit_price` decimal(10,0) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `material_transaction`
 --
 
 CREATE TABLE `material_transaction` (
   `id` int(11) NOT NULL,
   `material_id` int(11) DEFAULT NULL,
+  `project_id` int(11) DEFAULT NULL,
   `transaction_date` date DEFAULT NULL,
-  `transaction_type` int(11) DEFAULT NULL,
-  `ref_type` int(11) DEFAULT NULL,
+  `transaction_type` int(11) DEFAULT NULL COMMENT '1=stock in, 2=stock out',
+  `ref_type` int(11) DEFAULT NULL COMMENT '1=purchase, 2=issue, 3=opening balance',
   `ref_id` int(11) DEFAULT NULL,
   `quantity_in` decimal(10,0) DEFAULT NULL,
   `quantity_out` decimal(10,0) DEFAULT NULL,
@@ -488,7 +509,8 @@ ALTER TABLE `material_category`
 -- Indexes for table `material_inventory`
 --
 ALTER TABLE `material_inventory`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `material_inventory_material_project_unique` (`material_id`,`project_id`);
 
 --
 -- Indexes for table `material_issue`
@@ -515,10 +537,17 @@ ALTER TABLE `material_purchase`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `material_purchase_item`
+--
+ALTER TABLE `material_purchase_item`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `material_transaction`
 --
 ALTER TABLE `material_transaction`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `material_transaction_project_id_index` (`project_id`);
 
 --
 -- Indexes for table `material_unit`
@@ -613,6 +642,12 @@ ALTER TABLE `material_list`
 --
 ALTER TABLE `material_purchase`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `material_purchase_item`
+--
+ALTER TABLE `material_purchase_item`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `material_transaction`

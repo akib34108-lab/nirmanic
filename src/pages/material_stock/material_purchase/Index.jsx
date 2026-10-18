@@ -33,11 +33,17 @@ function MaterialsPurchase() {
 
     async function handleDelete(id, puprchaseName) {
     if (window.confirm(`Are you sure you want to delete this ${puprchaseName}?`)) {
-        let res = await axios.delete(`/material_purchase/delete.php?id=${id}`)
-        if(res.data.status){
-            await fetchPurchase();
+        try {
+            const res = await axios.delete(`/material_purchase/delete.php?id=${id}`)
+            if(res.data.status){
+                await fetchPurchase();
+            } else {
+                window.alert(res.data.message || "Unable to delete material purchase.");
             }
+        } catch (error) {
+            window.alert(error.response?.data?.message || "Unable to delete material purchase.");
         }
+    }
     }
     return (
     <Layout >
@@ -88,7 +94,7 @@ function MaterialsPurchase() {
                                             <th>Purchase Date</th>
                                             <th>Supplier</th>
                                             <th>Project</th>
-                                            <th>Material</th>
+                                            <th>Materials</th>
                                             <th>Quantity</th>
                                             <th>Unit Price</th>
                                             <th>Total Amount</th>
@@ -104,9 +110,12 @@ function MaterialsPurchase() {
                                             <td>{ purchase.purchase_date }</td>
                                             <td>{ purchase.supplier_name }</td>
                                             <td>{ purchase.name }</td>
-                                            <td>{ purchase.material_name }</td>
-                                            <td>{ purchase.quantity }</td>
-                                            <td>{ purchase.unit_price }</td>
+                                            <td>
+                                                <div>{purchase.material_names || purchase.material_name}</div>
+                                                {purchase.item_count > 0 && <small>{purchase.item_count} item(s)</small>}
+                                            </td>
+                                            <td>{purchase.item_count > 0 ? "-" : purchase.quantity}</td>
+                                            <td>{purchase.item_count > 0 ? "-" : purchase.unit_price}</td>
                                             <td>{ purchase.total_amount }</td>
                                             <td>
                                                 <div className="ml-auto" style={{display: "flex",alignItems: "center",gap: "7px",color: purchaseStatusColors[purchase.status]}}>

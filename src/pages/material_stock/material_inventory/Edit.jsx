@@ -64,7 +64,7 @@ function MaterialsInventoryEdit() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                            <select onChange={(e) => setInventory({...inventory, material_id: e.target.value})} value={inventory.material_id || ''} name="material_id" className="form-control">
+                            <select value={inventory.material_id || ''} className="form-control" disabled>
                                 <option value="">Select Material</option>
                                 {material.map((material) => (
                                     <option key={material.id} value={material.id}>{material.material_name}</option>
@@ -74,7 +74,7 @@ function MaterialsInventoryEdit() {
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                            <select onChange={(e) => setInventory({...inventory, project_id: e.target.value})} value={inventory.project_id || ''} name="project_id" className="form-control">
+                            <select value={inventory.project_id || ''} className="form-control" disabled>
                                 <option value="">Select Project</option>
                                 {project.map((project) => (
                                     <option key={project.id} value={project.id}>{project.name}</option>
@@ -86,24 +86,34 @@ function MaterialsInventoryEdit() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                          <input onChange={(e)=>setInventory({...inventory, quantity_available: e.target.value})} value={inventory.quantity_available || ''} placeholder="Quantity Available" name="quantity_available" type="text" className="form-control" />
+                          <input value={inventory.quantity_available ?? ''} placeholder="Quantity Available" type="number" className="form-control" readOnly />
                         </div>
                       </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                              <input onChange={(e)=>setInventory({...inventory, quantity_used: e.target.value})} value={inventory.quantity_used || ''} placeholder="Quantity Used" name="quantity_used" type="text" className="form-control" />
+                              <input value={inventory.quantity_used ?? ''} placeholder="Quantity Used" type="number" className="form-control" readOnly />
                           </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-6">
                           <div className="form-group">
-                              <input onChange={(e)=>setInventory({...inventory, current_stock: e.target.value})} value={inventory.current_stock || ''} placeholder="Current Stock" name="current_stock" type="text" className="form-control" />
+                              <input value={inventory.current_stock ?? ''} placeholder="Current Stock" type="number" className="form-control" readOnly />
                           </div>
                         </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                              <input onChange={(e)=>setInventory({...inventory, minimum_stock: e.target.value})} value={inventory.minimum_stock || ''} placeholder="Minimum Stock" name="minimum_stock" type="text" className="form-control" />
+                              <input onChange={(e)=>setInventory({...inventory, minimum_stock: e.target.value})} value={inventory.minimum_stock ?? ''} placeholder="Minimum Stock" name="minimum_stock" type="number" min="0" step="1" className="form-control" required />
+                          </div>
+                          <div className="mb-3">
+                            <strong>Status: </strong>
+                            {Number(inventory.status) === 1
+                              ? "In Stock"
+                              : Number(inventory.status) === 2
+                                ? "Low Stock"
+                                : Number(inventory.status) === 3
+                                  ? "Out of Stock"
+                                  : "—"}
                           </div>
                       </div>
                     </div>

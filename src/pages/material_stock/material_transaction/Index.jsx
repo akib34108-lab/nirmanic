@@ -8,12 +8,8 @@ function MaterialTransaction() {
     const fetchTransactions = async () => {
         try {
             const res = await axios.get(
-                '/material_transactions/index.php'
+                '/material_transaction/index.php'
             );
-
-            console.log(res.data);
-
-            // API response অনুযায়ী data সেট করবে
             setTransactions(
                 Array.isArray(res.data)
                     ? res.data
@@ -52,6 +48,7 @@ function MaterialTransaction() {
                                     <tr>
                                         <th>SL</th>
                                         <th>Material</th>
+                                        <th>Project</th>
                                         <th>Date</th>
                                         <th>Type</th>
                                         <th>Reference</th>
@@ -71,16 +68,21 @@ function MaterialTransaction() {
                                                     <td>
                                                         {item.material_name || '-'}
                                                     </td>
+                                                    <td>{item.project_name || '-'}</td>
                                                     <td>
                                                         {item.transaction_date || '-'}
                                                     </td>
                                                     <td>
-                                                        {item.trasaction_type || '-'}
+                                                        {Number(item.transaction_type) === 1
+                                                            ? 'Stock In'
+                                                            : Number(item.transaction_type) === 2
+                                                              ? 'Stock Out'
+                                                              : item.transaction_type || '-'}
                                                     </td>
                                                     <td>
-                                                        {item.ref_type || '-'}
-                                                        {item.ref_id
-                                                            ? ` #${item.ref_id}`
+                                                        {item.reference_type_label || item.ref_type || '-'}
+                                                        {item.reference_number || item.ref_id
+                                                            ? ` #${item.reference_number || item.ref_id}`
                                                             : ''}
                                                     </td>
                                                     <td>
@@ -107,7 +109,7 @@ function MaterialTransaction() {
                                     ) : (
                                         <tr>
                                             <td
-                                                colSpan="8"
+                                                colSpan="10"
                                                 className="text-center"
                                             >
                                                 No transactions found
