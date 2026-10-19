@@ -37,11 +37,13 @@ function CreateClient() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="name">Full Name</label>
                                             <input id="name" name="client_name" type="text" className="form-control" placeholder="Enter Full Name"/>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="company">Company Name</label>
                                             <input id="company" name="company" type="text" className="form-control" placeholder="Enter Company Name"/>
                                         </div>
                                     </div>
@@ -49,11 +51,13 @@ function CreateClient() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="phone">Phone Number</label>
                                             <input id="phone" name="phone" type="tel" className="form-control" placeholder="Enter Phone Number"/>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="email">Email</label>
                                             <input id="email" name="email" type="email" className="form-control" placeholder="Enter Email"/>                                       
                                         </div>
                                     </div>
@@ -61,12 +65,14 @@ function CreateClient() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="address">Address</label>
                                             <input id="address" name="address" type="text" className="form-control" placeholder="Address"/>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <select name="type" className="form-control">
+                                            <label htmlFor="form-type-1">Client Type</label>
+                                            <select id="form-type-1" name="type" className="form-control">
                                                 <option value="">Select Client Type</option>
                                                 <option value="1">Individual</option>
                                                 <option value="2">Property Developer</option>
@@ -83,7 +89,8 @@ function CreateClient() {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <select name="status" className="form-control">
+                                            <label htmlFor="form-status-2">Client Status</label>
+                                            <select id="form-status-2" name="status" className="form-control">
                                                 <option value="">Select Client Status</option>
                                                 <option value="1">Active</option>
                                                 <option value="2">Pending</option>

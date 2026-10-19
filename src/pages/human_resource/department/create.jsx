@@ -37,11 +37,13 @@ function CreateDepartment() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="department_name">Department Name</label>
                                             <input placeholder="Department Name" name="department_name" type="text" id="department_name" className="form-control" />
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="description">Department Description</label>
                                             <input placeholder="Department Description" name="description" type="text" id="description" className="form-control" />
                                         </div>
                                     </div>

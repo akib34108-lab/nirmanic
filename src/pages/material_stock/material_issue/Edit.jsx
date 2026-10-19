@@ -266,8 +266,8 @@ function IssueEdit() {
 
                             <div className="row">
                                 <div className="col-md-6 form-group">
-                                    <label>Issue No *</label>
-                                    <input
+                                    <label htmlFor="form-issue-no-1">Issue No *</label>
+                                    <input id="form-issue-no-1"
                                         type="number"
                                         name="issue_no"
                                         min="1"
@@ -282,8 +282,8 @@ function IssueEdit() {
                                 </div>
 
                                 <div className="col-md-6 form-group">
-                                    <label>Issue Date *</label>
-                                    <input
+                                    <label htmlFor="form-issue-date-1">Issue Date *</label>
+                                    <input id="form-issue-date-1"
                                         type="date"
                                         name="issue_date"
                                         className="form-control"
@@ -294,8 +294,8 @@ function IssueEdit() {
                                 </div>
 
                                 <div className="col-md-6 form-group">
-                                    <label>Project *</label>
-                                    <select
+                                    <label htmlFor="form-project-1">Project *</label>
+                                    <select id="form-project-1"
                                         name="project_id"
                                         className="form-control"
                                         value={formData.project_id}
@@ -315,8 +315,8 @@ function IssueEdit() {
                                 </div>
 
                                 <div className="col-md-6 form-group">
-                                    <label>Issue To *</label>
-                                    <select
+                                    <label htmlFor="form-employee-1">Issue To *</label>
+                                    <select id="form-employee-1"
                                         name="issue_to"
                                         className="form-control"
                                         value={formData.issue_to}
@@ -336,8 +336,8 @@ function IssueEdit() {
                                 </div>
 
                                 <div className="col-md-6 form-group">
-                                    <label>Purpose</label>
-                                    <input
+                                    <label htmlFor="form-issue-purpose-1">Purpose</label>
+                                    <input id="form-issue-purpose-1"
                                         type="text"
                                         name="purpose"
                                         className="form-control"
@@ -348,8 +348,8 @@ function IssueEdit() {
                                 </div>
 
                                 <div className="col-md-6 form-group">
-                                    <label>Remark</label>
-                                    <textarea
+                                    <label htmlFor="form-remarks-1">Remark</label>
+                                    <textarea id="form-remarks-1"
                                         name="remark"
                                         className="form-control"
                                         rows="3"

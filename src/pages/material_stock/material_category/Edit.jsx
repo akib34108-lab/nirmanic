@@ -47,12 +47,14 @@ function MaterialsCategoryEdit() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                            <input onChange={(e)=>setCategory({...category, category_name: e.target.value})} value={category.category_name || ''} placeholder="Material Category Name" name="category_name" type="text" className="form-control" />
+                            <label htmlFor="form-value-1">Material Category Name</label>
+                            <input id="form-value-1" onChange={(e)=>setCategory({...category, category_name: e.target.value})} value={category.category_name || ''} placeholder="Material Category Name" name="category_name" type="text" className="form-control" />
                         </div>
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                            <input onChange={(e)=>setCategory({...category, description: e.target.value})} value={category.description || ''} placeholder="Description" name="description" type="text" className="form-control" />
+                            <label htmlFor="form-value-2">Description</label>
+                            <input id="form-value-2" onChange={(e)=>setCategory({...category, description: e.target.value})} value={category.description || ''} placeholder="Description" name="description" type="text" className="form-control" />
                         </div>
                       </div>
                     </div>

@@ -37,11 +37,13 @@ function SuppliersCreate() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="name">Full Name</label>
                                             <input id="name" name="supplier_name" type="text" className="form-control" placeholder="Enter Full Name"/>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="company">Company Name</label>
                                             <input id="company" name="company_name" type="text" className="form-control" placeholder="Enter Company Name"/>
                                         </div>
                                     </div>
@@ -49,11 +51,13 @@ function SuppliersCreate() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="phone">Phone Number</label>
                                             <input id="phone" name="phone" type="tel" className="form-control" placeholder="Enter Phone Number"/>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="email">Email</label>
                                             <input id="email" name="email" type="email" className="form-control" placeholder="Enter Email"/>                                       
                                         </div>
                                     </div>
@@ -61,6 +65,7 @@ function SuppliersCreate() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="address">Address</label>
                                             <input id="address" name="address" type="text" className="form-control" placeholder="Address"/>
                                         </div>
                                     </div>

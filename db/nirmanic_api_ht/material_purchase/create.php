@@ -10,11 +10,7 @@ $res = [
 ];
 
 if (!isset($_POST['items'])) {
-    if (isset($_POST['purchase_no']) && $_POST['purchase_no']) {
-        $res = $db->common_insert('material_purchase', $_POST);
-    } else {
-        $res['message'] = 'Purchase number is required';
-    }
+    $res['message'] = 'At least one material item is required';
     echo json_encode($res);
     exit;
 }
@@ -104,6 +100,8 @@ $transactionStarted = false;
 try {
     $db->conn->begin_transaction();
     $transactionStarted = true;
+
+    assert_project_purchase_within_budget($db, $projectId, $totalAmount);
 
     $headerStatement = $db->conn->prepare(
         'INSERT INTO material_purchase (purchase_no, purchase_date, supplier_id, project_id, status) VALUES (?, ?, ?, ?, ?)'

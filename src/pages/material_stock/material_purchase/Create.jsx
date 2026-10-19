@@ -13,6 +13,9 @@ function MaterialsPurchaseCreate() {
   const [project, setProject] = useState([]);
   const [supplier, setSupplier] = useState([]);
   const [material, setMaterial] = useState([]);
+  const [projectId, setProjectId] = useState(
+    new URLSearchParams(window.location.search).get("project_id") || ""
+  );
   const [items, setItems] = useState([createPurchaseItem()]);
   const [purchaseNo, setPurchaseNo] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -81,22 +84,25 @@ function MaterialsPurchaseCreate() {
         !item.material_id ||
         !Number.isFinite(quantity) ||
         quantity <= 0 ||
+        !Number.isInteger(quantity) ||
         !Number.isFinite(unitPrice) ||
-        unitPrice < 0
+        unitPrice < 0 ||
+        !Number.isInteger(unitPrice)
       );
     });
 
     if (items.length === 0 || hasInvalidItem) {
       setFeedback({
         type: "danger",
-        message: "Add at least one material and enter a valid quantity and unit price for each item.",
+        message:
+          "Add at least one material and enter a positive whole-number quantity and whole-number unit price for each item.",
       });
       return;
     }
 
     const formData = new FormData(e.currentTarget);
     formData.set("total_amount", totalAmount.toFixed(2));
-    formData.append(
+    formData.set(
       "items",
       JSON.stringify(
         items.map((item) => ({
@@ -115,6 +121,9 @@ function MaterialsPurchaseCreate() {
           type: "success",
           message: res.data.message || "Material purchase created successfully.",
         });
+        if (projectId) {
+          window.location.href = `/projects_clients/projects/view/${projectId}`;
+        }
       } else {
         setFeedback({
           type: "danger",
@@ -163,7 +172,8 @@ function MaterialsPurchaseCreate() {
                 <div className="row">
                   <div className="col-md-4">
                     <div className="form-group">
-                      <input
+                      <label htmlFor="form-purchase-number-1">Purchase Number</label>
+                      <input id="form-purchase-number-1"
                         placeholder="Purchase Number"
                         name="purchase_no"
                         type="text"
@@ -176,7 +186,8 @@ function MaterialsPurchaseCreate() {
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
-                      <input
+                      <label htmlFor="form-purchase-date-2">Purchase Date</label>
+                      <input id="form-purchase-date-2"
                         aria-label="Purchase Date"
                         name="purchase_date"
                         type="date"
@@ -187,7 +198,14 @@ function MaterialsPurchaseCreate() {
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
-                      <select name="project_id" className="form-control" defaultValue="" required>
+                      <label htmlFor="form-project-id-3">Project</label>
+                      <select id="form-project-id-3"
+                        name="project_id"
+                        className="form-control"
+                        value={projectId}
+                        onChange={(e) => setProjectId(e.target.value)}
+                        required
+                      >
                         <option value="" disabled>
                           Select Project
                         </option>
@@ -203,7 +221,8 @@ function MaterialsPurchaseCreate() {
                 <div className="row">
                   <div className="col-md-4">
                     <div className="form-group">
-                      <select name="supplier_id" className="form-control" defaultValue="" required>
+                      <label htmlFor="form-supplier-id-4">Supplier</label>
+                      <select id="form-supplier-id-4" name="supplier_id" className="form-control" defaultValue="" required>
                         <option value="" disabled>
                           Select Supplier
                         </option>
@@ -217,7 +236,8 @@ function MaterialsPurchaseCreate() {
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
-                      <input
+                      <label htmlFor="form-total-amount-5">Total Amount</label>
+                      <input id="form-total-amount-5"
                         name="total_amount"
                         type="number"
                         className="form-control"
@@ -229,7 +249,8 @@ function MaterialsPurchaseCreate() {
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
-                      <select
+                      <label htmlFor="form-status-6">Material Purchase Status</label>
+                      <select id="form-status-6"
                         name="status"
                         className="form-control"
                         defaultValue=""

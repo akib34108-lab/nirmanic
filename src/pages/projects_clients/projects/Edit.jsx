@@ -60,11 +60,13 @@ function EditProjects() {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="form-group">
+                          <label htmlFor="name">Project Name</label>
                           <input onChange={(e) => setProjects({...projects, name: e.target.value})} value={projects.name || ''} name="name" type="text" id="name" className="form-control" />
                       </div>
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
+                          <label htmlFor="project_code">Project Code</label>
                           <input onChange={(e) => setProjects({...projects, project_code: e.target.value})} value={projects.project_code || ''} name="project_code" type="text" id="project_code" className="form-control" />
                       </div>
                     </div>
@@ -72,7 +74,8 @@ function EditProjects() {
                   <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                            <select onChange={(e) => setProjects({...projects, client_id: e.target.value})} value={projects.client_id || ''} name="client_id" className="form-control">
+                            <label htmlFor="form-option-3">Client</label>
+                            <select id="form-option-3" onChange={(e) => setProjects({...projects, client_id: e.target.value})} value={projects.client_id || ''} name="client_id" className="form-control">
                                 <option value="">Select Client</option>
                                 {client.map((client) => (
                                     <option key={client.id} value={client.id}>{client.client_name}</option>
@@ -82,6 +85,7 @@ function EditProjects() {
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
+                            <label htmlFor="location">Location</label>
                             <input onChange={(e) => setProjects({...projects, location: e.target.value})} value={projects.location || ''} name="location" type="text" id="location" className="form-control" />
                         </div>
                       </div>
@@ -89,6 +93,7 @@ function EditProjects() {
                   <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
+                              <label htmlFor="type">Project Type</label>
                               <select onChange={(e) => setProjects({...projects, type: e.target.value})} value={projects.type || ''} name="type" id="type" className="form-control">
                                   <option value="">Select Project Type</option>
                                   <option value="1">Residential</option>
@@ -105,6 +110,7 @@ function EditProjects() {
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
+                            <label htmlFor="budget">Budget</label>
                             <input onChange={(e) => setProjects({...projects, budget: e.target.value})} value={projects.budget || ''} name="budget" type="text" id="budget" className="form-control" />
                         </div>
                       </div>
@@ -112,11 +118,13 @@ function EditProjects() {
                   <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
+                            <label htmlFor="progress">Progress</label>
                             <input onChange={(e) => setProjects({...projects, progress: e.target.value})} value={projects.progress || ''} name="progress" type="text" id="progress" className="form-control" />
                         </div>
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
+                              <label htmlFor="status">Project Status</label>
                               <select onChange={(e) => setProjects({...projects, status: e.target.value})} value={projects.status || ''} name="status" id="status" className="form-control">
                                   <option value="">Select Project Status</option>
                                   <option value="1">Planning</option>
@@ -133,17 +141,20 @@ function EditProjects() {
                   <div className="row">
                     <div className="col-md-4">
                       <div className="form-group">
+                          <label htmlFor="start_date">Start Date</label>
                           <input onChange={(e) => setProjects({...projects, start_date: e.target.value})} value={projects.start_date || ''} name="start_date" type="date" id="start_date" className="form-control" />
                       </div>
                     </div>
                     <div className="col-md-4">
                       <div className="form-group">
+                          <label htmlFor="expected_completion_date">Expected Completion Date</label>
                           <input onChange={(e) => setProjects({...projects, expected_completion_date: e.target.value})} value={projects.expected_completion_date || ''} name="expected_completion_date" type="date" id="expected_completion_date" className="form-control" />
                       </div>
                     </div>
                     <div className="col-md-4">
                       <div className="form-group">
-                          <select onChange={(e) => setProjects({...projects, employee_id: e.target.value})} value={projects.employee_id || ''} name="employee_id" className="form-control">
+                          <label htmlFor="form-option-11">Employee</label>
+                          <select id="form-option-11" onChange={(e) => setProjects({...projects, employee_id: e.target.value})} value={projects.employee_id || ''} name="employee_id" className="form-control">
                                 <option value="">Select Employee</option>
                                 {employee.map((employee) => (
                                     <option key={employee.id} value={employee.id}>{employee.employee_name}</option>
@@ -155,6 +166,7 @@ function EditProjects() {
                   <div className="row">
                     <div className="col-md-12">
                       <div className="form-group">
+                        <label htmlFor="description">Description</label>
                         <textarea onChange={(e) => setProjects({...projects, description: e.target.value})} value={projects.description || ''} name="description" id="description" className="form-control" rows="4"></textarea>
                       </div>
                     </div>

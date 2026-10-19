@@ -49,11 +49,13 @@ function EditClient() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="name">Full Name</label>
                                             <input onChange={(e) => setClient({...client, client_name: e.target.value})} value={client.client_name || ''} id="name" name="client_name" type="text" className="form-control" placeholder="Enter Full Name"/>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="company">Company Name</label>
                                             <input onChange={(e) => setClient({...client, company: e.target.value})} value={client.company || ''} id="company" name="company" type="text" className="form-control" placeholder="Enter Company Name"/>
                                         </div>
                                     </div>
@@ -61,11 +63,13 @@ function EditClient() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="phone">Phone Number</label>
                                             <input onChange={(e) => setClient({...client, phone: e.target.value})} value={client.phone || ''} id="phone" name="phone" type="tel" className="form-control" placeholder="Enter Phone Number"/>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="email">Email</label>
                                             <input onChange={(e) => setClient({...client, email: e.target.value})} value={client.email || ''} id="email" name="email" type="email" className="form-control" placeholder="Enter Email"/>                                       
                                         </div>
                                     </div>
@@ -73,12 +77,14 @@ function EditClient() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="address">Address</label>
                                             <input onChange={(e) => setClient({...client, address: e.target.value})} value={client.address || ''} id="address" name="address" type="text" className="form-control" placeholder="Address"/>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <select onChange={(e) => setClient({...client, type: e.target.value})} value={client.type || ''} name="type" className="form-control">
+                                            <label htmlFor="form-option-6">Client Type</label>
+                                            <select id="form-option-6" onChange={(e) => setClient({...client, type: e.target.value})} value={client.type || ''} name="type" className="form-control">
                                                 <option value="">Select Client Type</option>
                                                 <option value="1">Individual</option>
                                                 <option value="2">Property Developer</option>
@@ -95,7 +101,8 @@ function EditClient() {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <select onChange={(e) => setClient({...client, status: e.target.value})} value={client.status || ''} name="status" className="form-control">
+                                            <label htmlFor="form-option-7">Client Status</label>
+                                            <select id="form-option-7" onChange={(e) => setClient({...client, status: e.target.value})} value={client.status || ''} name="status" className="form-control">
                                                 <option value="">Select Client Status</option>
                                                 <option value="1">Active</option>
                                                 <option value="2">Pending</option>

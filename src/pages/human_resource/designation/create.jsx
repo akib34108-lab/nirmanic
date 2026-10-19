@@ -36,11 +36,13 @@ function CreateDesignation() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="designation_name">Designation Name</label>
                                             <input placeholder="Designation Name" name="designation_name" type="text" id="designation_name" className="form-control" />
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="description">Designation Description</label>
                                             <input placeholder="Designation Description" name="description" type="text" id="description" className="form-control" />
                                         </div>
                                     </div>

@@ -3,14 +3,13 @@ import { useState } from "react";
 import "./sidebar.css";
 function SidebarHorizontal() {
     const [openProfile, setOpenProfile] = useState(false);
-
-const toggleProfile = () => {
-  setOpenProfile(!openProfile);
-};
+    const toggleProfile = () => {
+    setOpenProfile(!openProfile);
+    };
     return (
         <nav className="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
           <div className="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">
-            <a className="navbar-brand brand-logo-mini align-self-center d-lg-none" href="index.html"><img src="assets/images/logo_white.svg" alt="logo" /></a>
+            <a className="navbar-brand brand-logo-mini align-self-center d-lg-none" href="index.html"><img src="/assets/images/logo_white.svg" alt="logo" /></a>
             {/* <button className="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
               <i className="mdi mdi-menu"></i>
             </button> */}

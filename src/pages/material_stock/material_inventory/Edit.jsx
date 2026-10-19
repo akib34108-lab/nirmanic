@@ -64,7 +64,8 @@ function MaterialsInventoryEdit() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                            <select value={inventory.material_id || ''} className="form-control" disabled>
+                            <label htmlFor="form-option-1">Material</label>
+                            <select id="form-option-1" value={inventory.material_id || ''} className="form-control" disabled>
                                 <option value="">Select Material</option>
                                 {material.map((material) => (
                                     <option key={material.id} value={material.id}>{material.material_name}</option>
@@ -74,7 +75,8 @@ function MaterialsInventoryEdit() {
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                            <select value={inventory.project_id || ''} className="form-control" disabled>
+                            <label htmlFor="form-option-2">Project</label>
+                            <select id="form-option-2" value={inventory.project_id || ''} className="form-control" disabled>
                                 <option value="">Select Project</option>
                                 {project.map((project) => (
                                     <option key={project.id} value={project.id}>{project.name}</option>
@@ -86,24 +88,28 @@ function MaterialsInventoryEdit() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                          <input value={inventory.quantity_available ?? ''} placeholder="Quantity Available" type="number" className="form-control" readOnly />
+                          <label htmlFor="form-quantity-available-3">Quantity Available</label>
+                          <input id="form-quantity-available-3" value={inventory.quantity_available ?? ''} placeholder="Quantity Available" type="number" className="form-control" readOnly />
                         </div>
                       </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                              <input value={inventory.quantity_used ?? ''} placeholder="Quantity Used" type="number" className="form-control" readOnly />
+                              <label htmlFor="form-quantity-used-4">Quantity Used</label>
+                              <input id="form-quantity-used-4" value={inventory.quantity_used ?? ''} placeholder="Quantity Used" type="number" className="form-control" readOnly />
                           </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-6">
                           <div className="form-group">
-                              <input value={inventory.current_stock ?? ''} placeholder="Current Stock" type="number" className="form-control" readOnly />
+                              <label htmlFor="form-current-stock-5">Current Stock</label>
+                              <input id="form-current-stock-5" value={inventory.current_stock ?? ''} placeholder="Current Stock" type="number" className="form-control" readOnly />
                           </div>
                         </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                              <input onChange={(e)=>setInventory({...inventory, minimum_stock: e.target.value})} value={inventory.minimum_stock ?? ''} placeholder="Minimum Stock" name="minimum_stock" type="number" min="0" step="1" className="form-control" required />
+                              <label htmlFor="form-value-6">Minimum Stock</label>
+                              <input id="form-value-6" onChange={(e)=>setInventory({...inventory, minimum_stock: e.target.value})} value={inventory.minimum_stock ?? ''} placeholder="Minimum Stock" name="minimum_stock" type="number" min="0" step="1" className="form-control" required />
                           </div>
                           <div className="mb-3">
                             <strong>Status: </strong>

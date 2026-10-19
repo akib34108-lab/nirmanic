@@ -58,12 +58,14 @@ function MaterialsCreate() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                            <input placeholder="Material Name" name="material_name" type="text" className="form-control" />
+                            <label htmlFor="form-material-name-1">Material Name</label>
+                            <input id="form-material-name-1" placeholder="Material Name" name="material_name" type="text" className="form-control" />
                         </div>
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                            <select name="unit_id" className="form-control">
+                            <label htmlFor="form-unit-id-2">Unit</label>
+                            <select id="form-unit-id-2" name="unit_id" className="form-control">
                                 <option value="">Select Unit</option>
                                 {unit.map((unit) => (
                                     <option key={unit.id} value={unit.id}>{unit.short_name}</option>
@@ -75,7 +77,8 @@ function MaterialsCreate() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                            <select name="category_id" className="form-control">
+                            <label htmlFor="form-category-id-3">Category</label>
+                            <select id="form-category-id-3" name="category_id" className="form-control">
                                 <option value="">Select Category</option>
                                 {category.map((category) => (
                                     <option key={category.id} value={category.id}>{category.category_name}</option>

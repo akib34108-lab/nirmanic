@@ -49,16 +49,19 @@ function EditEmployee() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="name">Full Name</label>
                                             <input onChange={(e) => setEmployee({...employee, employee_name: e.target.value})} value={employee.employee_name || ''} id="name" name="employee_name" type="text" className="form-control" placeholder="Enter Full Name"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="phone">Phone Number</label>
                                             <input onChange={(e) => setEmployee({...employee, phone: e.target.value})} value={employee.phone || ''} id="phone" name="phone" type="tel" className="form-control" placeholder="Enter Phone Number"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="email">Email</label>
                                             <input onChange={(e) => setEmployee({...employee, email: e.target.value})} value={employee.email || ''} id="email" name="email" type="email" className="form-control" placeholder="Enter Email"/>
                                         </div>
                                     </div>
@@ -66,16 +69,19 @@ function EditEmployee() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="nid">NID Number</label>
                                             <input onChange={(e) => setEmployee({...employee, nid: e.target.value})} value={employee.nid || ''} id="nid" name="nid" type="text" className="form-control" placeholder="Enter NID Number"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="address">Address</label>
                                             <input onChange={(e) => setEmployee({...employee, address: e.target.value})} value={employee.address || ''} id="address" name="address" type="text" className="form-control" placeholder="Address"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="joining_date">Joining Date</label>
                                             <input onChange={(e) => setEmployee({...employee, joining_date: e.target.value})} value={employee.joining_date || ''} id="joining_date" name="joining_date" type="text" className="form-control" placeholder="Joining Date"/>
                                         </div>
                                     </div>
@@ -83,16 +89,19 @@ function EditEmployee() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="department_id">Department</label>
                                             <input onChange={(e) => setEmployee({...employee, department_id: e.target.value})} value={employee.department_id || ''} id="department_id" name="department_id" type="text" className="form-control" placeholder="Department ID"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="designation_id">Designation</label>
                                             <input onChange={(e) => setEmployee({...employee, designation_id: e.target.value})} value={employee.designation_id || ''} id="designation_id" name="designation_id" type="text" className="form-control" placeholder="Designation ID"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="experience">Experience</label>
                                             <input onChange={(e) => setEmployee({...employee, experience: e.target.value})} value={employee.experience || ''} id="experience" name="experience" type="text" className="form-control" placeholder="Experience"/>
                                         </div>
                                     </div>
@@ -100,17 +109,20 @@ function EditEmployee() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="basic_salary">Basic Salary</label>
                                             <input onChange={(e) => setEmployee({...employee, basic_salary: e.target.value})} value={employee.basic_salary || ''} id="basic_salary" name="basic_salary" type="text" className="form-control" placeholder="Basic Salary"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="bank_account">Bank Account</label>
                                             <input onChange={(e) => setEmployee({...employee, bank_account: e.target.value})} value={employee.bank_account || ''} id="bank_account" name="bank_account" type="text" className="form-control" placeholder="Bank Account"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <select onChange={(e) => setEmployee({...employee, status: e.target.value})} value={employee.status || '' } name="status" className="form-control">
+                                            <label htmlFor="form-option-12">Client Status</label>
+                                            <select id="form-option-12" onChange={(e) => setEmployee({...employee, status: e.target.value})} value={employee.status || '' } name="status" className="form-control">
                                                 <option value="">Select Client Status</option>
                                                 <option value="1">Active</option>
                                                 <option value="2">Pending</option>

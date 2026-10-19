@@ -57,16 +57,19 @@ function CreateEmployee() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="name">Full Name</label>
                                             <input id="name" name="employee_name" type="text" className="form-control" placeholder="Enter Full Name"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="phone">Phone Number</label>
                                             <input id="phone" name="phone" type="tel" className="form-control" placeholder="Enter Phone Number"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="email">Email</label>
                                             <input id="email" name="email" type="email" className="form-control" placeholder="Enter Email"/>
                                         </div>
                                     </div>
@@ -74,16 +77,19 @@ function CreateEmployee() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="nid">NID Number</label>
                                             <input id="nid" name="nid" type="text" className="form-control" placeholder="Enter NID Number"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="address">Address</label>
                                             <input id="address" name="address" type="text" className="form-control" placeholder="Address"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="joining_date">Joining Date</label>
                                             <input id="joining_date" name="joining_date" type="date" className="form-control" placeholder="Joining Date"/>
                                         </div>
                                     </div>
@@ -91,7 +97,8 @@ function CreateEmployee() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <select name="department_id" className="form-control">
+                                            <label htmlFor="form-department-id-1">Department</label>
+                                            <select id="form-department-id-1" name="department_id" className="form-control">
                                                 <option value="">Select Department</option>
                                                 {department.map((department) => (
                                                     <option key={department.id} value={department.id}>{department.department_name}</option>
@@ -101,7 +108,8 @@ function CreateEmployee() {
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <select name="designation_id" className="form-control">
+                                            <label htmlFor="form-designation-id-2">Designaion</label>
+                                            <select id="form-designation-id-2" name="designation_id" className="form-control">
                                                 <option value="">Select Designaion</option>
                                                 {designation.map((designation) => (
                                                     <option key={designation.id} value={designation.id}>{designation.designation_name}</option>
@@ -111,6 +119,7 @@ function CreateEmployee() {
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="experience">Experience</label>
                                             <input id="experience" name="experience" type="text" className="form-control" placeholder="Experience"/>
                                         </div>
                                     </div>
@@ -118,17 +127,20 @@ function CreateEmployee() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="basic_salary">Basic Salary</label>
                                             <input id="basic_salary" name="basic_salary" type="text" className="form-control" placeholder="Basic Salary"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
+                                            <label htmlFor="bank_account">Bank Account</label>
                                             <input id="bank_account" name="bank_account" type="text" className="form-control" placeholder="Bank Account"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <select name="status" className="form-control">
+                                            <label htmlFor="form-status-3">Client Status</label>
+                                            <select id="form-status-3" name="status" className="form-control">
                                                 <option value="">Select Client Status</option>
                                                 <option value="1">Active</option>
                                                 <option value="2">Pending</option>
@@ -142,6 +154,7 @@ function CreateEmployee() {
                                 <div className="row">
                                     <div className="col-md-12">
                                         <div className="form-group">
+                                            <label htmlFor="image">Image</label>
                                             <input type="file" name="image" className="form-control" id="image"/>
                                         </div>
                                     </div>

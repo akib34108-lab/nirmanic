@@ -59,11 +59,13 @@ function CreateProjects() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
+                            <label htmlFor="name">Project Name</label>
                             <input placeholder="Project Name" name="name" type="text" id="name" className="form-control" />
                         </div>
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
+                            <label htmlFor="project_code">Project Code</label>
                             <input placeholder="Project Code" name="project_code" type="text" id="project_code" className="form-control" />
                         </div>
                       </div>
@@ -71,6 +73,7 @@ function CreateProjects() {
                     <div className="row">
                         <div className="col-md-6">
                           <div className="form-group">
+                              <label htmlFor="client_id">Client</label>
                               <select name="client_id" id="client_id" className="form-control">
                                   <option value="">Select Client</option>
                                   {client.map((client) => (
@@ -81,6 +84,7 @@ function CreateProjects() {
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
+                              <label htmlFor="location">Location</label>
                               <input placeholder="Location" name="location" type="text" id="location" className="form-control" />
                           </div>
                         </div>
@@ -88,6 +92,7 @@ function CreateProjects() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
+                              <label htmlFor="type">Type</label>
                               <select name="type" id="type" className="form-control">
                                   <option value="">Select Project Type</option>
                                   <option value="1">Residential</option>
@@ -104,6 +109,7 @@ function CreateProjects() {
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
+                            <label htmlFor="budget">Budget</label>
                             <input placeholder="Budget" name="budget" type="text" id="budget" className="form-control" />
                         </div>
                       </div>
@@ -111,11 +117,13 @@ function CreateProjects() {
                     <div className="row">
                         <div className="col-md-6">
                           <div className="form-group">
+                              <label htmlFor="progress">Progress</label>
                               <input placeholder="Progress" name="progress" type="text" id="progress" className="form-control" />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
+                                <label htmlFor="status">Project Status</label>
                                 <select placeholder="Select Project Status" name="status" id="status" className="form-control">
                                     <option value="">Select Project Status</option>
                                     <option value="1">Planning</option>
@@ -132,16 +140,19 @@ function CreateProjects() {
                     <div className="row">
                       <div className="col-md-4">
                         <div className="form-group">
+                            <label htmlFor="start_date">Start Date</label>
                             <DatePicker name="start_date" selected={startDate} onChange={(date) => setStartDate(date)} placeholderText="Start Date" dateFormat="yyyy-MM-dd" className="form-control" id="start_date"/>
                         </div>
                       </div>
                       <div className="col-md-4">
                         <div className="form-group">
+                            <label htmlFor="expected_completion_date">Expected Completion Date</label>
                             <DatePicker name="expected_completion_date" selected={completionDate} onChange={(date) => setCompletionDate(date)} placeholderText="Expected Completion Date" dateFormat="yyyy-MM-dd" className="form-control" id="expected_completion_date"/>
                         </div>
                       </div>
                       <div className="col-md-4">
                         <div className="form-group">
+                            <label htmlFor="employee_id">Project Employee</label>
                             <select name="employee_id" id="employee_id" className="form-control">
                                 <option value="">Select Project Employee</option>
                                 {employee.map((emp) => (
@@ -154,6 +165,7 @@ function CreateProjects() {
                     <div className="row"> 
                       <div className="col-md-12">
                         <div className="form-group">
+                            <label htmlFor="description">Description</label>
                             <textarea placeholder="Description" name="description" id="description" className="form-control" rows="4"></textarea>
                         </div>
                       </div>

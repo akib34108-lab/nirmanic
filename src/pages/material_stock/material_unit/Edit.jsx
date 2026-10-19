@@ -47,12 +47,14 @@ function MaterialsUnitEdit() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                            <input onChange={(e)=>setUnit({...unit, unit_name: e.target.value})} value={unit.unit_name || ''} placeholder="Material Unit Name" name="unit_name" type="text" className="form-control" />
+                            <label htmlFor="form-value-1">Material Unit Name</label>
+                            <input id="form-value-1" onChange={(e)=>setUnit({...unit, unit_name: e.target.value})} value={unit.unit_name || ''} placeholder="Material Unit Name" name="unit_name" type="text" className="form-control" />
                         </div>
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                            <input onChange={(e)=>setUnit({...unit, short_name: e.target.value})} value={unit.short_name || ''} placeholder="Short Name" name="short_name" type="text" className="form-control" />
+                            <label htmlFor="form-value-2">Short Name</label>
+                            <input id="form-value-2" onChange={(e)=>setUnit({...unit, short_name: e.target.value})} value={unit.short_name || ''} placeholder="Short Name" name="short_name" type="text" className="form-control" />
                         </div>
                       </div>
                     </div>

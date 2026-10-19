@@ -32,6 +32,28 @@ const projectStatusColors = {
     6: "#157347", // Completed
     7: "#dc3545", // Cancelled
 };
+
+function parseBudgetAmount(value) {
+    const match = String(value || "")
+        .trim()
+        .replace(/,/g, "")
+        .match(/^(?:৳\s*|BDT\s*)?(\d+(?:\.\d+)?)\s*(cr|crore|crores|lakh|lac|k)?$/i);
+    if (!match) {
+        return null;
+    }
+
+    const multiplier = {
+        cr: 10000000,
+        crore: 10000000,
+        crores: 10000000,
+        lakh: 100000,
+        lac: 100000,
+        k: 1000,
+    }[(match[2] || "").toLowerCase()] || 1;
+    const amount = Number(match[1]) * multiplier;
+    return Number.isFinite(amount) && amount >= 0 ? amount : null;
+}
+
 function Projects() {
     const [ projects, setProjects ] = React.useState([]);
     const fetchProject = async () => {
@@ -82,7 +104,23 @@ function Projects() {
                 <div className="col-12 grid-margin">
                     <div className="card">
 
-                        {projects && projects.map((project) => (
+                        {projects && projects.map((project) => {
+                            const budgetAmount = parseBudgetAmount(project.budget);
+                            const spentAmount = Math.max(0, Number(project.spent_amount) || 0);
+                            const progress = budgetAmount > 0
+                                ? Math.min(100, (spentAmount / budgetAmount) * 100)
+                                : null;
+                            const progressColor = progress === null || progress <= 20
+                                ? "#dc3545"
+                                : progress <= 40
+                                ? "#fd7e14"
+                                : progress <= 60
+                                ? "#ffc107"
+                                : progress <= 80
+                                ? "#0d6efd"
+                                : "#198754";
+
+                            return (
 
                         <div className="card-body" key={ project.id }>
                             <div className="row">
@@ -116,22 +154,18 @@ function Projects() {
                                 </div>
                             </div>
                             <div className="d-flex justify-content-between align-items-center mb-2">
-                                <small className="text-muted">Progress</small>
-                                <small className="font-weight-bold">{project.progress}%</small>
+                                <small className="text-muted">Budget spent</small>
+                                <small className="font-weight-bold">
+                                    {progress === null ? "Budget unavailable" : `${progress.toFixed(2)}%`}
+                                </small>
                             </div>
                             <div className="progress mb-2" style={{ height: "6px" }}>
-                                <div className="progress-bar" role="progressbar" style={{ width: `${project.progress}%`, backgroundColor:
-                                    project.progress <= 20
-                                    ? "#dc3545"
-                                    : project.progress <= 40
-                                    ? "#fd7e14"
-                                    : project.progress <= 60
-                                    ? "#ffc107"
-                                    : project.progress <= 80
-                                    ? "#0d6efd"
-                                    : "#198754"
-                                    }}
-                                    aria-valuenow={project.progress} aria-valuemin={0} aria-valuemax={100} >
+                                <div className="progress-bar" role="progressbar" style={{
+                                    width: `${progress ?? 0}%`,
+                                    backgroundColor: progressColor
+                                }}
+                                    aria-valuenow={progress ?? 0} aria-valuemin={0} aria-valuemax={100}
+                                    aria-label="Project budget spent">
                                 </div>
                             </div>
                             <div className="d-flex justify-content-between align-items-center">
@@ -144,6 +178,8 @@ function Projects() {
                                     <p className="text-muted mb-0">{project.description}</p>
                                 </div>
                                 <div className="col-md-4 mt-3 text-md-right">
+                                    <Link to={`/projects_clients/projects/view/${project.id}`} style={{ backgroundColor: "#4B49AC", color: "white" }} type="button" className="btn btn-outline-secondary btn-icon-text mr-1" title="View Project"> View <i className="mdi mdi-eye-outline"></i>
+                                    </Link>
                                     <Link to={`/projects_clients/projects/edit/${project.id}`} style={{ backgroundColor: "black", color: "white" }} type="button" className="btn btn-outline-secondary btn-icon-text mr-1" title="Edit"> Edit <i className="mdi mdi-file-check btn-icon-append"></i>
                                     </Link>
                                     <button style={{ backgroundColor: "black", color: "white" }} type="button" className="btn btn-outline-secondary btn-icon-text" title="Delete" onClick={() => handleDelete(project.id)}> Delete <i className="mdi mdi-delete"></i>
@@ -151,7 +187,8 @@ function Projects() {
                                 </div>
                                 </div>
                             </div>
-                        ))}
+                                );
+                            })}
                     </div>
                 </div> 
             </div>

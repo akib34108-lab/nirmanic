@@ -142,22 +142,22 @@ function IssueCreate() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label>Issue No</label>
-                                            <input name="issue_no" type="number" min="1" max="2147483647" step="1" inputMode="numeric" className="form-control" placeholder="Enter Issue No" required />
+                                            <label htmlFor="form-issue-no-1">Issue No</label>
+                                            <input id="form-issue-no-1" name="issue_no" type="number" min="1" max="2147483647" step="1" inputMode="numeric" className="form-control" placeholder="Enter Issue No" required />
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label>Issue Date</label>
-                                            <input name="issue_date" type="date" className="form-control" required />
+                                            <label htmlFor="form-issue-date-1">Issue Date</label>
+                                            <input id="form-issue-date-1" name="issue_date" type="date" className="form-control" required />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label>Project</label>
-                                            <select name="project_id" className="form-control" value={projectId} onChange={(e) => handleProjectChange(e.target.value)} required>
+                                            <label htmlFor="form-project-1">Project</label>
+                                            <select id="form-project-1" name="project_id" className="form-control" value={projectId} onChange={(e) => handleProjectChange(e.target.value)} required>
                                                 <option value="">Select Project</option>
                                                 {project.map((p) => (
                                                 <option key={p.id} value={p.id}>{p.name}</option>
@@ -167,8 +167,8 @@ function IssueCreate() {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label>Issued To</label>
-                                            <select name="issue_to" className="form-control" required>
+                                            <label htmlFor="form-employee-1">Issued To</label>
+                                            <select id="form-employee-1" name="issue_to" className="form-control" required>
                                                 <option value="">Select Employee</option>
                                                 {employee.map((emp) => (
                                                 <option key={emp.id} value={emp.id}>{emp.employee_name}</option>
@@ -180,14 +180,14 @@ function IssueCreate() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label>Purpose</label>
-                                            <input name="purpose" type="text" className="form-control" placeholder="Enter Purpose" />
+                                            <label htmlFor="form-purpose-1">Purpose</label>
+                                            <input id="form-purpose-1" name="purpose" type="text" className="form-control" placeholder="Enter Purpose" />
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label>Remark</label>
-                                            <input name="remark" type="text" className="form-control" placeholder="Enter Remark" />
+                                            <label htmlFor="form-remark-1">Remark</label>
+                                            <input id="form-remark-1" name="remark" type="text" className="form-control" placeholder="Enter Remark" />
                                         </div>
                                     </div>
                                 </div>
@@ -208,8 +208,8 @@ function IssueCreate() {
                                 <div className="row align-items-end mb-3" key={index}>
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <label>Material</label>
-                                            <select className="form-control" value={item.material_id} onChange={(e) => handleItemChange(index, "material_id", e.target.value)} required>
+                                            <label htmlFor="form-material-1">Material</label>
+                                            <select id="form-material-1" className="form-control" value={item.material_id} onChange={(e) => handleItemChange(index, "material_id", e.target.value)} required>
                                                 <option value="">Select Material</option>
                                                 {material.map((m) => (
                                                 availableQuantity(m.id) > 0 && (
@@ -223,8 +223,8 @@ function IssueCreate() {
                                     </div>
                                     <div className="col-md-3">
                                         <div className="form-group">
-                                            <label>Unit</label>
-                                            <select className="form-control" value={item.unit_id} disabled required>
+                                            <label htmlFor="form-unit-1">Unit</label>
+                                            <select id="form-unit-1" className="form-control" value={item.unit_id} disabled required>
                                                 <option value="">Select Unit</option>
                                                 {unit.map((u) => (
                                                 <option key={u.id} value={u.id}>{u.unit_name}</option>
@@ -234,8 +234,8 @@ function IssueCreate() {
                                     </div>
                                     <div className="col-md-3">
                                         <div className="form-group">
-                                            <label>Quantity</label>
-                                            <input type="number" min="1" max={availableQuantity(item.material_id) || undefined} step="1" className="form-control" placeholder="Enter Quantity" value={item.quantity} onChange={(e) => handleItemChange(index, "quantity", e.target.value)} required />
+                                            <label htmlFor="form-quantity-1">Quantity</label>
+                                            <input id="form-quantity-1" type="number" min="1" max={availableQuantity(item.material_id) || undefined} step="1" className="form-control" placeholder="Enter Quantity" value={item.quantity} onChange={(e) => handleItemChange(index, "quantity", e.target.value)} required />
                                         </div>
                                     </div>
                                     <div className="col-md-2">

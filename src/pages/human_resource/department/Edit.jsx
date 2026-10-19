@@ -48,11 +48,13 @@ function EditDepartment() {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="form-group">
+                          <label htmlFor="department_name">Department Name</label>
                           <input onChange={(e) => setDepartment({...department, department_name: e.target.value})} value={department.department_name || ''} name="department_name" type="text" id="department_name" className="form-control" />
                       </div>
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
+                          <label htmlFor="description">Description</label>
                           <input onChange={(e) => setDepartment({...department, description: e.target.value})} value={department.description || ''} name="description" type="text" id="description" className="form-control" />
                       </div>
                     </div>

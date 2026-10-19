@@ -14,16 +14,16 @@ function SidebarVertical() {
         <nav className="sidebar sidebar-offcanvas sidebar-vertical" id="sidebar">
           <div className="sidebar-brand-wrapper d-flex align-items-center">
             <a className="sidebar-brand brand-logo" href="/dashboard" style={{ display: 'block', marginLeft: '15px' }}>
-            <img src="assets/images/logo_white.svg" alt="logo" style={{ width: '150px', height: 'auto', display: 'block' }} /></a>
+            <img src="/assets/images/logo_white.svg" alt="logo" style={{ width: '150px', height: 'auto', display: 'block' }} /></a>
             <a className="sidebar-brand brand-logo-mini pl-4 pt-3" href="/dashboard"> 
-            <img src="assets/images/logo-mini.svg" alt="logo" />
+            <img src="/assets/images/logo-mini.svg" alt="logo" />
             </a>
           </div>
           <ul className="nav">
             <li className="nav-item nav-profile">
               <a href="#" className="nav-link">
                 <div className="nav-profile-image">
-                  <img src="assets/images/faces/face1.jpg" alt="profile" />
+                  <img src="/assets/images/faces/face1.jpg" alt="profile" />
                   <span className="login-status online"></span>
                 </div>
                 <div className="nav-profile-text d-flex flex-column pr-3">

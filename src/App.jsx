@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import Projects from "./pages/projects_clients/projects/Index.jsx";
 import CreateProjects from "./pages/projects_clients/projects/Create.jsx";
 import EditProjects from "./pages/projects_clients/projects/Edit.jsx";
+import ProjectsView from "./pages/projects_clients/projects/View.jsx";
 
 import Clients from "./pages/projects_clients/clients/Index.jsx";
 import CreateClient from "./pages/projects_clients/clients/Create.jsx";
@@ -88,6 +89,7 @@ function App() {
                         <Route index element={<Projects />} />
                         <Route path="create" element={<CreateProjects />} />
                         <Route path="edit/:id" element={<EditProjects />} />
+                        <Route path="view/:id" element={<ProjectsView />} />
                     </Route>
 
                     <Route path="/projects_clients/clients">

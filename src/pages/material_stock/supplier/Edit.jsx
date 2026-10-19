@@ -49,11 +49,13 @@ function SuppliersEdit() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="name">Full Name</label>
                                             <input onChange={(e) => setSupplier({...supplier, supplier_name: e.target.value})} value={supplier.supplier_name || ''} id="name" name="supplier_name" type="text" className="form-control" placeholder="Enter Full Name"/>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="company">Company Name</label>
                                             <input onChange={(e) => setSupplier({...supplier, company_name: e.target.value})} value={supplier.company_name || ''} id="company" name="company_name" type="text" className="form-control" placeholder="Enter Company Name"/>
                                         </div>
                                     </div>
@@ -61,11 +63,13 @@ function SuppliersEdit() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="phone">Phone Number</label>
                                             <input onChange={(e) => setSupplier({...supplier, phone: e.target.value})} value={supplier.phone || ''} id="phone" name="phone" type="tel" className="form-control" placeholder="Enter Phone Number"/>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="email">Email</label>
                                             <input onChange={(e) => setSupplier({...supplier, email: e.target.value})} value={supplier.email || ''} id="email" name="email" type="email" className="form-control" placeholder="Enter Email"/>                                       
                                         </div>
                                     </div>
@@ -73,6 +77,7 @@ function SuppliersEdit() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
+                                            <label htmlFor="address">Address</label>
                                             <input onChange={(e) => setSupplier({...supplier, address: e.target.value})} value={supplier.address || ''} id="address" name="address" type="text" className="form-control" placeholder="Address"/>
                                         </div>
                                     </div>

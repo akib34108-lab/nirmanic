@@ -36,12 +36,14 @@ function MaterialsUnitCreate() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                            <input placeholder="Material Unit Name" name="unit_name" type="text" className="form-control" />
+                            <label htmlFor="form-material-unit-name-1">Material Unit Name</label>
+                            <input id="form-material-unit-name-1" placeholder="Material Unit Name" name="unit_name" type="text" className="form-control" />
                         </div>
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                            <input placeholder="Short Name" name="short_name" type="text" className="form-control" />
+                            <label htmlFor="form-short-name-2">Short Name</label>
+                            <input id="form-short-name-2" placeholder="Short Name" name="short_name" type="text" className="form-control" />
                         </div>
                       </div>
                     </div>

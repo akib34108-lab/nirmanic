@@ -36,12 +36,14 @@ function MaterialsCategoryCreate() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                            <input placeholder="Material Category Name" name="category_name" type="text" className="form-control" />
+                            <label htmlFor="form-material-category-name-1">Material Category Name</label>
+                            <input id="form-material-category-name-1" placeholder="Material Category Name" name="category_name" type="text" className="form-control" />
                         </div>
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                            <input placeholder="Description" name="description" type="text" className="form-control" />
+                            <label htmlFor="form-description-2">Description</label>
+                            <input id="form-description-2" placeholder="Description" name="description" type="text" className="form-control" />
                         </div>
                       </div>
                     </div>

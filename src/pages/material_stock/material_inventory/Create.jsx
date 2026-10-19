@@ -61,7 +61,8 @@ function MaterialsInventoryCreate() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                            <select name="material_id" className="form-control" required defaultValue="">
+                            <label htmlFor="form-material-id-1">Material</label>
+                            <select id="form-material-id-1" name="material_id" className="form-control" required defaultValue="">
                                 <option value="">Select Material</option>
                                 {material.map((material) => (
                                     <option key={material.id} value={material.id}>{material.material_name}</option>
@@ -71,7 +72,8 @@ function MaterialsInventoryCreate() {
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                            <select name="project_id" className="form-control" required defaultValue="">
+                            <label htmlFor="form-project-id-2">Project</label>
+                            <select id="form-project-id-2" name="project_id" className="form-control" required defaultValue="">
                                 <option value="">Select Project</option>
                                 {project.map((project) => (
                                     <option key={project.id} value={project.id}>{project.name}</option>
@@ -83,24 +85,28 @@ function MaterialsInventoryCreate() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                            <input value={quantityAvailable} onChange={(e) => setQuantityAvailable(e.target.value)} placeholder="Quantity Available" name="quantity_available" type="number" min="0" step="1" className="form-control" required />
+                            <label htmlFor="form-value-3">Quantity Available</label>
+                            <input id="form-value-3" value={quantityAvailable} onChange={(e) => setQuantityAvailable(e.target.value)} placeholder="Quantity Available" name="quantity_available" type="number" min="0" step="1" className="form-control" required />
                         </div>
                       </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                              <input value={quantityUsed} onChange={(e) => setQuantityUsed(e.target.value)} placeholder="Quantity Used" name="quantity_used" type="number" min="0" step="1" className="form-control" required />
+                              <label htmlFor="form-value-4">Quantity Used</label>
+                              <input id="form-value-4" value={quantityUsed} onChange={(e) => setQuantityUsed(e.target.value)} placeholder="Quantity Used" name="quantity_used" type="number" min="0" step="1" className="form-control" required />
                           </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-6">
                           <div className="form-group">
-                              <input value={currentStock} placeholder="Current Stock (calculated)" type="number" className="form-control" readOnly />
+                              <label htmlFor="form-current-stock-calculated-5">Current Stock (calculated)</label>
+                              <input id="form-current-stock-calculated-5" value={currentStock} placeholder="Current Stock (calculated)" type="number" className="form-control" readOnly />
                           </div>
                         </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                              <input placeholder="Minimum Stock" name="minimum_stock" type="number" min="0" step="1" className="form-control" required />
+                              <label htmlFor="form-minimum-stock-6">Minimum Stock</label>
+                              <input id="form-minimum-stock-6" placeholder="Minimum Stock" name="minimum_stock" type="number" min="0" step="1" className="form-control" required />
                           </div>
                       </div>
                     </div>
