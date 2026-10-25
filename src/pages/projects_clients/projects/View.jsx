@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router";
 import axios from "../../../lib/axios.js";
 import Layout from "../../Layout.jsx";
@@ -64,6 +64,16 @@ function ProjectsView() {
   const [project, setProject] = useState(null);
   const [purchases, setPurchases] = useState([]);
   const [error, setError] = useState("");
+  const [gallery, setGallery] = useState([]);
+  const [galleryLoading, setGalleryLoading] = useState(true);
+  const [galleryError, setGalleryError] = useState("");
+  const [galleryNotice, setGalleryNotice] = useState("");
+  const [galleryRefresh, setGalleryRefresh] = useState(0);
+  const [imageFile, setImageFile] = useState(null);
+  const [imageCaption, setImageCaption] = useState("");
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [deletingImageId, setDeletingImageId] = useState(null);
+  const imageInputRef = useRef(null);
 
   useEffect(() => {
     async function fetchProjectDetails() {
@@ -85,6 +95,118 @@ function ProjectsView() {
 
     fetchProjectDetails();
   }, [id]);
+
+  useEffect(() => {
+    let active = true;
+
+    async function fetchGallery() {
+      setGalleryLoading(true);
+      setGalleryError("");
+      try {
+        const response = await axios.get(
+          `/projects/gallery.php?project_id=${encodeURIComponent(id)}`
+        );
+        if (!response.data.status) {
+          throw new Error(response.data.message || "Unable to load project gallery.");
+        }
+        if (active) {
+          setGallery(response.data.data || []);
+        }
+      } catch (requestError) {
+        if (active) {
+          setGalleryError(
+            requestError.response?.data?.message ||
+              requestError.message ||
+              "Unable to load project gallery."
+          );
+        }
+      } finally {
+        if (active) {
+          setGalleryLoading(false);
+        }
+      }
+    }
+
+    fetchGallery();
+    return () => {
+      active = false;
+    };
+  }, [id, galleryRefresh]);
+
+  async function handleGalleryUpload(event) {
+    event.preventDefault();
+    setGalleryError("");
+    setGalleryNotice("");
+
+    if (!imageFile) {
+      setGalleryError("Choose a progress image to upload.");
+      return;
+    }
+    if (imageFile.size > 10 * 1024 * 1024) {
+      setGalleryError("Images must be 10 MB or smaller.");
+      return;
+    }
+
+    const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+    if (imageFile.type && !allowedTypes.includes(imageFile.type)) {
+      setGalleryError("Choose a JPEG, PNG, or WebP image.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("project_id", id);
+    formData.append("caption", imageCaption);
+    formData.append("image", imageFile);
+
+    setUploadingImage(true);
+    try {
+      const response = await axios.post("/projects/gallery.php", formData);
+      if (!response.data.status) {
+        throw new Error(response.data.message || "Unable to upload progress image.");
+      }
+      setImageFile(null);
+      setImageCaption("");
+      if (imageInputRef.current) {
+        imageInputRef.current.value = "";
+      }
+      setGalleryNotice(response.data.message || "Progress image uploaded successfully.");
+      setGalleryRefresh((current) => current + 1);
+    } catch (requestError) {
+      setGalleryError(
+        requestError.response?.data?.message ||
+          requestError.message ||
+          "Unable to upload progress image."
+      );
+    } finally {
+      setUploadingImage(false);
+    }
+  }
+
+  async function handleGalleryDelete(image) {
+    if (!window.confirm("Delete this progress image from the gallery?")) {
+      return;
+    }
+
+    setGalleryError("");
+    setGalleryNotice("");
+    setDeletingImageId(image.id);
+    try {
+      const response = await axios.delete(`/projects/gallery.php?id=${image.id}`);
+      if (!response.data.status) {
+        throw new Error(response.data.message || "Unable to delete progress image.");
+      }
+      setGallery((current) => current.filter((item) => item.id !== image.id));
+      setGalleryNotice(response.data.message || "Progress image deleted successfully.");
+    } catch (requestError) {
+      setGalleryError(
+        requestError.response?.data?.message ||
+          requestError.message ||
+          "Unable to delete progress image."
+      );
+    } finally {
+      setDeletingImageId(null);
+    }
+  }
 
   const budgetValue = parseBudgetAmount(project?.budget);
   const hasNumericBudget = Number.isFinite(budgetValue) && budgetValue >= 0;
@@ -255,6 +377,120 @@ function ProjectsView() {
                       aria-valuemax="100"
                       aria-label="Material budget used"
                     ></div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="card mb-4">
+              <div className="card-body">
+                <div className="d-flex flex-wrap justify-content-between align-items-center mb-3">
+                  <div>
+                    <h5 className="card-title mb-1">Project Progress Gallery</h5>
+                    <small className="text-muted">
+                      Keep dated photos of work completed on site.
+                    </small>
+                  </div>
+                  <span className="badge badge-light">{gallery.length} photo(s)</span>
+                </div>
+
+                {galleryError && (
+                  <div className="alert alert-danger" role="alert">
+                    {galleryError}
+                  </div>
+                )}
+                {galleryNotice && (
+                  <div className="alert alert-success" role="status">
+                    {galleryNotice}
+                  </div>
+                )}
+
+                <form onSubmit={handleGalleryUpload} className="border rounded p-3 mb-4">
+                  <div className="form-row align-items-end">
+                    <div className="form-group col-md-5">
+                      <label htmlFor="progress-image">Progress image</label>
+                      <input
+                        ref={imageInputRef}
+                        id="progress-image"
+                        type="file"
+                        className="form-control-file"
+                        accept="image/jpeg,image/png,image/webp"
+                        onChange={(event) => setImageFile(event.target.files?.[0] || null)}
+                        disabled={uploadingImage}
+                      />
+                      <small className="form-text text-muted">
+                        JPEG, PNG, or WebP; up to 10 MB.
+                      </small>
+                    </div>
+                    <div className="form-group col-md-5">
+                      <label htmlFor="progress-image-caption">Caption (optional)</label>
+                      <input
+                        id="progress-image-caption"
+                        type="text"
+                        className="form-control"
+                        value={imageCaption}
+                        onChange={(event) => setImageCaption(event.target.value)}
+                        maxLength={255}
+                        placeholder="e.g. Foundation work completed"
+                        disabled={uploadingImage}
+                      />
+                    </div>
+                    <div className="form-group col-md-2">
+                      <button
+                        type="submit"
+                        className="btn btn-primary btn-block"
+                        disabled={uploadingImage || !imageFile}
+                      >
+                        {uploadingImage ? "Uploading..." : "Upload photo"}
+                      </button>
+                    </div>
+                  </div>
+                </form>
+
+                {galleryLoading ? (
+                  <div className="text-muted" role="status">Loading progress photos...</div>
+                ) : gallery.length ? (
+                  <div className="row">
+                    {gallery.map((image) => (
+                      <div className="col-sm-6 col-lg-4 mb-4" key={image.id}>
+                        <div className="card h-100">
+                          <a
+                            href={`${import.meta.env.VITE_API_URL}${image.image_path}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`Open progress photo${image.caption ? `: ${image.caption}` : ""}`}
+                          >
+                            <img
+                              src={`${import.meta.env.VITE_API_URL}${image.image_path}`}
+                              alt={image.caption || "Project progress"}
+                              className="card-img-top"
+                              loading="lazy"
+                              style={{ height: "220px", objectFit: "cover" }}
+                            />
+                          </a>
+                          <div className="card-body d-flex flex-column">
+                            <p className="mb-2">{image.caption || "Project progress photo"}</p>
+                            <small className="text-muted mt-auto">
+                              {image.created_at
+                                ? new Date(image.created_at.replace(" ", "T")).toLocaleDateString()
+                                : "Date unavailable"}
+                            </small>
+                            <button
+                              type="button"
+                              className="btn btn-outline-danger btn-sm mt-3 align-self-start"
+                              onClick={() => handleGalleryDelete(image)}
+                              disabled={deletingImageId === image.id}
+                            >
+                              {deletingImageId === image.id ? "Deleting..." : "Delete photo"}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : galleryError ? null : (
+                  <div className="text-center text-muted py-4">
+                    No progress photos yet. Upload the first site photo above.
                   </div>
                 )}
               </div>
