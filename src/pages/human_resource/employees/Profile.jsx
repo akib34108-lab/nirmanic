@@ -12,15 +12,42 @@ const employeeStatuses = {
 };
 function ProfileEmployee() {
     const { id } = useParams();
-    const [employee, setEmployee] = React.useState('');
+    const [profile, setProfile] = React.useState(null);
     const [activeTab, setActiveTab] = React.useState("personal");
-    async function fetchEmployee() {
-        let res = await axios.get(`/employees/single.php?id=${id}`);
-        setEmployee(res.data.data[0]);
-    }
     React.useEffect(() => {
+        let isCurrent = true;
+
+        async function fetchEmployee() {
+            try {
+                const response = await axios.get(
+                    `/employees/single.php?id=${encodeURIComponent(id)}`
+                );
+                if (!response.data.status || !response.data.data?.[0]) {
+                    throw new Error(response.data.message || "Employee not found.");
+                }
+                if (isCurrent) {
+                    setProfile({ id, employee: response.data.data[0] });
+                }
+            } catch (requestError) {
+                if (isCurrent) {
+                    setProfile({
+                        id,
+                        error:
+                            requestError.response?.data?.message ||
+                            requestError.message ||
+                            "Unable to load employee profile.",
+                    });
+                }
+            }
+        }
+
         fetchEmployee();
-    }, []);
+        return () => {
+            isCurrent = false;
+        };
+    }, [id]);
+    const currentProfile = profile?.id === id ? profile : null;
+    const employee = currentProfile?.employee;
     const InfoItem = ({ label, value }) => (
         <div className="col-md-6 mb-4">
             <small className="text-muted d-block mb-1">{label}</small>
@@ -41,6 +68,13 @@ function ProfileEmployee() {
                         </ol>
                     </nav>
                 </div>
+                {!currentProfile && (
+                    <div className="alert alert-info" role="status">Loading employee profile...</div>
+                )}
+                {currentProfile?.error && (
+                    <div className="alert alert-danger" role="alert">{currentProfile.error}</div>
+                )}
+                {employee && <>
                 <div className="card mb-4" style={{ backgroundColor: "#214875"}}>
                     <div className="card-body">
                         <div className="row align-items-center">
@@ -102,6 +136,7 @@ function ProfileEmployee() {
                         )}
                     </div>
                 </div>
+                </>}
             </div>
         </Layout>
     );

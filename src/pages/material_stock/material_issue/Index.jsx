@@ -50,8 +50,6 @@ function Issue() {
                                 </div>
                             </div>
                             <Link to="/material_stock/material_issue/create" className="btn btn-info d-flex justify-content-center align-items-center mr-2"><i className="mdi mdi-plus"></i>Add Material Issue</Link>
-                            <Link to="/material_stock/material_category" className="btn btn-info d-flex justify-content-center align-items-center mr-2">Material Category</Link>
-                            <Link to="/material_stock/material_unit" className="btn btn-info d-flex justify-content-center align-items-center">Material Unit</Link>
                         </div>
                     </form>
                 </div>

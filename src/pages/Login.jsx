@@ -24,6 +24,8 @@ function Login() {
                 );
                 return;
             }
+            localStorage.removeItem("nirmanic-dismissed-update-build");
+            localStorage.removeItem("nirmanic-dismissed-latest-version");
             localStorage.setItem("access_token", response.data.jwt);
             localStorage.setItem(
                 "userdata",response.data.data

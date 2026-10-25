@@ -28,7 +28,7 @@ function SidebarVertical() {
                 </div>
                 <div className="nav-profile-text d-flex flex-column pr-3">
                   <span className="font-weight-medium mb-2"> {userData.name} </span>
-                  <span className="font-weight-normal">$8,753.00</span>
+                  <span className="font-weight-normal">Super Admin</span>
                 </div>
                 <span className="badge badge-danger text-white ml-3 rounded">3</span>
               </a>
@@ -105,6 +105,22 @@ function SidebarVertical() {
                       </Link>
                   </li>
                 </ul>
+            )}
+            <li className="nav-item" onClick={() => toggleModule("boq")} style={{ cursor: "pointer" }}>
+              <a className="nav-link">
+                <i className="mdi mdi-calculator-variant menu-icon"></i>
+                <span className="menu-title">BOQ & Estimates</span>
+                <i className={openModule === "boq" ? "mdi mdi-menu-down" : "mdi mdi-menu-right"} style={{ marginLeft: "auto", fontSize: "15px" }}></i>
+              </a>
+            </li>
+            {openModule === "boq" && (
+              <ul className="submenu" style={{ listStyle: "none", paddingLeft: "30px" }}>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/boq">
+                    <span className="menu-title">BOQ List</span>
+                  </Link>
+                </li>
+              </ul>
             )}
           </ul>
         </nav>

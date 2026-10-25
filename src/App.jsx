@@ -67,6 +67,9 @@ import IssueDetails from "./pages/material_stock/material_issue/Details.jsx";
 import MaterialTransaction from "./pages/material_stock/material_transaction/Index.jsx";
 import TransactionView from "./pages/material_stock/material_transaction/View.jsx";
 
+// Bill of Quantities
+import { BOQList, BOQForm, BOQDetails, BOQReport } from "./pages/boq/BOQ.jsx";
+
 function App() {
   const [ isSignedIn, setIsSignedIn ] = useState(()=> {
     /* if you want, user will be logged in until they logout*/
@@ -163,6 +166,14 @@ function App() {
                     <Route path="/material_stock/material_transaction">
                       <Route index element={<MaterialTransaction/>}/>
                       <Route path="view/:id" element={<TransactionView />} />
+                    </Route>
+
+                    <Route path="/boq">
+                      <Route index element={<BOQList />} />
+                      <Route path="create" element={<BOQForm />} />
+                      <Route path="edit/:id" element={<BOQForm />} />
+                      <Route path="report" element={<BOQReport />} />
+                      <Route path=":id" element={<BOQDetails />} />
                     </Route>
                   </Route>
             </Routes>

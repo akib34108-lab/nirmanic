@@ -36,6 +36,25 @@ const transactionTypeLabels = {
   2: "Stock Out",
 };
 
+const dismissedUpdateStorageKey = "nirmanic-dismissed-update-build";
+const dismissedLatestVersionStorageKey = "nirmanic-dismissed-latest-version";
+const dismissButtonStyle = {
+  width: "32px",
+  height: "32px",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: 0,
+  border: "1px solid currentColor",
+  borderRadius: "50%",
+  background: "#fff",
+  color: "#0d4876",
+  fontSize: "24px",
+  fontWeight: 600,
+  lineHeight: 1,
+  cursor: "pointer",
+};
+
 function rowsFromResponse(response) {
   const data = response.data?.data;
   if (Array.isArray(data)) {
@@ -110,6 +129,9 @@ function getUserName() {
 }
 
 function Dashboard() {
+  const currentHour = new Date().getHours();
+  const greeting =
+    currentHour < 12 ? "Good Morning" : currentHour < 18 ? "Good Afternoon" : "Good Evening";
   const [dashboardData, setDashboardData] = useState({
     projects: [],
     clients: [],
@@ -120,6 +142,10 @@ function Dashboard() {
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(true);
+  const [updateCheckComplete, setUpdateCheckComplete] = useState(false);
+  const [updateAvailable, setUpdateAvailable] = useState(false);
+  const [updateNoticeDismissed, setUpdateNoticeDismissed] = useState(false);
+  const [availableBuildId, setAvailableBuildId] = useState("");
   const [userName] = useState(getUserName);
   const [monthAnchor] = useState(() => {
     const now = new Date();
@@ -168,12 +194,63 @@ function Dashboard() {
     };
   }, [fetchDashboardData]);
 
-  async function refreshDashboard() {
-    setLoading(true);
-    const { data, errors: requestErrors } = await fetchDashboardData();
-    setDashboardData((currentData) => ({ ...currentData, ...data }));
-    setErrors(requestErrors);
-    setLoading(false);
+  useEffect(() => {
+    let isCurrent = true;
+
+    async function checkForUpdates() {
+      try {
+        const response = await fetch(
+          `${import.meta.env.BASE_URL}version.json?t=${Date.now()}`,
+          { cache: "no-store" }
+        );
+        if (!response.ok) {
+          throw new Error(`Version check failed with status ${response.status}.`);
+        }
+        const version = await response.json();
+        if (isCurrent && typeof version.buildId === "string") {
+          const hasUpdate = version.buildId !== import.meta.env.VITE_APP_BUILD_ID;
+          const dismissedBuildId = localStorage.getItem(dismissedUpdateStorageKey);
+          const dismissedLatestBuildId = localStorage.getItem(dismissedLatestVersionStorageKey);
+          setAvailableBuildId(hasUpdate ? version.buildId : "");
+          setUpdateAvailable(hasUpdate && dismissedBuildId !== version.buildId);
+          setUpdateNoticeDismissed(
+            hasUpdate
+              ? dismissedBuildId === version.buildId
+              : dismissedLatestBuildId === import.meta.env.VITE_APP_BUILD_ID
+          );
+          setUpdateCheckComplete(true);
+        }
+      } catch (error) {
+        console.error("Dashboard update check failed:", error);
+      }
+    }
+
+    checkForUpdates();
+    const intervalId = window.setInterval(checkForUpdates, 5 * 60 * 1000);
+    window.addEventListener("focus", checkForUpdates);
+
+    return () => {
+      isCurrent = false;
+      window.clearInterval(intervalId);
+      window.removeEventListener("focus", checkForUpdates);
+    };
+  }, []);
+
+  function dismissUpdateNotice() {
+    setUpdateAvailable(false);
+    setUpdateNoticeDismissed(true);
+    try {
+      if (availableBuildId) {
+        localStorage.setItem(dismissedUpdateStorageKey, availableBuildId);
+      } else {
+        localStorage.setItem(
+          dismissedLatestVersionStorageKey,
+          import.meta.env.VITE_APP_BUILD_ID
+        );
+      }
+    } catch (error) {
+      console.error("Unable to save dismissed update notice:", error);
+    }
   }
 
   const stats = useMemo(() => {
@@ -270,21 +347,12 @@ function Dashboard() {
       <div className="content-wrapper">
         <div className="page-header flex-wrap">
           <div>
-            <h3 className="page-title mb-1">Welcome back, {userName}</h3>
+            <h3 className="page-title mb-1">{greeting}, {userName}</h3>
             <p className="text-muted mb-0">
               Your Nirmanic construction operations at a glance.
             </p>
           </div>
           <div className="d-flex flex-wrap mt-3 mt-md-0">
-            <button
-              type="button"
-              className="btn btn-outline-primary mr-2"
-              onClick={refreshDashboard}
-              disabled={loading}
-            >
-              <i className="mdi mdi-refresh mr-1"></i>
-              {loading ? "Refreshing..." : "Refresh"}
-            </button>
             <Link to="/projects_clients/projects/create" className="btn btn-primary mr-2">
               <i className="mdi mdi-plus mr-1"></i> New Project
             </Link>
@@ -293,6 +361,46 @@ function Dashboard() {
             </Link>
           </div>
         </div>
+
+        {updateAvailable && (
+          <div className="alert alert-info d-flex flex-wrap align-items-center" role="status">
+            <span className="mr-auto"><i className="mdi mdi-update mr-2"></i>Update version is available.</span>
+            <button type="button" className="btn btn-sm btn-primary mt-2 mt-sm-0 mr-2" onClick={() => window.location.reload()}>
+              Reload to update
+            </button>
+            <button
+              type="button"
+              className="btn"
+              aria-label="Dismiss update notification"
+              title="Dismiss update notification"
+              onClick={dismissUpdateNotice}
+              style={dismissButtonStyle}
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        )}
+
+        {updateCheckComplete &&
+          !updateAvailable &&
+          !updateNoticeDismissed && (
+          <div className="alert alert-success d-flex align-items-center" role="status">
+            <span className="mr-auto">
+              <i className="mdi mdi-check-circle-outline mr-2"></i>
+              No updates available. You’re using the latest version.
+            </span>
+            <button
+              type="button"
+              className="btn"
+              aria-label="Dismiss version status"
+              title="Dismiss version status"
+              onClick={dismissUpdateNotice}
+              style={dismissButtonStyle}
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        )}
 
         {unavailableSections.length > 0 && (
           <div className="alert alert-warning" role="alert">

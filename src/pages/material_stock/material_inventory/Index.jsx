@@ -64,8 +64,6 @@ function MaterialsInventory() {
                             <Link to="/material_stock/material_inventory/create" className="btn btn-info d-flex justify-content-center align-items-center mr-2">
                                 <i className="mdi mdi-plus"></i> Add Material Inventory 
                             </Link>
-                            <Link to="/material_stock/material_category" className="btn btn-info d-flex justify-content-center align-items-center mr-2">Material Category</Link>
-                            <Link to="/material_stock/material_unit" className="btn btn-info d-flex justify-content-center align-items-center">Material Unit</Link>
                     </div>
                 </form>
             </div>
@@ -84,7 +82,7 @@ function MaterialsInventory() {
                                             <th>Quantity Available</th>
                                             <th>Quantity Used</th>
                                             <th>Current Stock</th>
-                                            <th>Minimum Stock</th>
+                                            {/* <th>Minimum Stock</th> */}
                                             <th>Status</th>
                                             <th className="text-center">Action</th>
                                         </tr>
@@ -98,7 +96,7 @@ function MaterialsInventory() {
                                             <td>{ inventory.quantity_available}</td>
                                             <td>{ inventory.quantity_used }</td>
                                             <td>{ inventory.current_stock }</td>
-                                            <td>{ inventory.minimum_stock }</td>
+                                            {/* <td>{ inventory.minimum_stock }</td> */}
                                             <td style={{ color: stockStatuses[inventory.status]?.color }}>
                                                 {stockStatuses[inventory.status]?.label || "-"}
                                             </td>

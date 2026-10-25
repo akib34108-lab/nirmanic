@@ -76,7 +76,6 @@ function MaterialsPurchase() {
                                 <i className="mdi mdi-plus"></i> Add Material Purchase
                             </Link>
                             <Link to="/material_stock/supplier" className="btn btn-info d-flex justify-content-center align-items-center mr-2">Suppliers</Link>
-                            <Link to="/material_stock/material_unit" className="btn btn-info d-flex justify-content-center align-items-center">Material Unit</Link>
                     </div>
                 </form>
             </div>
