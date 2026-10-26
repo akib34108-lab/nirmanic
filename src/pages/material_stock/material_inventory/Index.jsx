@@ -50,23 +50,6 @@ function MaterialsInventory() {
                     </ol>
                 </nav>
             </div>
-            <div className="mb-4">
-                <form className="form-inline mt-2 mt-md-0">
-                    <div className="d-flex w-100">
-                        <div className="input-group flex-grow-1">
-                            <input type="text" className="form-control" placeholder="Search Material Inventory"/>
-                            <div className="input-group-append">
-                                <span className="input-group-text">
-                                    <i className="mdi mdi-magnify"></i>
-                                </span>
-                            </div>
-                        </div>
-                            <Link to="/material_stock/material_inventory/create" className="btn btn-info d-flex justify-content-center align-items-center mr-2">
-                                <i className="mdi mdi-plus"></i> Add Material Inventory 
-                            </Link>
-                    </div>
-                </form>
-            </div>
             <div className="row">
                 <div className="col-12 grid-margin">
                     <div className="card">
@@ -105,7 +88,6 @@ function MaterialsInventory() {
                                                     <button type="button" className="action-menu-btn" onClick={() => setOpenMenu( openMenu === inventory.id ? null : inventory.id)} title="More Actions"><i className="mdi mdi-dots-vertical"></i></button>
                                                     {openMenu === inventory.id && (
                                                         <div className="action-dropdown">
-                                                            <Link to={`/material_stock/material_inventory/edit/${inventory.id}`} className="action-dropdown-item" onClick={() => setOpenMenu(null)}><i className="mdi mdi-pencil-outline"></i><span>Edit Inventory</span></Link>
                                                             <button type="button" className="action-dropdown-item delete-action" onClick={() => { setOpenMenu(null);  handleDelete(inventory.id, inventory.id);}}><i className="mdi mdi-delete-outline"></i><span>Delete Inventory</span></button>
                                                         </div>
                                                     )}

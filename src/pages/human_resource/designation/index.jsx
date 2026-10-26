@@ -61,7 +61,6 @@ function Designation() {
                                         <colgroup>
                                             <col style={{ width: "5%" }} />
                                             <col style={{ width: "40%" }} />
-                                            <col style={{ width: "17%" }} />
                                             <col style={{ width: "13%" }} />
                                             <col style={{ width: "25%" }} />
                                         </colgroup>
@@ -69,7 +68,6 @@ function Designation() {
                                             <tr>
                                                 <th>#</th>
                                                 <th>Designations</th>
-                                                <th>Department</th>
                                                 <th>Employees</th>
                                                 <th className="text-center">Action</th>
                                             </tr>
@@ -89,7 +87,6 @@ function Designation() {
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td>Management</td>
                                                 <td>
                                                     <i className="mdi mdi-account-multiple text-muted mr-1"></i>4
                                                 </td>

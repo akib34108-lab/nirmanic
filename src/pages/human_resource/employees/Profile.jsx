@@ -120,8 +120,8 @@ function ProfileEmployee() {
                         {activeTab === "employment" && (
                             <div className="row">
                                 <InfoItem label="Employee ID" value={employee.id}/>
-                                <InfoItem label="Department ID" value={employee.department_name}/>
-                                <InfoItem label="Designation ID" value={employee.designation_name}/>
+                                <InfoItem label="Department" value={employee.department_name}/>
+                                <InfoItem label="Designation" value={employee.designation_name}/>
                                 <InfoItem label="Experience" value={ employee.experience}/>
                                 <InfoItem
                                     label="Basic Salary"

@@ -3,6 +3,7 @@ import Layout from "../../Layout.jsx";
 import axios from "../../../lib/axios.js";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
+import "./Details.css";
 
 function IssueDetails() {
     const navigate = useNavigate();
@@ -73,11 +74,11 @@ function IssueDetails() {
     return (
         <Layout>
             <div className="content-wrapper">
-                <div className="card mt-1">
+                <div className="card mt-1 issue-print-area">
                     <div className="card-header p-3 d-flex justify-content-between align-items-center flex-wrap">
                         <h4>Material Issue Details</h4>
 
-                        <div className="d-flex gap-2">
+                        <div className="d-flex gap-2 issue-print-controls">
                             <button
                                 type="button"
                                 onClick={() => window.history.back()}

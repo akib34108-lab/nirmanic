@@ -192,7 +192,6 @@ function MaterialsPurchaseCreate() {
                         name="purchase_date"
                         type="date"
                         className="form-control"
-                        required
                       />
                     </div>
                   </div>
@@ -222,7 +221,7 @@ function MaterialsPurchaseCreate() {
                   <div className="col-md-4">
                     <div className="form-group">
                       <label htmlFor="form-supplier-id-4">Supplier</label>
-                      <select id="form-supplier-id-4" name="supplier_id" className="form-control" defaultValue="" required>
+                      <select id="form-supplier-id-4" name="supplier_id" className="form-control" defaultValue="">
                         <option value="" disabled>
                           Select Supplier
                         </option>
@@ -236,25 +235,11 @@ function MaterialsPurchaseCreate() {
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
-                      <label htmlFor="form-total-amount-5">Total Amount</label>
-                      <input id="form-total-amount-5"
-                        name="total_amount"
-                        type="number"
-                        className="form-control"
-                        value={totalAmount.toFixed(2)}
-                        placeholder="Total Amount"
-                        readOnly
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
                       <label htmlFor="form-status-6">Material Purchase Status</label>
                       <select id="form-status-6"
                         name="status"
                         className="form-control"
                         defaultValue=""
-                        required
                       >
                         <option value="" disabled>
                           Select Material Purchase Status
@@ -266,6 +251,20 @@ function MaterialsPurchaseCreate() {
                         <option value="5">Received</option>
                         <option value="6">Cancelled</option>
                       </select>
+                    </div>
+                  </div>
+                  
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label htmlFor="form-total-amount-5">Total Amount</label>
+                      <input id="form-total-amount-5"
+                        name="total_amount"
+                        type="number"
+                        className="form-control"
+                        value={totalAmount.toFixed(2)}
+                        placeholder="Total Amount"
+                        readOnly
+                      />
                     </div>
                   </div>
                 </div>

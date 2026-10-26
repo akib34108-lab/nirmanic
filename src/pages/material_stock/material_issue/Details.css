@@ -1,0 +1,27 @@
+@media print {
+    @page {
+        margin: 12mm;
+    }
+
+    body * {
+        visibility: hidden !important;
+    }
+
+    .issue-print-area,
+    .issue-print-area * {
+        visibility: visible !important;
+    }
+
+    .issue-print-area {
+        position: absolute !important;
+        inset: 0 auto auto 0;
+        width: 100% !important;
+        margin: 0 !important;
+        border: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .issue-print-controls {
+        display: none !important;
+    }
+}

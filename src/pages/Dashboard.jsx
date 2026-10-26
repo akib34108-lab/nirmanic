@@ -693,7 +693,7 @@ function Dashboard() {
                 {recentTransactions.length ? (
                   <div className="table-responsive">
                     <table className="table table-hover">
-                      <thead><tr><th>Material</th><th>Project</th><th>Type</th><th>Date</th><th className="text-right">Quantity</th></tr></thead>
+                      <thead><tr><th>Material</th><th>Type</th><th>Date</th><th className="text-right">Quantity</th></tr></thead>
                       <tbody>
                         {recentTransactions.map((transaction) => {
                           const isStockIn = Number(transaction.transaction_type) === 1;
@@ -703,7 +703,6 @@ function Dashboard() {
                           return (
                             <tr key={transaction.id}>
                               <td>{transaction.material_name || "Material"}</td>
-                              <td>{transaction.project_name || "—"}</td>
                               <td className={isStockIn ? "text-success" : "text-warning"}>
                                 {transactionTypeLabels[transaction.transaction_type] || "Transaction"}
                               </td>

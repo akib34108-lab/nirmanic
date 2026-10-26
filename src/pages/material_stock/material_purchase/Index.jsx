@@ -23,6 +23,7 @@ const purchaseStatuses = {
 function MaterialsPurchase() {
    const [ purchase, setPurchase ] = React.useState([]);
    const [openMenu, setOpenMenu] = React.useState(null);
+   const [syncingStock, setSyncingStock] = React.useState(false);
     const fetchPurchase = async () => {
         let res = await axios.get(`/material_purchase/index.php`)
         setPurchase(res.data.data);
@@ -30,6 +31,34 @@ function MaterialsPurchase() {
     React.useEffect(()=>{
         fetchPurchase();
     },[]);
+
+    async function handleSyncStock() {
+        if (!window.confirm("Add stock movements for purchases that are missing from inventory and transaction history? Purchases already recorded in transactions will not be duplicated.")) {
+            return;
+        }
+
+        setSyncingStock(true);
+        try {
+            const res = await axios.post("/material_purchase/reconcile_stock.php");
+            await fetchPurchase();
+            const unresolved = res.data.data?.unresolved || [];
+            const unresolvedDetails = unresolved
+                .map((item) => `${item.purchase_no}: ${item.reason}`)
+                .join("\n");
+            window.alert(
+                [res.data.message || "Unable to synchronize purchase stock.", unresolvedDetails]
+                    .filter(Boolean)
+                    .join("\n")
+            );
+        } catch (error) {
+            window.alert(
+                error.response?.data?.message ||
+                "Unable to synchronize purchase stock. Please try again."
+            );
+        } finally {
+            setSyncingStock(false);
+        }
+    }
 
     async function handleDelete(id, puprchaseName) {
     if (window.confirm(`Are you sure you want to delete this ${puprchaseName}?`)) {
@@ -88,8 +117,7 @@ function MaterialsPurchase() {
                                 <table className="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Purchase No</th>
+                                            <th>No</th>
                                             <th>Purchase Date</th>
                                             <th>Supplier</th>
                                             <th>Project</th>
@@ -104,17 +132,22 @@ function MaterialsPurchase() {
                                     <tbody>
                                         {purchase && purchase.map((purchase) => (
                                         <tr key={ purchase.id }>
-                                            <td>{ purchase.id }</td>
                                             <td>{ purchase.purchase_no }</td>
                                             <td>{ purchase.purchase_date }</td>
                                             <td>{ purchase.supplier_name }</td>
                                             <td>{ purchase.name }</td>
                                             <td>
-                                                <div>{purchase.material_names || purchase.material_name}</div>
                                                 {purchase.item_count > 0 && <small>{purchase.item_count} item(s)</small>}
+                                            </td><td>
+                                                {purchase.items?.length
+                                                    ? purchase.items.map((item) => <div key={item.id}>{item.quantity}</div>)
+                                                    : purchase.quantity ?? "-"}
                                             </td>
-                                            <td>{purchase.item_count > 0 ? "-" : purchase.quantity}</td>
-                                            <td>{purchase.item_count > 0 ? "-" : purchase.unit_price}</td>
+                                            <td>
+                                                {purchase.items?.length
+                                                    ? purchase.items.map((item) => <div key={item.id}>{item.unit_price}</div>)
+                                                    : purchase.unit_price ?? "-"}
+                                            </td>
                                             <td>{ purchase.total_amount }</td>
                                             <td>
                                                 <div className="ml-auto" style={{display: "flex",alignItems: "center",gap: "7px",color: purchaseStatusColors[purchase.status]}}>
